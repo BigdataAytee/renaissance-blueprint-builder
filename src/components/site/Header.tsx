@@ -53,20 +53,21 @@ export function Header() {
       </div>
 
       {/* main nav */}
-      <div className="container-wide flex items-center justify-between h-24 lg:h-28">
-        <Link to="/" className="flex items-center gap-3">
+      <div className="container-wide flex items-center justify-between h-28 lg:h-32">
+        <Link to="/" className="flex items-center gap-4">
           <img
             src={logoMark}
-            alt="Dynamic Renaissance crest"
-            width={96}
-            height={96}
-            className="size-16 lg:size-20 object-contain drop-shadow-md"
+            alt="Dynamic Renaissance monogram"
+            width={112}
+            height={112}
+            className="size-20 lg:size-24 object-contain drop-shadow-md"
           />
           <div className={`leading-tight ${solid ? "text-foreground" : "text-white"}`}>
-            <div className="font-display font-extrabold text-base sm:text-lg lg:text-xl tracking-tight">Dynamic Renaissance</div>
+            <div className="font-display font-extrabold text-lg sm:text-xl lg:text-2xl tracking-tight">Dynamic Renaissance</div>
             <div className={`text-[10px] sm:text-xs uppercase tracking-[0.22em] ${solid ? "text-muted-foreground" : "text-white/70"}`}>Biz Ents. Ltd.</div>
           </div>
         </Link>
+
 
 
         <nav className="hidden xl:flex items-center gap-1">
