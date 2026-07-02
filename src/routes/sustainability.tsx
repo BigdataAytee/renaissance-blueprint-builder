@@ -35,7 +35,7 @@ function Sustainability() {
           <div>
             <h2 className="text-4xl font-extrabold">An ESG framework built for Nigeria's realities.</h2>
             <p className="mt-4 text-muted-foreground">
-              We align our operations to internationally recognised standards while responding to the specific environmental, social and governance priorities of the Nigerian context.
+              We align our operations to internationally recognised standards while responding to the specific environmental, social and governance priorities of the markets we operate in.
             </p>
           </div>
         </div>

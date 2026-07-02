@@ -33,7 +33,7 @@ function About() {
             <div className="eyebrow">Our Story</div>
             <h2 className="mt-4 text-4xl font-extrabold">From a founding vision to a national platform.</h2>
             <p className="mt-4 text-muted-foreground">
-              Dynamic Renaissance Biz Ents. Ltd. is a private limited liability company registered under the Companies and Allied Matters Act (CAMA), 1990. From day one our founders set out to build a modern Nigerian conglomerate — one that competes on quality, safety, sustainability and delivery.
+              Dynamic Renaissance Biz Ents. Ltd. is a private limited liability company registered under the Companies and Allied Matters Act (CAMA), 1990. From day one our founders set out to build a modern diversified conglomerate — one that competes on quality, safety, sustainability and delivery.
             </p>
             <p className="mt-4 text-muted-foreground">
               Today the group operates across infrastructure, project management, oil and gas, agriculture, logistics, manufacturing, hospitality, industrial services, business consulting and commercial trading, working with institutional clients, government agencies and multinational partners.

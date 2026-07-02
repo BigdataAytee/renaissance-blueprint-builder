@@ -8,7 +8,7 @@ export const Route = createFileRoute("/industries")({
   head: () => ({
     meta: [
       { title: "Industries — Dynamic Renaissance" },
-      { name: "description", content: "Sixteen industries served across the Nigerian economy." },
+      { name: "description", content: "Sixteen industries served across the wider economy." },
       { property: "og:url", content: "/industries" },
     ],
     links: [{ rel: "canonical", href: "/industries" }],
