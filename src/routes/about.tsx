@@ -22,7 +22,7 @@ export const Route = createFileRoute("/about")({
 function About() {
   return (
     <Layout>
-      <PageHero eyebrow="About the Group" title="A diversified Nigerian enterprise built on integrity, engineering and enterprise."
+      <PageHero eyebrow="About the Group" title="A diversified enterprise group built on integrity, engineering and enterprise."
         subtitle={company.description} />
 
       <section className="section-y">

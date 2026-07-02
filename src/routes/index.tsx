@@ -15,7 +15,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Dynamic Renaissance Biz Ents. Ltd. — Building Today. Transforming Tomorrow." },
-      { name: "description", content: "A diversified Nigerian enterprise delivering integrated solutions across infrastructure, oil & gas, agriculture, logistics, manufacturing and commercial services." },
+      { name: "description", content: "A diversified enterprise group delivering integrated solutions across infrastructure, oil & gas, agriculture, logistics, manufacturing and commercial services." },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),

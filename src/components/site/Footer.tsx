@@ -15,7 +15,7 @@ export function Footer() {
             </div>
           </div>
           <p className="mt-5 text-sm text-white/70 max-w-sm">
-            A diversified Nigerian enterprise delivering integrated solutions across infrastructure, energy, agriculture, logistics, manufacturing and commercial services.
+            A diversified enterprise group delivering integrated solutions across infrastructure, energy, agriculture, logistics, manufacturing and commercial services.
           </p>
           <div className="mt-6 flex gap-3">
             {[Linkedin, Twitter, Facebook, Instagram, Youtube].map((Icon, i) => (
