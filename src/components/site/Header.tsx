@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Phone, Mail, Clock, Menu, X, Search, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { company, businesses, industries } from "@/lib/site-data";
+import logoMark from "@/assets/logo-mark.png";
 
 const navItems = [
   { to: "/", label: "Home" },
@@ -54,9 +55,13 @@ export function Header() {
       {/* main nav */}
       <div className="container-wide flex items-center justify-between h-20">
         <Link to="/" className="flex items-center gap-3">
-          <div className="size-11 rounded-md bg-primary text-primary-foreground grid place-items-center font-display font-extrabold text-lg shadow-md">
-            DR
-          </div>
+          <img
+            src={logoMark}
+            alt="Dynamic Renaissance emblem"
+            width={44}
+            height={44}
+            className="size-11 object-contain drop-shadow-sm"
+          />
           <div className={`leading-tight ${solid ? "text-foreground" : "text-white"}`}>
             <div className="font-display font-extrabold text-sm sm:text-base tracking-tight">Dynamic Renaissance</div>
             <div className={`text-[10px] sm:text-xs uppercase tracking-[0.18em] ${solid ? "text-muted-foreground" : "text-white/70"}`}>Biz Ents. Ltd.</div>
