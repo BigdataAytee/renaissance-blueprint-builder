@@ -220,7 +220,7 @@ export const testimonials = [
     role: "Agro Consortium",
   },
   {
-    quote: "Their consulting practice reshaped how we plan capital projects. Practical, precise and grounded in Nigerian realities.",
+    quote: "Their consulting practice reshaped how we plan capital projects. Practical, precise and grounded in on-the-ground realities.",
     author: "Chief Operating Officer",
     role: "Manufacturing Group",
   },

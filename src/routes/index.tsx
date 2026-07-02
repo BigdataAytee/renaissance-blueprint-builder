@@ -15,7 +15,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Dynamic Renaissance Biz Ents. Ltd. — Building Today. Transforming Tomorrow." },
-      { name: "description", content: "A diversified Nigerian enterprise delivering integrated solutions across infrastructure, oil & gas, agriculture, logistics, manufacturing and commercial services." },
+      { name: "description", content: "A diversified enterprise group delivering integrated solutions across infrastructure, oil & gas, agriculture, logistics, manufacturing and commercial services." },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
@@ -50,7 +50,7 @@ function Home() {
         <div className="container-wide relative pt-32 pb-24">
           <motion.div initial="hidden" animate="show" variants={fadeUp} className="max-w-4xl">
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.24em] text-gold font-semibold">
-              <span className="w-8 h-px bg-gold" /> Diversified Nigerian Enterprise
+              <span className="w-8 h-px bg-gold" /> Diversified Enterprise Group
             </div>
             <h1 className="mt-6 text-5xl sm:text-6xl md:text-7xl font-extrabold leading-[0.98] text-balance">
               Building Today.<br />
@@ -91,7 +91,7 @@ function Home() {
           </motion.div>
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
             <div className="eyebrow">About the Group</div>
-            <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-balance">A Nigerian conglomerate built for the next generation of growth.</h2>
+            <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-balance">A conglomerate built for the next generation of growth.</h2>
             <p className="mt-5 text-muted-foreground">
               Registered under the Companies and Allied Matters Act (CAMA) 1990, Dynamic Renaissance Biz Ents. Ltd. is a private limited liability company delivering innovative, sustainable and high-quality solutions across a diversified portfolio of industries.
             </p>

@@ -78,7 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Dynamic Renaissance Biz Ents. Ltd. — Building Today. Transforming Tomorrow." },
-      { name: "description", content: "Diversified Nigerian enterprise delivering integrated solutions across infrastructure, oil & gas, agriculture, logistics, manufacturing and commercial services." },
+      { name: "description", content: "Diversified enterprise group delivering integrated solutions across infrastructure, oil & gas, agriculture, logistics, manufacturing and commercial services." },
       { name: "author", content: "Dynamic Renaissance Biz Ents. Ltd." },
       { property: "og:title", content: "Dynamic Renaissance Biz Ents. Ltd." },
       { property: "og:description", content: "Building Today. Transforming Tomorrow. Integrated solutions across Nigeria's most vital sectors." },
