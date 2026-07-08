@@ -3,7 +3,7 @@ import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import { businesses } from "@/lib/site-data";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
-export const Route = createFileRoute("/business-sectors/")({
+export const Route = createFileRoute("/business-sectors")({
   component: Businesses,
   head: () => ({
     meta: [
