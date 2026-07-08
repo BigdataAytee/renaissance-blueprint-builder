@@ -1,13 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, Quote, Star } from "lucide-react";
+import { ArrowRight, Quote, Star } from "lucide-react";
 import { Layout, CTA } from "@/components/site/Layout";
 import { Counter } from "@/components/site/Counter";
 import {
   company, stats, businesses,
-  testimonials, news, heroImg,
+  testimonials, heroImg,
 } from "@/lib/site-data";
-import sustainImg from "@/assets/sustainability.jpg";
 
 export const Route = createFileRoute("/")({
   component: Home,
