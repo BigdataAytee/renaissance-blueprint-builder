@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import { businesses } from "@/lib/site-data";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
@@ -28,7 +29,16 @@ function Businesses() {
           {businesses.map((b) => (
             <Link key={b.slug} to="/business-sectors/$slug" params={{ slug: b.slug }} className="card-elevated p-6 group">
               <div>
-                <div className="size-14 rounded-md bg-primary text-primary-foreground grid place-items-center"><b.icon className="size-7" /></div>
+                <motion.div
+                  className="size-14 rounded-md bg-primary text-primary-foreground grid place-items-center"
+                  initial={{ opacity: 0, scale: 0.4, rotate: -30 }}
+                  whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ type: "spring", stiffness: 180, damping: 14 }}
+                  whileHover={{ rotate: [0, -10, 10, -6, 0], scale: 1.08, transition: { duration: 0.6 } }}
+                >
+                  <b.icon className="size-7" />
+                </motion.div>
                 <h2 className="mt-5 text-3xl md:text-4xl font-extrabold">{b.title}</h2>
                 <p className="mt-4 text-muted-foreground text-lg">{b.short}</p>
               </div>
