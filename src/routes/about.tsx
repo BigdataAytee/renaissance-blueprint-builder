@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import { motion } from "framer-motion";
-import { company, coreValues, executiveTeam, stats, whyChoose } from "@/lib/site-data";
+import { company, coreValues, executiveTeam, stats, whyChoose, industries } from "@/lib/site-data";
 import { Counter } from "@/components/site/Counter";
 import aboutTeam from "@/assets/about-team.jpg";
-import { ShieldCheck, Target, Eye, Compass } from "lucide-react";
+import { ShieldCheck, Target, Eye, Compass, CheckCircle2 } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
   component: About,
@@ -160,6 +160,26 @@ function About() {
                 <p className="mt-2 text-sm text-muted-foreground">{item.body}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-y">
+        <div className="container-wide">
+          <div className="grid lg:grid-cols-[1fr_2fr] gap-12 items-start">
+            <div>
+              <div className="eyebrow">Industries Served</div>
+              <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-balance">Trusted across sixteen industries.</h2>
+              <p className="mt-4 text-muted-foreground">From federal government agencies to SMEs, our clients rely on our sector depth and delivery discipline.</p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {industries.map((i) => (
+                <div key={i} className="flex items-center gap-2.5 px-4 py-3 rounded-md bg-secondary border border-border">
+                  <CheckCircle2 className="size-4 text-primary shrink-0" />
+                  <span className="text-sm font-medium">{i}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

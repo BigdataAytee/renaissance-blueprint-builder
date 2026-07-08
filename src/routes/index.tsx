@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle2, Quote, Star } from "lucide-react";
 import { Layout, CTA } from "@/components/site/Layout";
 import { Counter } from "@/components/site/Counter";
 import {
-  company, stats, businesses, whyChoose, industries,
+  company, stats, businesses,
   testimonials, news, heroImg,
 } from "@/lib/site-data";
 import sustainImg from "@/assets/sustainability.jpg";
@@ -106,48 +106,6 @@ function Home() {
         </div>
       </section>
 
-      {/* WHY CHOOSE */}
-      <section className="section-y bg-background">
-        <div className="container-wide">
-          <div className="text-center max-w-3xl mx-auto">
-            <div className="eyebrow justify-center">Why Dynamic Renaissance</div>
-            <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-balance">Ten reasons global and local clients partner with us.</h2>
-          </div>
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {whyChoose.map((w) => (
-              <div key={w.title} className="p-6 rounded-lg border border-border hover:border-gold hover:shadow-lg transition-all group">
-                <div className="size-11 rounded-full bg-accent text-primary grid place-items-center group-hover:bg-gold group-hover:text-navy transition-colors">
-                  <w.icon className="size-5" />
-                </div>
-                <h3 className="mt-4 font-extrabold">{w.title}</h3>
-                <p className="mt-1.5 text-sm text-muted-foreground">{w.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
-      {/* INDUSTRIES */}
-      <section className="section-y bg-background">
-        <div className="container-wide">
-          <div className="grid lg:grid-cols-[1fr_2fr] gap-12 items-start">
-            <div>
-              <div className="eyebrow">Industries Served</div>
-              <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-balance">Trusted across sixteen industries.</h2>
-              <p className="mt-4 text-muted-foreground">From federal government agencies to SMEs, our clients rely on our sector depth and delivery discipline.</p>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {industries.map((i) => (
-                <div key={i} className="flex items-center gap-2.5 px-4 py-3 rounded-md bg-secondary border border-border">
-                  <CheckCircle2 className="size-4 text-primary shrink-0" />
-                  <span className="text-sm font-medium">{i}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* SUSTAINABILITY */}
       <section className="section-y bg-secondary">
