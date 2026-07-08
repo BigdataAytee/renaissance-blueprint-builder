@@ -5,9 +5,8 @@ import { Layout, CTA } from "@/components/site/Layout";
 import { Counter } from "@/components/site/Counter";
 import {
   company, stats, businesses, whyChoose, industries,
-  projects, testimonials, news, heroImg,
+  testimonials, news, heroImg,
 } from "@/lib/site-data";
-import aboutTeam from "@/assets/about-team.jpg";
 import sustainImg from "@/assets/sustainability.jpg";
 
 export const Route = createFileRoute("/")({
@@ -79,40 +78,6 @@ function Home() {
         </div>
       </section>
 
-      {/* ABOUT PREVIEW */}
-      <section className="section-y bg-background">
-        <div className="container-wide grid gap-14 lg:grid-cols-2 items-center">
-          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="relative">
-            <img src={aboutTeam} alt="Executive team" className="rounded-lg shadow-2xl" width={1280} height={960} loading="lazy" />
-            <div className="absolute -bottom-6 -right-6 hidden md:block bg-gold text-navy p-6 rounded-lg shadow-xl max-w-xs">
-              <div className="text-4xl font-extrabold">15+</div>
-              <div className="text-sm font-semibold">Years of combined leadership across vital business sectors.</div>
-            </div>
-          </motion.div>
-          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
-            <div className="eyebrow">About the Group</div>
-            <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-balance">A conglomerate built for the next generation of growth.</h2>
-            <p className="mt-5 text-muted-foreground">
-              Registered under the Companies and Allied Matters Act (CAMA) 1990, Dynamic Renaissance Biz Ents. Ltd. is a private limited liability company delivering innovative, sustainable and high-quality solutions across a diversified portfolio of industries.
-            </p>
-            <div className="mt-8 grid sm:grid-cols-3 gap-6">
-              {[
-                { t: "Mission", d: "Deliver excellence across every sector we operate in." },
-                { t: "Vision", d: "Be a trusted diversified enterprise known for durable value." },
-                { t: "Values", d: "Integrity, innovation, sustainability and partnership." },
-              ].map((v) => (
-                <div key={v.t} className="border-l-2 border-gold pl-4">
-                  <div className="text-sm font-semibold text-primary uppercase tracking-wider">{v.t}</div>
-                  <div className="mt-1 text-sm text-foreground">{v.d}</div>
-                </div>
-              ))}
-            </div>
-            <Link to="/about" className="mt-8 inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
-              Read our full story <ArrowRight className="size-4" />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
 
       {/* BUSINESSES */}
       <section className="section-y bg-secondary">
@@ -162,33 +127,6 @@ function Home() {
         </div>
       </section>
 
-      {/* FEATURED PROJECTS */}
-      <section className="section-y bg-navy text-navy-foreground relative overflow-hidden">
-        <div className="absolute inset-0 opacity-40 [background:radial-gradient(60%_60%_at_90%_10%,color-mix(in_oklab,var(--color-primary)_40%,transparent),transparent)]" />
-        <div className="container-wide relative">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <div className="max-w-2xl">
-              <div className="eyebrow text-gold">Featured Projects</div>
-              <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-balance">Delivering landmark work across priority sectors.</h2>
-            </div>
-            <Link to="/projects" className="btn-outline-white self-start">View all projects <ArrowRight className="size-4" /></Link>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.slice(0, 6).map((p) => (
-              <Link key={p.slug} to="/projects/$slug" params={{ slug: p.slug }} className="group block overflow-hidden rounded-lg bg-white/5 border border-white/10 hover:border-gold/60 transition-colors">
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-                </div>
-                <div className="p-6">
-                  <div className="text-xs uppercase tracking-[0.18em] text-gold">{p.category} · {p.location}</div>
-                  <h3 className="mt-2 text-xl font-extrabold text-white">{p.title}</h3>
-                  <p className="mt-2 text-sm text-white/70 line-clamp-2">{p.summary}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* INDUSTRIES */}
       <section className="section-y bg-background">
