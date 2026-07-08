@@ -16,9 +16,9 @@ import { Route as NewsRouteImport } from './routes/news'
 import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
+import { Route as BusinessSectorsRouteImport } from './routes/business-sectors'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as BusinessSectorsIndexRouteImport } from './routes/business-sectors.index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as NewsSlugRouteImport } from './routes/news.$slug'
 import { Route as BusinessSectorsSlugRouteImport } from './routes/business-sectors.$slug'
@@ -58,6 +58,11 @@ const CareersRoute = CareersRouteImport.update({
   path: '/careers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BusinessSectorsRoute = BusinessSectorsRouteImport.update({
+  id: '/business-sectors',
+  path: '/business-sectors',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -66,11 +71,6 @@ const AboutRoute = AboutRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BusinessSectorsIndexRoute = BusinessSectorsIndexRouteImport.update({
-  id: '/business-sectors/',
-  path: '/business-sectors/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
@@ -92,6 +92,7 @@ const BusinessSectorsSlugRoute = BusinessSectorsSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/business-sectors': typeof BusinessSectorsRouteWithChildren
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/industries': typeof IndustriesRoute
@@ -102,11 +103,11 @@ export interface FileRoutesByFullPath {
   '/business-sectors/$slug': typeof BusinessSectorsSlugRoute
   '/news/$slug': typeof NewsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
-  '/business-sectors/': typeof BusinessSectorsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/business-sectors': typeof BusinessSectorsRouteWithChildren
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/industries': typeof IndustriesRoute
@@ -117,12 +118,12 @@ export interface FileRoutesByTo {
   '/business-sectors/$slug': typeof BusinessSectorsSlugRoute
   '/news/$slug': typeof NewsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
-  '/business-sectors': typeof BusinessSectorsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/business-sectors': typeof BusinessSectorsRouteWithChildren
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/industries': typeof IndustriesRoute
@@ -133,13 +134,13 @@ export interface FileRoutesById {
   '/business-sectors/$slug': typeof BusinessSectorsSlugRoute
   '/news/$slug': typeof NewsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
-  '/business-sectors/': typeof BusinessSectorsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/business-sectors'
     | '/careers'
     | '/contact'
     | '/industries'
@@ -150,11 +151,11 @@ export interface FileRouteTypes {
     | '/business-sectors/$slug'
     | '/news/$slug'
     | '/projects/$slug'
-    | '/business-sectors/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/business-sectors'
     | '/careers'
     | '/contact'
     | '/industries'
@@ -165,11 +166,11 @@ export interface FileRouteTypes {
     | '/business-sectors/$slug'
     | '/news/$slug'
     | '/projects/$slug'
-    | '/business-sectors'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/business-sectors'
     | '/careers'
     | '/contact'
     | '/industries'
@@ -180,12 +181,12 @@ export interface FileRouteTypes {
     | '/business-sectors/$slug'
     | '/news/$slug'
     | '/projects/$slug'
-    | '/business-sectors/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BusinessSectorsRoute: typeof BusinessSectorsRouteWithChildren
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
   IndustriesRoute: typeof IndustriesRoute
@@ -193,7 +194,6 @@ export interface RootRouteChildren {
   ProjectsRoute: typeof ProjectsRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SustainabilityRoute: typeof SustainabilityRoute
-  BusinessSectorsIndexRoute: typeof BusinessSectorsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -247,6 +247,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CareersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/business-sectors': {
+      id: '/business-sectors'
+      path: '/business-sectors'
+      fullPath: '/business-sectors'
+      preLoaderRoute: typeof BusinessSectorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -259,13 +266,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/business-sectors/': {
-      id: '/business-sectors/'
-      path: '/business-sectors'
-      fullPath: '/business-sectors/'
-      preLoaderRoute: typeof BusinessSectorsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/$slug': {
@@ -292,6 +292,18 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface BusinessSectorsRouteChildren {
+  BusinessSectorsSlugRoute: typeof BusinessSectorsSlugRoute
+}
+
+const BusinessSectorsRouteChildren: BusinessSectorsRouteChildren = {
+  BusinessSectorsSlugRoute: BusinessSectorsSlugRoute,
+}
+
+const BusinessSectorsRouteWithChildren = BusinessSectorsRoute._addFileChildren(
+  BusinessSectorsRouteChildren,
+)
+
 interface NewsRouteChildren {
   NewsSlugRoute: typeof NewsSlugRoute
 }
@@ -317,6 +329,7 @@ const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BusinessSectorsRoute: BusinessSectorsRouteWithChildren,
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
   IndustriesRoute: IndustriesRoute,
@@ -324,7 +337,6 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SustainabilityRoute: SustainabilityRoute,
-  BusinessSectorsIndexRoute: BusinessSectorsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
