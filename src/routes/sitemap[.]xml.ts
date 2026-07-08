@@ -8,13 +8,12 @@ export const Route = createFileRoute("/sitemap.xml")({
     handlers: {
       GET: async () => {
         const paths = [
-          "/", "/about", "/business-sectors", "/projects", "/sustainability", "/news", "/careers", "/contact",
+          "/", "/about", "/business-sectors", "/projects", "/careers", "/contact",
           "/business-sectors/project-property-management", "/business-sectors/oil-and-gas", "/business-sectors/agriculture",
           "/business-sectors/logistics-distribution", "/business-sectors/manufacturing-trading", "/business-sectors/industrial-services",
           "/business-sectors/hospitality-entertainment", "/business-sectors/business-consultancy",
           "/projects/central-business-tower", "/projects/regional-fuel-depot", "/projects/northern-agro-estate",
           "/projects/national-distribution-hub", "/projects/renaissance-grand-hotel", "/projects/industrial-park-fitout",
-          "/news/commissioning-central-business-tower", "/news/agro-expansion-northern-nigeria", "/news/energy-transition-strategy",
         ];
         const xml = [
           `<?xml version="1.0" encoding="UTF-8"?>`,

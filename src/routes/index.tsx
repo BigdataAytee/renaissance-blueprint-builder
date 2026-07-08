@@ -105,6 +105,28 @@ function Home() {
         </div>
       </section>
 
+      {/* TESTIMONIALS */}
+      <section className="section-y bg-background">
+        <div className="container-wide">
+          <div className="text-center max-w-2xl mx-auto">
+            <div className="eyebrow justify-center">Client Voices</div>
+            <h2 className="mt-4 text-4xl md:text-5xl font-extrabold">What partners say.</h2>
+          </div>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {testimonials.map((t, i) => (
+              <div key={i} className="p-8 rounded-lg bg-secondary border border-border relative">
+                <Quote className="absolute top-6 right-6 size-8 text-gold/40" />
+                <div className="flex gap-1 text-gold">{Array.from({length:5}).map((_,i)=><Star key={i} className="size-4 fill-current" />)}</div>
+                <p className="mt-4 text-foreground/90">"{t.quote}"</p>
+                <div className="mt-6 pt-5 border-t border-border">
+                  <div className="font-extrabold">{t.author}</div>
+                  <div className="text-sm text-muted-foreground">{t.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <CTA />
     </Layout>

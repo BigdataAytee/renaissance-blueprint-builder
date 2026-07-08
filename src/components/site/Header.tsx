@@ -10,8 +10,6 @@ const navItems = [
   { to: "/about", label: "About" },
   { to: "/business-sectors", label: "Business Sectors", mega: "businesses" as const },
   { to: "/projects", label: "Projects" },
-  { to: "/sustainability", label: "Sustainability" },
-  { to: "/news", label: "News & Insights" },
   { to: "/careers", label: "Careers" },
   { to: "/contact", label: "Contact" },
 ];
