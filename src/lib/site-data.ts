@@ -19,8 +19,8 @@ export const stats = [
   { value: 20, suffix: "+", label: "Business Sectors" },
   { value: 100, suffix: "+", label: "Projects Delivered" },
   { value: 500, suffix: "+", label: "Satisfied Clients" },
-  { value: 15, suffix: "+", label: "Years Combined Experience" },
-  { value: 36, suffix: "", label: "States Covered" },
+  { value: 10, suffix: "+", label: "Years Experience" },
+  { value: 5, suffix: "+", label: "Countries Reached" },
   { value: 100, suffix: "%", label: "Commitment to Excellence" },
 ];
 
