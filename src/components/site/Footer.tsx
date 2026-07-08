@@ -57,15 +57,16 @@ export function Footer() {
             <li className="flex gap-3"><Mail className="size-4 mt-0.5 shrink-0 text-gold" />{company.email}</li>
           </ul>
           <form className="mt-5" onSubmit={(e) => e.preventDefault()}>
-            <label className="text-xs uppercase tracking-[0.18em] text-white/60">Newsletter</label>
-            <div className="mt-2 flex">
-              <input type="email" required placeholder="Your email" className="flex-1 bg-white/5 border border-white/10 rounded-l-md px-3 py-2 text-sm outline-none focus:border-gold" />
-              <button className="bg-gold text-navy rounded-r-md px-4 text-sm font-semibold hover:brightness-95">Join</button>
+            <label className="text-xs uppercase tracking-[0.22em] text-white/60 font-semibold">Newsletter</label>
+            <div className="mt-3 flex rounded-full overflow-hidden border border-white/15 bg-white/5 backdrop-blur focus-within:border-gold/60 transition-colors">
+              <input type="email" required placeholder="Your email" className="flex-1 bg-transparent px-4 py-2.5 text-sm outline-none placeholder:text-white/40" />
+              <button className="bg-gradient-to-r from-gold to-[oklch(0.62_0.14_78)] text-navy px-5 text-sm font-bold hover:brightness-105 transition">Join</button>
             </div>
           </form>
         </div>
       </div>
-      <div className="border-t border-white/10">
+      <div className="relative border-t border-white/10">
+
         <div className="container-wide py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/60">
           <div>© {new Date().getFullYear()} Dynamic Renaissance Biz Ents. Ltd. All rights reserved.</div>
           <div className="flex gap-5">
