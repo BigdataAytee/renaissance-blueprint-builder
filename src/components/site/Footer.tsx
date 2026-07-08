@@ -12,7 +12,7 @@ export function Footer() {
 
         <div className="lg:col-span-4">
           <div className="flex items-center gap-3">
-            <div className="size-11 rounded-md bg-primary grid place-items-center font-display font-extrabold text-lg">DR</div>
+            <div className="size-12 rounded-xl bg-gradient-to-br from-primary to-primary-dark grid place-items-center font-display font-extrabold text-lg shadow-lg">DR</div>
             <div className="leading-tight">
               <div className="font-display font-extrabold">Dynamic Renaissance</div>
               <div className="text-[10px] uppercase tracking-[0.18em] text-white/60">Biz Ents. Ltd.</div>
