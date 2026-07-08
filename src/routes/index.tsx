@@ -28,10 +28,13 @@ function Home() {
   return (
     <Layout transparentNav>
       {/* HERO */}
-      <section className="relative min-h-[92vh] flex items-center text-white overflow-hidden">
-        <img src={heroImg} alt="Modern corporate tower" className="absolute inset-0 w-full h-full object-cover" width={1920} height={1280} />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/60 to-navy/95" />
-        <div className="absolute inset-0 [background:radial-gradient(50%_50%_at_20%_30%,color-mix(in_oklab,var(--color-primary)_35%,transparent),transparent)]" />
+      <section className="relative min-h-[94vh] flex items-center text-white overflow-hidden">
+        <img src={heroImg} alt="Modern corporate tower" className="absolute inset-0 w-full h-full object-cover scale-105" width={1920} height={1280} />
+        <div className="absolute inset-0 bg-gradient-to-br from-navy/95 via-navy/70 to-navy/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-transparent to-navy/40" />
+        <div className="absolute inset-0 grid-pattern opacity-20" />
+        <div className="absolute inset-0 [background:radial-gradient(50%_50%_at_15%_30%,color-mix(in_oklab,var(--color-primary)_35%,transparent),transparent)]" />
+        <div className="absolute -top-20 -right-20 size-[600px] rounded-full bg-gold/15 blur-3xl" />
         {/* floating particles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {Array.from({ length: 18 }).map((_, i) => (
@@ -45,17 +48,17 @@ function Home() {
           ))}
         </div>
 
-        <div className="container-wide relative pt-32 pb-24">
+        <div className="container-wide relative pt-32 pb-32">
           <motion.div initial="hidden" animate="show" variants={fadeUp} className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.24em] text-gold font-semibold">
-              <span className="w-8 h-px bg-gold" /> Diversified Enterprise Group
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/8 backdrop-blur-md border border-white/15 text-xs uppercase tracking-[0.24em] text-gold font-bold">
+              <span className="size-1.5 rounded-full bg-gold animate-pulse" /> Diversified Enterprise Group
             </div>
-            <h1 className="mt-6 text-5xl sm:text-6xl md:text-7xl font-extrabold leading-[0.98] text-balance">
+            <h1 className="mt-7 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-[0.95] text-balance tracking-tight">
               Building Today.<br />
-              <span className="text-gold">Transforming</span> Tomorrow.
+              <span className="bg-gradient-to-r from-gold via-[oklch(0.85_0.14_85)] to-gold bg-clip-text text-transparent">Transforming</span> Tomorrow.
             </h1>
-            <p className="mt-6 text-lg md:text-xl text-white/80 max-w-2xl">{company.description}</p>
-            <div className="mt-9 flex flex-wrap gap-4">
+            <p className="mt-7 text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed">{company.description}</p>
+            <div className="mt-10 flex flex-wrap gap-4">
               <Link to="/business-sectors" className="btn-gold">Explore Our Businesses <ArrowRight className="size-4" /></Link>
               <Link to="/contact" className="btn-outline-white">Contact Us</Link>
             </div>
@@ -65,17 +68,18 @@ function Home() {
         {/* stats strip */}
         <div className="absolute bottom-0 inset-x-0 hidden md:block">
           <div className="container-wide">
-            <div className="grid grid-cols-3 lg:grid-cols-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-t-xl overflow-hidden">
+            <div className="grid grid-cols-3 lg:grid-cols-6 bg-white/8 backdrop-blur-xl border border-white/15 border-b-0 rounded-t-2xl overflow-hidden shadow-2xl">
               {stats.map((s, i) => (
-                <div key={i} className="p-5 text-center border-r border-white/10 last:border-r-0">
-                  <div className="text-2xl lg:text-3xl font-extrabold text-gold"><Counter value={s.value} suffix={s.suffix} /></div>
-                  <div className="text-[11px] uppercase tracking-[0.15em] text-white/70 mt-1">{s.label}</div>
+                <div key={i} className="p-6 text-center border-r border-white/10 last:border-r-0 hover:bg-white/5 transition-colors">
+                  <div className="text-2xl lg:text-4xl font-extrabold bg-gradient-to-br from-gold to-[oklch(0.62_0.14_78)] bg-clip-text text-transparent"><Counter value={s.value} suffix={s.suffix} /></div>
+                  <div className="text-[11px] uppercase tracking-[0.18em] text-white/70 mt-2 font-semibold">{s.label}</div>
                 </div>
               ))}
             </div>
           </div>
         </div>
       </section>
+
 
 
       {/* BUSINESSES */}
