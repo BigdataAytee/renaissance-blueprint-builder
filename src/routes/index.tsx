@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle2, Quote, Star } from "lucide-react";
 import { Layout, CTA } from "@/components/site/Layout";
 import { Counter } from "@/components/site/Counter";
 import {
-  company, stats, businesses, whyChoose, industries,
+  company, stats, businesses,
   testimonials, news, heroImg,
 } from "@/lib/site-data";
 import sustainImg from "@/assets/sustainability.jpg";
