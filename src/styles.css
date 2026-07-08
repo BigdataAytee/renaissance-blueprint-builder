@@ -146,21 +146,25 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: var(--color-gold);
+  background-image: var(--gradient-gold);
   color: var(--color-gold-foreground);
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--radius);
-  font-weight: 600;
+  padding: 0.875rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 700;
   font-size: 0.9rem;
   letter-spacing: 0.01em;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-  box-shadow: 0 8px 24px -8px color-mix(in oklab, var(--color-gold) 55%, transparent);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  box-shadow: var(--shadow-gold);
+  position: relative;
+  isolation: isolate;
 }
 @utility btn-gold {
   &:hover {
-    background-color: color-mix(in oklab, var(--color-gold) 88%, black);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow: 0 18px 40px -16px color-mix(in oklab, var(--color-gold) 70%, transparent);
   }
+  &:active { transform: translateY(0); }
 }
 
 @utility btn-green {
@@ -168,61 +172,96 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: var(--color-primary);
+  background-image: var(--gradient-primary);
   color: var(--color-primary-foreground);
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--radius);
-  font-weight: 600;
+  padding: 0.875rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 700;
   font-size: 0.9rem;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  box-shadow: 0 12px 32px -12px color-mix(in oklab, var(--color-primary) 55%, transparent);
 }
-@utility btn-green { &:hover { background-color: var(--color-primary-dark); transform: translateY(-1px); } }
+@utility btn-green {
+  &:hover { filter: brightness(1.08); transform: translateY(-2px); }
+  &:active { transform: translateY(0); }
+}
 
 @utility btn-outline-white {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border: 1px solid rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.4);
   color: white;
-  background: transparent;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--radius);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
+  padding: 0.875rem 1.75rem;
+  border-radius: 999px;
   font-weight: 600;
   font-size: 0.9rem;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
-@utility btn-outline-white { &:hover { background-color: rgba(255,255,255,0.1); border-color: white; } }
+@utility btn-outline-white { &:hover { background-color: rgba(255,255,255,0.14); border-color: white; transform: translateY(-2px); } }
 
 @utility eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-primary);
 }
 @utility eyebrow {
   &::before {
     content: "";
-    width: 28px;
+    width: 32px;
     height: 2px;
-    background-color: var(--color-gold);
+    background-image: var(--gradient-gold);
+    border-radius: 2px;
   }
 }
 
 @utility card-elevated {
   background-color: var(--color-card);
   border: 1px solid var(--color-border);
-  border-radius: calc(var(--radius) + 4px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  border-radius: calc(var(--radius) + 6px);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  position: relative;
+  overflow: hidden;
 }
 @utility card-elevated {
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 24px 60px -30px color-mix(in oklab, var(--color-navy) 40%, transparent);
-    border-color: color-mix(in oklab, var(--color-primary) 40%, var(--color-border));
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: color-mix(in oklab, var(--color-primary) 45%, var(--color-border));
   }
 }
+
+@utility gradient-hero-bg {
+  background-image: var(--gradient-hero);
+}
+
+@utility grid-pattern {
+  background-image:
+    linear-gradient(to right, oklch(1 0 0 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@utility surface-panel {
+  background-image: var(--gradient-surface);
+  border: 1px solid var(--color-border);
+  border-radius: calc(var(--radius) + 6px);
+  box-shadow: var(--shadow-md);
+}
+
+@utility hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+@utility hover-lift {
+  &:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+}
+
