@@ -1,13 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, Quote, Star } from "lucide-react";
+import { ArrowRight, Quote, Star } from "lucide-react";
 import { Layout, CTA } from "@/components/site/Layout";
 import { Counter } from "@/components/site/Counter";
 import {
   company, stats, businesses,
-  testimonials, news, heroImg,
+  testimonials, heroImg,
 } from "@/lib/site-data";
-import sustainImg from "@/assets/sustainability.jpg";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -106,29 +105,6 @@ function Home() {
         </div>
       </section>
 
-
-      {/* SUSTAINABILITY */}
-      <section className="section-y bg-secondary">
-        <div className="container-wide grid gap-14 lg:grid-cols-2 items-center">
-          <div>
-            <div className="eyebrow">Sustainability</div>
-            <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-balance">Growth that respects communities and the environment.</h2>
-            <p className="mt-4 text-muted-foreground">
-              Sustainability is embedded in how we design projects, source materials, employ people and engage with the communities where we operate.
-            </p>
-            <ul className="mt-8 grid sm:grid-cols-2 gap-3">
-              {["Environmental Responsibility","Community Development","Renewable Energy","Ethical Business","Employee Welfare","Health & Safety","Corporate Governance","ESG Commitment"].map((t) => (
-                <li key={t} className="flex items-center gap-2 text-sm"><CheckCircle2 className="size-4 text-primary" />{t}</li>
-              ))}
-            </ul>
-            <Link to="/sustainability" className="mt-8 inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
-              Read our ESG commitment <ArrowRight className="size-4" />
-            </Link>
-          </div>
-          <img src={sustainImg} alt="Renewable energy" className="rounded-lg shadow-2xl" width={1600} height={1000} loading="lazy" />
-        </div>
-      </section>
-
       {/* TESTIMONIALS */}
       <section className="section-y bg-background">
         <div className="container-wide">
@@ -147,29 +123,6 @@ function Home() {
                   <div className="text-sm text-muted-foreground">{t.role}</div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* NEWS */}
-      <section className="section-y bg-secondary">
-        <div className="container-wide">
-          <div className="flex items-end justify-between gap-6 flex-wrap">
-            <div>
-              <div className="eyebrow">News & Insights</div>
-              <h2 className="mt-4 text-4xl md:text-5xl font-extrabold">Latest thinking.</h2>
-            </div>
-            <Link to="/news" className="btn-green">All articles <ArrowRight className="size-4" /></Link>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {news.map((n) => (
-              <article key={n.slug} className="card-elevated p-7">
-                <div className="text-xs text-muted-foreground uppercase tracking-[0.15em]">{n.date} · {n.category}</div>
-                <h3 className="mt-3 text-lg font-extrabold leading-snug">{n.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{n.excerpt}</p>
-                <Link to="/news/$slug" params={{ slug: n.slug }} className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">Read more <ArrowRight className="size-3.5" /></Link>
-              </article>
             ))}
           </div>
         </div>

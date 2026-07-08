@@ -29,7 +29,7 @@ export function Footer() {
         <div className="lg:col-span-2">
           <h4 className="text-sm font-semibold text-white mb-4">Company</h4>
           <ul className="space-y-2.5 text-sm text-white/70">
-            {["About","Projects","Sustainability","News & Insights","Careers","Contact"].map((l, i) => (
+            {["About","Projects","Careers","Contact"].map((l, i) => (
               <li key={i}><Link to={"/" + l.toLowerCase().split(" ")[0].replace("&","")} className="hover:text-gold">{l}</Link></li>
             ))}
           </ul>
