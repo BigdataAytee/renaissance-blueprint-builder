@@ -106,51 +106,6 @@ function Home() {
       </section>
 
 
-      {/* SUSTAINABILITY */}
-      <section className="section-y bg-secondary">
-        <div className="container-wide grid gap-14 lg:grid-cols-2 items-center">
-          <div>
-            <div className="eyebrow">Sustainability</div>
-            <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-balance">Growth that respects communities and the environment.</h2>
-            <p className="mt-4 text-muted-foreground">
-              Sustainability is embedded in how we design projects, source materials, employ people and engage with the communities where we operate.
-            </p>
-            <ul className="mt-8 grid sm:grid-cols-2 gap-3">
-              {["Environmental Responsibility","Community Development","Renewable Energy","Ethical Business","Employee Welfare","Health & Safety","Corporate Governance","ESG Commitment"].map((t) => (
-                <li key={t} className="flex items-center gap-2 text-sm"><CheckCircle2 className="size-4 text-primary" />{t}</li>
-              ))}
-            </ul>
-            <Link to="/sustainability" className="mt-8 inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
-              Read our ESG commitment <ArrowRight className="size-4" />
-            </Link>
-          </div>
-          <img src={sustainImg} alt="Renewable energy" className="rounded-lg shadow-2xl" width={1600} height={1000} loading="lazy" />
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="section-y bg-background">
-        <div className="container-wide">
-          <div className="text-center max-w-2xl mx-auto">
-            <div className="eyebrow justify-center">Client Voices</div>
-            <h2 className="mt-4 text-4xl md:text-5xl font-extrabold">What partners say.</h2>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <div key={i} className="p-8 rounded-lg bg-secondary border border-border relative">
-                <Quote className="absolute top-6 right-6 size-8 text-gold/40" />
-                <div className="flex gap-1 text-gold">{Array.from({length:5}).map((_,i)=><Star key={i} className="size-4 fill-current" />)}</div>
-                <p className="mt-4 text-foreground/90">"{t.quote}"</p>
-                <div className="mt-6 pt-5 border-t border-border">
-                  <div className="font-extrabold">{t.author}</div>
-                  <div className="text-sm text-muted-foreground">{t.role}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* NEWS */}
       <section className="section-y bg-secondary">
         <div className="container-wide">
