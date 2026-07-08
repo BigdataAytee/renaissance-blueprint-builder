@@ -88,11 +88,24 @@ function Home() {
           </div>
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {businesses.map((b, i) => (
-              <motion.div key={b.slug} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.05 }}>
+              <motion.div
+                key={b.slug}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+              >
                 <Link to="/business-sectors/$slug" params={{ slug: b.slug }} className="card-elevated block p-6 h-full group">
-                  <div className="size-12 rounded-md bg-primary/10 text-primary grid place-items-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <motion.div
+                    className="size-12 rounded-md bg-primary/10 text-primary grid place-items-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                    initial={{ opacity: 0, scale: 0.4, rotate: -25 }}
+                    whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ type: "spring", stiffness: 180, damping: 14, delay: i * 0.08 }}
+                    whileHover={{ rotate: [0, -8, 8, -4, 0], transition: { duration: 0.6 } }}
+                  >
                     <b.icon className="size-6" />
-                  </div>
+                  </motion.div>
                   <h3 className="mt-5 text-lg font-extrabold">{b.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground line-clamp-3">{b.short}</p>
                   <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all">
@@ -105,28 +118,6 @@ function Home() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="section-y bg-background">
-        <div className="container-wide">
-          <div className="text-center max-w-2xl mx-auto">
-            <div className="eyebrow justify-center">Client Voices</div>
-            <h2 className="mt-4 text-4xl md:text-5xl font-extrabold">What partners say.</h2>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <div key={i} className="p-8 rounded-lg bg-secondary border border-border relative">
-                <Quote className="absolute top-6 right-6 size-8 text-gold/40" />
-                <div className="flex gap-1 text-gold">{Array.from({length:5}).map((_,i)=><Star key={i} className="size-4 fill-current" />)}</div>
-                <p className="mt-4 text-foreground/90">"{t.quote}"</p>
-                <div className="mt-6 pt-5 border-t border-border">
-                  <div className="font-extrabold">{t.author}</div>
-                  <div className="text-sm text-muted-foreground">{t.role}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <CTA />
     </Layout>
