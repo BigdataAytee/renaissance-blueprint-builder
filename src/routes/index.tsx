@@ -1,11 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, Quote, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Layout, CTA } from "@/components/site/Layout";
 import { Counter } from "@/components/site/Counter";
 import {
   company, stats, businesses,
-  testimonials, heroImg,
+  heroImg,
 } from "@/lib/site-data";
 
 export const Route = createFileRoute("/")({
