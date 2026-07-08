@@ -118,9 +118,11 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     font-weight: 800;
-    letter-spacing: 0;
+    letter-spacing: -0.015em;
+    line-height: 1.08;
   }
-}
+  p { line-height: 1.65; }
+  ::selection { background-color: color-mix(in oklab, var(--color-gold) 55%, transparent); color: var(--color-navy); }
 
 @utility container-wide {
   width: 100%;
