@@ -38,8 +38,14 @@ function Contact() {
                 </div>
               </div>
             ))}
-            <div className="rounded-lg overflow-hidden border border-border bg-secondary aspect-video grid place-items-center text-muted-foreground text-sm">
-              Interactive map coming soon
+            <div className="rounded-lg overflow-hidden border border-border bg-secondary aspect-video">
+              <iframe
+                title="Dynamic Renaissance head office map"
+                src="https://www.google.com/maps?q=Central%20Business%20District%20Abuja&output=embed"
+                className="h-full w-full"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
 

@@ -33,7 +33,7 @@ export function CTA() {
         <div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-navy text-balance">Let's build the future together</h2>
           <p className="mt-4 text-navy/80 max-w-2xl">
-            Partner with Dynamic Renaissance Biz Ents. Ltd. for innovative, reliable and sustainable business solutions across Nigeria.
+            Partner with Dynamic Renaissance Biz Ents. Ltd. for innovative, reliable and sustainable business solutions across priority sectors.
           </p>
         </div>
         <div className="flex flex-wrap gap-3">

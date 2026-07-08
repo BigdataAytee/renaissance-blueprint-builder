@@ -33,7 +33,7 @@ function Sustainability() {
         <div className="container-wide grid gap-14 lg:grid-cols-2 items-center">
           <img src={sustainImg} alt="Renewable energy" className="rounded-lg shadow-xl" loading="lazy" />
           <div>
-            <h2 className="text-4xl font-extrabold">An ESG framework built for Nigeria's realities.</h2>
+            <h2 className="text-4xl font-extrabold">An ESG framework built for real operating environments.</h2>
             <p className="mt-4 text-muted-foreground">
               We align our operations to internationally recognised standards while responding to the specific environmental, social and governance priorities of the markets we operate in.
             </p>
