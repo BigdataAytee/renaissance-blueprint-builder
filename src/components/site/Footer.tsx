@@ -4,8 +4,12 @@ import { company, businesses } from "@/lib/site-data";
 
 export function Footer() {
   return (
-    <footer className="bg-navy text-navy-foreground">
-      <div className="container-wide py-16 grid gap-12 lg:grid-cols-12">
+    <footer className="relative bg-navy text-navy-foreground overflow-hidden">
+      <div className="absolute inset-0 grid-pattern opacity-25 pointer-events-none" />
+      <div className="absolute -top-32 -left-24 size-[400px] rounded-full bg-primary/20 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-32 -right-24 size-[400px] rounded-full bg-gold/15 blur-3xl pointer-events-none" />
+      <div className="container-wide relative py-20 grid gap-12 lg:grid-cols-12">
+
         <div className="lg:col-span-4">
           <div className="flex items-center gap-3">
             <div className="size-11 rounded-md bg-primary grid place-items-center font-display font-extrabold text-lg">DR</div>
