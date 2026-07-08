@@ -83,14 +83,15 @@ function Home() {
 
 
       {/* BUSINESSES */}
-      <section className="section-y bg-secondary">
-        <div className="container-wide">
+      <section className="relative section-y bg-gradient-to-b from-background via-secondary/50 to-background overflow-hidden">
+        <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
+        <div className="container-wide relative">
           <div className="max-w-3xl">
             <div className="eyebrow">Our Businesses</div>
-            <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-balance">Integrated capability across vital business sectors.</h2>
-            <p className="mt-4 text-muted-foreground text-lg">One partner — from planning and construction to operations, logistics, energy and consultancy.</p>
+            <h2 className="mt-5 text-4xl md:text-5xl lg:text-6xl font-extrabold text-balance tracking-tight">Integrated capability across <span className="text-primary">vital sectors</span>.</h2>
+            <p className="mt-5 text-muted-foreground text-lg leading-relaxed max-w-2xl">One partner — from planning and construction to operations, logistics, energy and consultancy.</p>
           </div>
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {businesses.map((b, i) => (
               <motion.div
                 key={b.slug}
@@ -99,20 +100,21 @@ function Home() {
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
               >
-                <Link to="/business-sectors/$slug" params={{ slug: b.slug }} className="card-elevated block p-6 h-full group">
+                <Link to="/business-sectors/$slug" params={{ slug: b.slug }} className="card-elevated block p-7 h-full group relative">
+                  <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   <motion.div
-                    className="size-12 rounded-md bg-primary/10 text-primary grid place-items-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                    className="size-14 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 text-primary grid place-items-center group-hover:from-primary group-hover:to-primary-dark group-hover:text-primary-foreground transition-all duration-500 shadow-sm group-hover:shadow-lg"
                     initial={{ opacity: 0, scale: 0.4, rotate: -25 }}
                     whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ type: "spring", stiffness: 180, damping: 14, delay: i * 0.08 }}
                     whileHover={{ rotate: [0, -8, 8, -4, 0], transition: { duration: 0.6 } }}
                   >
-                    <b.icon className="size-6" />
+                    <b.icon className="size-7" />
                   </motion.div>
-                  <h3 className="mt-5 text-lg font-extrabold">{b.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground line-clamp-3">{b.short}</p>
-                  <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all">
+                  <h3 className="mt-6 text-lg font-extrabold tracking-tight">{b.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground line-clamp-3 leading-relaxed">{b.short}</p>
+                  <div className="mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-primary group-hover:gap-3 transition-all">
                     Learn more <ArrowRight className="size-3.5" />
                   </div>
                 </Link>
@@ -121,6 +123,7 @@ function Home() {
           </div>
         </div>
       </section>
+
 
 
       <CTA />
