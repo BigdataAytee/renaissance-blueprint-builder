@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Link } from "@tanstack/react-router";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 
@@ -32,12 +33,12 @@ export function CTA() {
         <div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-navy text-balance">Let's build the future together</h2>
           <p className="mt-4 text-navy/80 max-w-2xl">
-            Partner with Dynamic Renaissance Biz Ents. Ltd. for innovative, reliable and sustainable business solutions across Nigeria.
+            Partner with Dynamic Renaissance Biz Ents. Ltd. for innovative, reliable and sustainable business solutions across priority sectors.
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <a href="/contact" className="btn-green">Request Consultation</a>
-          <a href="/contact" className="inline-flex items-center justify-center px-6 py-3 rounded-md border border-navy/40 text-navy font-semibold hover:bg-navy hover:text-white transition-colors">Contact Us</a>
+          <Link to="/contact" className="btn-green">Request Consultation</Link>
+          <Link to="/contact" className="inline-flex items-center justify-center px-6 py-3 rounded-md border border-navy/40 text-navy font-semibold hover:bg-navy hover:text-white transition-colors">Contact Us</Link>
         </div>
       </div>
     </section>

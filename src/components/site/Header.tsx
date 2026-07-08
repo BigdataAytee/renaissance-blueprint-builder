@@ -2,14 +2,13 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Phone, Mail, Clock, Menu, X, Search, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { company, businesses, industries } from "@/lib/site-data";
+import { company, businesses } from "@/lib/site-data";
 import logoMark from "@/assets/logo-mark.png";
 
 const navItems = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About Us" },
-  { to: "/businesses", label: "Our Businesses", mega: "businesses" as const },
-  { to: "/industries", label: "Industries", mega: "industries" as const },
+  { to: "/about", label: "About" },
+  { to: "/business-sectors", label: "Business Sectors", mega: "businesses" as const },
   { to: "/projects", label: "Projects" },
   { to: "/sustainability", label: "Sustainability" },
   { to: "/news", label: "News & Insights" },
@@ -20,7 +19,7 @@ const navItems = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openMega, setOpenMega] = useState<null | "businesses" | "industries">(null);
+  const [openMega, setOpenMega] = useState<null | "businesses">(null);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const isHome = pathname === "/";
 
@@ -128,12 +127,12 @@ export function Header() {
   );
 }
 
-function MegaMenu({ type }: { type: "businesses" | "industries" }) {
+function MegaMenu({ type }: { type: "businesses" }) {
   return (
     <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[720px]">
       <div className="bg-background border border-border rounded-lg shadow-2xl p-6 grid grid-cols-2 gap-x-8 gap-y-3">
         {type === "businesses" && businesses.map((b) => (
-          <Link key={b.slug} to="/businesses" className="group flex items-start gap-3 p-2 rounded-md hover:bg-secondary transition-colors">
+          <Link key={b.slug} to="/business-sectors/$slug" params={{ slug: b.slug }} className="group flex items-start gap-3 p-2 rounded-md hover:bg-secondary transition-colors">
             <div className="size-9 rounded-md bg-accent text-primary grid place-items-center shrink-0">
               <b.icon className="size-4" />
             </div>
@@ -141,11 +140,6 @@ function MegaMenu({ type }: { type: "businesses" | "industries" }) {
               <div className="text-sm font-semibold text-foreground group-hover:text-primary">{b.title}</div>
               <div className="text-xs text-muted-foreground line-clamp-2">{b.short}</div>
             </div>
-          </Link>
-        ))}
-        {type === "industries" && industries.map((i) => (
-          <Link key={i} to="/industries" className="text-sm text-foreground hover:text-primary py-1.5">
-            {i}
           </Link>
         ))}
       </div>

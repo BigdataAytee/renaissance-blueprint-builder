@@ -123,12 +123,82 @@ export const whyChoose = [
   { icon: Leaf, title: "Environmental Responsibility", body: "Sustainability embedded across every project." },
 ];
 
+export const coreValues = [
+  { title: "Integrity", body: "We act transparently, keep our commitments and protect the trust placed in us by clients and communities." },
+  { title: "Excellence", body: "We set high standards for safety, quality, delivery discipline and measurable performance on every engagement." },
+  { title: "Innovation", body: "We combine practical field experience with technology, process improvement and forward-looking commercial thinking." },
+  { title: "Sustainability", body: "We build durable value by balancing growth with environmental responsibility, people development and governance." },
+];
+
+export const executiveTeam = [
+  { name: "Adewale Martins", role: "Group Managing Director", bio: "Leads group strategy, partnerships and capital project delivery across the company's diversified portfolio." },
+  { name: "Nkechi Okafor", role: "Executive Director, Operations", bio: "Oversees operational excellence, HSE standards, procurement discipline and shared services performance." },
+  { name: "Ibrahim Danladi", role: "Director, Energy & Industrial Services", bio: "Drives downstream energy programmes, industrial maintenance solutions and technical service delivery." },
+  { name: "Tomiwa Balogun", role: "Director, Commercial & Advisory", bio: "Leads business development, consultancy, market expansion and institutional client relationships." },
+];
+
 export const industries = [
   "Government", "Oil & Gas", "Construction", "Infrastructure", "Real Estate",
   "Manufacturing", "Agriculture", "Hospitality", "Healthcare", "Education",
   "Transportation", "Energy", "SMEs", "Corporate Organizations",
   "Financial Institutions", "NGOs",
 ];
+
+export const businessSectorDetails: Record<string, {
+  overview: string;
+  industriesServed: string[];
+  projectNames: string[];
+  benefits: string[];
+}> = {
+  "project-property-management": {
+    overview: "A full-cycle project and property platform covering feasibility, planning, delivery controls, facilities operations and asset performance for public and private clients.",
+    industriesServed: ["Infrastructure", "Real Estate", "Government", "Corporate Organizations"],
+    projectNames: ["Central Business Tower", "Industrial Park Fit-out"],
+    benefits: ["Single accountable delivery partner", "Cost, schedule and quality control", "Lifecycle asset management", "Safety-led execution"],
+  },
+  "oil-and-gas": {
+    overview: "Reliable petroleum, gas and field-support services backed by disciplined safety systems, supply-chain visibility and strong technical partnerships.",
+    industriesServed: ["Oil & Gas", "Energy", "Transportation", "Manufacturing"],
+    projectNames: ["Regional Fuel Storage Depot"],
+    benefits: ["Secure product movement", "Compliance-led operations", "Reduced downtime", "Integrated technical support"],
+  },
+  agriculture: {
+    overview: "Commercial agriculture solutions designed to strengthen production, processing, storage and market access across priority food value chains.",
+    industriesServed: ["Agriculture", "Food Processing", "Government", "SMEs"],
+    projectNames: ["Northern Agro Estate"],
+    benefits: ["Improved yields", "Mechanised operational capacity", "Stronger post-harvest systems", "Scalable food security programmes"],
+  },
+  "logistics-distribution": {
+    overview: "A dependable logistics and distribution platform for haulage, fleet management, warehousing, procurement and last-mile execution.",
+    industriesServed: ["Transportation", "Manufacturing", "Retail", "Healthcare"],
+    projectNames: ["National Distribution Hub"],
+    benefits: ["Faster route-to-market", "Better inventory control", "Reliable fleet uptime", "End-to-end procurement support"],
+  },
+  "manufacturing-trading": {
+    overview: "Manufacturing, procurement and trading capability for consumer, industrial and commercial products supported by quality assurance and distribution networks.",
+    industriesServed: ["Manufacturing", "SMEs", "Corporate Organizations", "Financial Institutions"],
+    projectNames: ["Industrial Park Fit-out"],
+    benefits: ["Flexible sourcing", "Quality-controlled product flow", "Wholesale and retail reach", "Lower procurement complexity"],
+  },
+  "industrial-services": {
+    overview: "Specialist industrial cleaning, maintenance, equipment supply and chemical solutions that help facilities operate safely and efficiently.",
+    industriesServed: ["Manufacturing", "Oil & Gas", "Construction", "Healthcare"],
+    projectNames: ["Industrial Park Fit-out", "Regional Fuel Storage Depot"],
+    benefits: ["Reduced operational risk", "Planned maintenance discipline", "Specialist equipment access", "Cleaner, safer facilities"],
+  },
+  "hospitality-entertainment": {
+    overview: "Hospitality and entertainment ventures spanning hotels, restaurants, catering, conferencing and premium event experiences.",
+    industriesServed: ["Hospitality", "Corporate Organizations", "Education", "NGOs"],
+    projectNames: ["Renaissance Grand Hotel"],
+    benefits: ["Guest-focused service standards", "Integrated event delivery", "Commercial property optimisation", "Memorable brand experiences"],
+  },
+  "business-consultancy": {
+    overview: "Corporate advisory, strategy, training, marketing and operations support for organisations pursuing transformation and sustainable growth.",
+    industriesServed: ["Corporate Organizations", "SMEs", "Financial Institutions", "Government"],
+    projectNames: ["National Distribution Hub", "Northern Agro Estate"],
+    benefits: ["Sharper strategic decisions", "Operational improvement", "Stronger market positioning", "Practical implementation support"],
+  },
+};
 
 import heroImg from "@/assets/hero-building.jpg";
 import construction from "@/assets/project-construction.jpg";
@@ -249,3 +319,54 @@ export const news = [
     excerpt: "Our energy practice unpacks the policy, infrastructure and capital priorities for the decade ahead.",
   },
 ];
+
+export const projectDetails: Record<string, { overview: string; scope: string[]; outcomes: string[] }> = {
+  "central-business-tower": {
+    overview: "A flagship commercial development delivered with tight project controls, high-grade specifications and coordinated stakeholder management.",
+    scope: ["Project planning and scheduling", "Construction management", "Quality assurance", "Facility readiness planning"],
+    outcomes: ["Grade-A workspace delivered to institutional standards", "Improved commercial asset value", "Coordinated handover for operations teams"],
+  },
+  "regional-fuel-depot": {
+    overview: "A strategic downstream storage asset designed to improve fuel availability, safety and distribution reliability.",
+    scope: ["Depot infrastructure coordination", "Safety systems integration", "Loading operations support", "Maintenance planning"],
+    outcomes: ["Improved distribution resilience", "Modernised safety controls", "More reliable product movement"],
+  },
+  "northern-agro-estate": {
+    overview: "A mechanised agriculture programme integrating cultivation, storage, logistics and commercial off-take support.",
+    scope: ["Farm planning", "Mechanised operations", "Storage strategy", "Logistics coordination"],
+    outcomes: ["Expanded production capacity", "Reduced post-harvest losses", "Improved market access for produce"],
+  },
+  "national-distribution-hub": {
+    overview: "A high-throughput distribution facility built to support nationwide supply-chain movement and last-mile execution.",
+    scope: ["Warehouse planning", "Fleet integration", "Procurement systems", "Distribution workflow design"],
+    outcomes: ["Faster fulfilment cycles", "Stronger inventory visibility", "Improved route efficiency"],
+  },
+  "renaissance-grand-hotel": {
+    overview: "A premium hospitality destination combining accommodation, conferencing, dining and wellness amenities.",
+    scope: ["Hospitality concept planning", "Facilities coordination", "Event infrastructure", "Service model development"],
+    outcomes: ["Expanded premium hospitality capacity", "Integrated conference offering", "Elevated guest experience"],
+  },
+  "industrial-park-fitout": {
+    overview: "A multi-tenant industrial fit-out programme coordinating civil, MEP and operational readiness requirements.",
+    scope: ["Civil works coordination", "MEP delivery", "Tenant readiness", "Industrial safety standards"],
+    outcomes: ["Accelerated tenant occupancy", "Improved facility reliability", "Scalable industrial operating environment"],
+  },
+};
+
+export const articleDetails: Record<string, string[]> = {
+  "commissioning-central-business-tower": [
+    "Dynamic Renaissance has completed a major commercial tower designed for modern enterprises seeking resilient infrastructure, efficient building systems and a professional operating environment.",
+    "The project reflects the group's integrated delivery model, combining planning, construction management, quality assurance and handover readiness under a single coordinated programme.",
+    "The asset strengthens the company's position as a trusted partner for institutional real estate and complex capital projects.",
+  ],
+  "agro-expansion-northern-nigeria": [
+    "The group has expanded its mechanised agriculture platform with additional cultivated acreage, improved storage planning and stronger off-take coordination.",
+    "This expansion supports resilient food value chains by improving production consistency, reducing operational bottlenecks and connecting agricultural output to reliable distribution channels.",
+    "Dynamic Renaissance will continue to invest in practical, commercially sustainable programmes that strengthen food systems and rural enterprise.",
+  ],
+  "energy-transition-strategy": [
+    "Energy transition requires pragmatic infrastructure planning that balances cleaner technologies with dependable fuel logistics, industrial productivity and affordability.",
+    "Our energy practice works with operators and institutions to identify practical routes for storage modernisation, gas adoption, hybrid power systems and safety-led distribution models.",
+    "The next decade will reward organisations that combine disciplined capital allocation with transparent governance and measurable operational performance.",
+  ],
+};

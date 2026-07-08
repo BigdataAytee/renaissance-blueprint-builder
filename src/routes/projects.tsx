@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import { projects } from "@/lib/site-data";
 import { useState } from "react";
@@ -10,7 +10,9 @@ export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
       { title: "Projects — Dynamic Renaissance" },
-      { name: "description", content: "A portfolio of landmark projects delivered across Nigeria." },
+      { name: "description", content: "A portfolio of landmark projects delivered across infrastructure, energy, agriculture, logistics and hospitality." },
+      { property: "og:title", content: "Projects — Dynamic Renaissance" },
+      { property: "og:description", content: "Explore selected projects delivered by Dynamic Renaissance." },
       { property: "og:url", content: "/projects" },
     ],
     links: [{ rel: "canonical", href: "/projects" }],
@@ -36,7 +38,7 @@ function Projects() {
           </div>
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {list.map((p) => (
-              <article key={p.slug} className="group rounded-lg overflow-hidden border border-border bg-background hover:shadow-2xl transition-all">
+              <Link key={p.slug} to="/projects/$slug" params={{ slug: p.slug }} className="group rounded-lg overflow-hidden border border-border bg-background hover:shadow-2xl transition-all">
                 <div className="aspect-[4/3] overflow-hidden">
                   <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                 </div>
@@ -50,7 +52,7 @@ function Projects() {
                     <div><dt className="text-muted-foreground">Client</dt><dd className="font-semibold">{p.client}</dd></div>
                   </dl>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>

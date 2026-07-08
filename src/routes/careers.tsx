@@ -7,7 +7,8 @@ export const Route = createFileRoute("/careers")({
   head: () => ({
     meta: [
       { title: "Careers — Dynamic Renaissance" },
-      { name: "description", content: "Build your career at one of Nigeria's most ambitious diversified enterprises." },
+      { name: "description", content: "Build your career at an ambitious diversified enterprise with roles across multiple business sectors." },
+      { property: "og:description", content: "Explore careers, job listings and company culture at Dynamic Renaissance." },
       { property: "og:url", content: "/careers" },
     ],
     links: [{ rel: "canonical", href: "/careers" }],
@@ -27,7 +28,7 @@ function Careers() {
   return (
     <Layout>
       <PageHero eyebrow="Careers" title="Build your career at Dynamic Renaissance."
-        subtitle="Join a diversified enterprise where ambitious people build the infrastructure, energy and enterprises that shape Nigeria." />
+        subtitle="Join a diversified enterprise where ambitious people build infrastructure, energy platforms and commercial ventures that shape markets." />
 
       <section className="section-y">
         <div className="container-wide grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

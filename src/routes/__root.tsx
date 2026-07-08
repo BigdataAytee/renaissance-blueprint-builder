@@ -60,12 +60,12 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           >
             Try again
           </button>
-          <a
-            href="/"
+          <Link
+            to="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
             Go home
-          </a>
+          </Link>
         </div>
       </div>
     </div>
@@ -77,11 +77,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Dynamic Renaissance Biz Ents. Ltd. — Building Today. Transforming Tomorrow." },
+      { title: "Dynamic Renaissance — Corporate Enterprise Group" },
       { name: "description", content: "Diversified enterprise group delivering integrated solutions across infrastructure, oil & gas, agriculture, logistics, manufacturing and commercial services." },
       { name: "author", content: "Dynamic Renaissance Biz Ents. Ltd." },
       { property: "og:title", content: "Dynamic Renaissance Biz Ents. Ltd." },
-      { property: "og:description", content: "Building Today. Transforming Tomorrow. Integrated solutions across Nigeria's most vital sectors." },
+      { property: "og:description", content: "Building Today. Transforming Tomorrow. Integrated solutions across infrastructure, energy, agriculture, logistics and commercial services." },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Dynamic Renaissance" },
       { name: "twitter:card", content: "summary_large_image" },

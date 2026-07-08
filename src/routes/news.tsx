@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import { news } from "@/lib/site-data";
 import { ArrowRight } from "lucide-react";
@@ -9,6 +9,8 @@ export const Route = createFileRoute("/news")({
     meta: [
       { title: "News & Insights — Dynamic Renaissance" },
       { name: "description", content: "Company news, project updates, industry insight and thought leadership." },
+      { property: "og:title", content: "News & Insights — Dynamic Renaissance" },
+      { property: "og:description", content: "Read company news, project stories and industry perspectives from Dynamic Renaissance." },
       { property: "og:url", content: "/news" },
     ],
     links: [{ rel: "canonical", href: "/news" }],
@@ -29,15 +31,15 @@ function News() {
               <h2 className="mt-4 text-3xl md:text-4xl font-extrabold">{feature.title}</h2>
               <p className="mt-4 text-muted-foreground text-lg">{feature.excerpt}</p>
             </div>
-            <a href="#" className="mt-8 inline-flex items-center gap-2 text-primary font-semibold">Read the story <ArrowRight className="size-4" /></a>
+            <Link to="/news/$slug" params={{ slug: feature.slug }} className="mt-8 inline-flex items-center gap-2 text-primary font-semibold">Read the story <ArrowRight className="size-4" /></Link>
           </article>
           <div className="grid gap-6">
             {rest.map((n) => (
-              <article key={n.slug} className="p-6 rounded-lg border border-border bg-background hover:shadow-lg transition-all">
+              <Link key={n.slug} to="/news/$slug" params={{ slug: n.slug }} className="p-6 rounded-lg border border-border bg-background hover:shadow-lg transition-all">
                 <div className="text-xs text-muted-foreground uppercase tracking-[0.15em]">{n.date} · {n.category}</div>
                 <h3 className="mt-2 font-extrabold">{n.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{n.excerpt}</p>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
