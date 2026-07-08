@@ -50,7 +50,7 @@ export const whyChooseCards: { icon: LucideIcon; title: string; body: string }[]
   { icon: Clock, title: "Timely Delivery", body: "Disciplined scheduling and project controls that respect client deadlines." },
   { icon: Wallet, title: "Cost-Effective Solutions", body: "Commercial rigour and lean execution that maximise value for every naira invested." },
   { icon: Leaf, title: "Sustainable Practices", body: "Environmentally responsible methods integrated across every stage of delivery." },
-  { icon: Globe2, title: "Nationwide Operations", body: "Active footprint across 36 states with a network of trusted partners." },
+  { icon: Globe2, title: "Global Operations", body: "Active footprint across multiple continents with a network of trusted partners." },
   { icon: FileCheck, title: "Regulatory Compliance", body: "Full alignment with regulatory, statutory and industry standards." },
   { icon: HeartHandshake, title: "Customer-Focused Approach", body: "Responsive teams, transparent communication and long-term partnerships." },
 ];
@@ -114,7 +114,7 @@ export const sectorContent: Record<string, SectorContent> = {
     stats: [
       { value: "100+", label: "Projects delivered" },
       { value: "24 mo", label: "Avg. large-project cycle" },
-      { value: "36", label: "States covered" },
+      { value: "10+", label: "Years experience" },
       { value: "ISO", label: "Aligned processes" },
     ],
     services: [
@@ -166,7 +166,7 @@ export const sectorContent: Record<string, SectorContent> = {
     ],
     stats: [
       { value: "24/7", label: "Operations coverage" },
-      { value: "36", label: "States supplied" },
+      { value: "10+", label: "Years experience" },
       { value: "HSE-1", label: "Safety-led culture" },
       { value: "Multi", label: "Product portfolio" },
     ],

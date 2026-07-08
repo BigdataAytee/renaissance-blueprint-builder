@@ -19,8 +19,7 @@ export const stats = [
   { value: 20, suffix: "+", label: "Business Sectors" },
   { value: 100, suffix: "+", label: "Projects Delivered" },
   { value: 500, suffix: "+", label: "Satisfied Clients" },
-  { value: 15, suffix: "+", label: "Years Combined Experience" },
-  { value: 36, suffix: "", label: "States Covered" },
+  { value: 10, suffix: "+", label: "Years Experience" },
   { value: 100, suffix: "%", label: "Commitment to Excellence" },
 ];
 
@@ -115,7 +114,7 @@ export const businesses = [
 export const whyChoose = [
   { icon: Users, title: "Professional Team", body: "Multidisciplinary experts with deep sector knowledge." },
   { icon: Sparkles, title: "Integrated Solutions", body: "One partner across the entire value chain." },
-  { icon: Globe2, title: "Nationwide Operations", body: "Active presence across all 36 states." },
+  { icon: Globe2, title: "Global Operations", body: "Active presence across multiple continents and markets worldwide." },
   { icon: Award, title: "Innovation Driven", body: "Technology and process innovation in every engagement." },
   { icon: HeartHandshake, title: "Customer Satisfaction", body: "Long-term relationships built on measurable value." },
   { icon: ShieldCheck, title: "Quality Assurance", body: "ISO-aligned quality management across operations." },
