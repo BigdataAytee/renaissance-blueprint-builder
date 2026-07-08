@@ -4,11 +4,15 @@ import { company, businesses } from "@/lib/site-data";
 
 export function Footer() {
   return (
-    <footer className="bg-navy text-navy-foreground">
-      <div className="container-wide py-16 grid gap-12 lg:grid-cols-12">
+    <footer className="relative bg-navy text-navy-foreground overflow-hidden">
+      <div className="absolute inset-0 grid-pattern opacity-25 pointer-events-none" />
+      <div className="absolute -top-32 -left-24 size-[400px] rounded-full bg-primary/20 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-32 -right-24 size-[400px] rounded-full bg-gold/15 blur-3xl pointer-events-none" />
+      <div className="container-wide relative py-20 grid gap-12 lg:grid-cols-12">
+
         <div className="lg:col-span-4">
           <div className="flex items-center gap-3">
-            <div className="size-11 rounded-md bg-primary grid place-items-center font-display font-extrabold text-lg">DR</div>
+            <div className="size-12 rounded-xl bg-gradient-to-br from-primary to-primary-dark grid place-items-center font-display font-extrabold text-lg shadow-lg">DR</div>
             <div className="leading-tight">
               <div className="font-display font-extrabold">Dynamic Renaissance</div>
               <div className="text-[10px] uppercase tracking-[0.18em] text-white/60">Biz Ents. Ltd.</div>
@@ -19,10 +23,11 @@ export function Footer() {
           </p>
           <div className="mt-6 flex gap-3">
             {[Linkedin, Twitter, Facebook, Instagram, Youtube].map((Icon, i) => (
-              <span key={i} aria-label="Social channel" className="size-9 rounded-full grid place-items-center border border-white/15 text-white/60">
+              <a key={i} href="#" aria-label="Social channel" className="size-10 rounded-full grid place-items-center border border-white/15 text-white/70 hover:text-gold hover:border-gold/60 hover:bg-white/5 transition-all duration-300 hover:-translate-y-0.5">
                 <Icon className="size-4" />
-              </span>
+              </a>
             ))}
+
           </div>
         </div>
 
@@ -52,15 +57,16 @@ export function Footer() {
             <li className="flex gap-3"><Mail className="size-4 mt-0.5 shrink-0 text-gold" />{company.email}</li>
           </ul>
           <form className="mt-5" onSubmit={(e) => e.preventDefault()}>
-            <label className="text-xs uppercase tracking-[0.18em] text-white/60">Newsletter</label>
-            <div className="mt-2 flex">
-              <input type="email" required placeholder="Your email" className="flex-1 bg-white/5 border border-white/10 rounded-l-md px-3 py-2 text-sm outline-none focus:border-gold" />
-              <button className="bg-gold text-navy rounded-r-md px-4 text-sm font-semibold hover:brightness-95">Join</button>
+            <label className="text-xs uppercase tracking-[0.22em] text-white/60 font-semibold">Newsletter</label>
+            <div className="mt-3 flex rounded-full overflow-hidden border border-white/15 bg-white/5 backdrop-blur focus-within:border-gold/60 transition-colors">
+              <input type="email" required placeholder="Your email" className="flex-1 bg-transparent px-4 py-2.5 text-sm outline-none placeholder:text-white/40" />
+              <button className="bg-gradient-to-r from-gold to-[oklch(0.62_0.14_78)] text-navy px-5 text-sm font-bold hover:brightness-105 transition">Join</button>
             </div>
           </form>
         </div>
       </div>
-      <div className="border-t border-white/10">
+      <div className="relative border-t border-white/10">
+
         <div className="container-wide py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/60">
           <div>© {new Date().getFullYear()} Dynamic Renaissance Biz Ents. Ltd. All rights reserved.</div>
           <div className="flex gap-5">

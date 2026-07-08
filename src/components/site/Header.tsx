@@ -33,7 +33,7 @@ export function Header() {
   const solid = scrolled || !isHome || mobileOpen;
 
   return (
-    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${solid ? "bg-background/95 backdrop-blur border-b border-border shadow-sm" : "bg-transparent"}`}>
+    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${solid ? "bg-background/85 backdrop-blur-xl border-b border-border/60 shadow-[0_4px_24px_-12px_rgba(15,27,61,0.15)]" : "bg-transparent"}`}>
       {/* top bar */}
       <div className={`hidden lg:block transition-colors ${solid ? "bg-navy text-navy-foreground" : "bg-black/20 text-white"}`}>
         <div className="container-wide flex items-center justify-between py-2 text-xs">
@@ -69,7 +69,7 @@ export function Header() {
 
         <nav className="hidden xl:flex items-center gap-1">
           {navItems.map((item) => {
-            const active = pathname === item.to;
+            const active = pathname === item.to || (item.to !== "/" && pathname.startsWith(item.to));
             return (
               <div
                 key={item.to}
@@ -79,15 +79,23 @@ export function Header() {
               >
                 <Link
                   to={item.to}
-                  className={`inline-flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`relative inline-flex items-center gap-1 px-4 py-2 text-sm font-semibold transition-colors ${
                     solid
-                      ? active ? "text-primary" : "text-foreground hover:text-primary"
+                      ? active ? "text-primary" : "text-foreground/80 hover:text-primary"
                       : active ? "text-gold" : "text-white/90 hover:text-white"
                   }`}
                 >
                   {item.label}
                   {item.mega && <ChevronDown className="size-3.5 opacity-70" />}
+                  {active && (
+                    <motion.span
+                      layoutId="nav-active"
+                      className={`absolute left-3 right-3 -bottom-0.5 h-[2px] rounded-full ${solid ? "bg-primary" : "bg-gold"}`}
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    />
+                  )}
                 </Link>
+
                 {item.mega && openMega === item.mega && (
                   <MegaMenu type={item.mega} />
                 )}
