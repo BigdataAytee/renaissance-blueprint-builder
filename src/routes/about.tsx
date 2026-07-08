@@ -165,6 +165,26 @@ function About() {
       </section>
 
       <section className="section-y">
+        <div className="container-wide">
+          <div className="grid lg:grid-cols-[1fr_2fr] gap-12 items-start">
+            <div>
+              <div className="eyebrow">Industries Served</div>
+              <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-balance">Trusted across sixteen industries.</h2>
+              <p className="mt-4 text-muted-foreground">From federal government agencies to SMEs, our clients rely on our sector depth and delivery discipline.</p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {industries.map((i) => (
+                <div key={i} className="flex items-center gap-2.5 px-4 py-3 rounded-md bg-secondary border border-border">
+                  <CheckCircle2 className="size-4 text-primary shrink-0" />
+                  <span className="text-sm font-medium">{i}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-y">
         <div className="container-wide grid md:grid-cols-2 gap-10">
           {[
             { t: "Chairman's Message", d: "Markets are changing quickly. Our role as builders, operators and investors is to accelerate responsible growth — ambitiously and in service of the communities we operate in." },
