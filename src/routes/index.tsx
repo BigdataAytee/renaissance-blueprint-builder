@@ -5,9 +5,8 @@ import { Layout, CTA } from "@/components/site/Layout";
 import { Counter } from "@/components/site/Counter";
 import {
   company, stats, businesses, whyChoose, industries,
-  projects, testimonials, news, heroImg,
+  testimonials, news, heroImg,
 } from "@/lib/site-data";
-import aboutTeam from "@/assets/about-team.jpg";
 import sustainImg from "@/assets/sustainability.jpg";
 
 export const Route = createFileRoute("/")({
@@ -79,40 +78,6 @@ function Home() {
         </div>
       </section>
 
-      {/* ABOUT PREVIEW */}
-      <section className="section-y bg-background">
-        <div className="container-wide grid gap-14 lg:grid-cols-2 items-center">
-          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="relative">
-            <img src={aboutTeam} alt="Executive team" className="rounded-lg shadow-2xl" width={1280} height={960} loading="lazy" />
-            <div className="absolute -bottom-6 -right-6 hidden md:block bg-gold text-navy p-6 rounded-lg shadow-xl max-w-xs">
-              <div className="text-4xl font-extrabold">15+</div>
-              <div className="text-sm font-semibold">Years of combined leadership across vital business sectors.</div>
-            </div>
-          </motion.div>
-          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
-            <div className="eyebrow">About the Group</div>
-            <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-balance">A conglomerate built for the next generation of growth.</h2>
-            <p className="mt-5 text-muted-foreground">
-              Registered under the Companies and Allied Matters Act (CAMA) 1990, Dynamic Renaissance Biz Ents. Ltd. is a private limited liability company delivering innovative, sustainable and high-quality solutions across a diversified portfolio of industries.
-            </p>
-            <div className="mt-8 grid sm:grid-cols-3 gap-6">
-              {[
-                { t: "Mission", d: "Deliver excellence across every sector we operate in." },
-                { t: "Vision", d: "Be a trusted diversified enterprise known for durable value." },
-                { t: "Values", d: "Integrity, innovation, sustainability and partnership." },
-              ].map((v) => (
-                <div key={v.t} className="border-l-2 border-gold pl-4">
-                  <div className="text-sm font-semibold text-primary uppercase tracking-wider">{v.t}</div>
-                  <div className="mt-1 text-sm text-foreground">{v.d}</div>
-                </div>
-              ))}
-            </div>
-            <Link to="/about" className="mt-8 inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
-              Read our full story <ArrowRight className="size-4" />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
 
       {/* BUSINESSES */}
       <section className="section-y bg-secondary">
