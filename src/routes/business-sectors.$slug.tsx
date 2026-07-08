@@ -2,10 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, CheckCircle2, Phone } from "lucide-react";
 import { Layout, CTA } from "@/components/site/Layout";
 import { businesses } from "@/lib/site-data";
-import {
-  sectorContent, whyChooseCards, processSteps, industriesGlobal,
-  safetyPillars, clientBenefits,
-} from "@/lib/sector-content";
+import { sectorContent } from "@/lib/sector-content";
+const industriesGlobal = [
+  "Government & Public Sector", "Oil & Gas", "Power & Utilities", "Manufacturing",
+  "Financial Services", "Real Estate", "Agriculture & Agro-Processing", "Logistics & Transport",
+  "Hospitality & Tourism", "Retail & FMCG", "Telecommunications", "Mining & Natural Resources",
+];
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
