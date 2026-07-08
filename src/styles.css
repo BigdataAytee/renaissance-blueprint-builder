@@ -123,6 +123,8 @@
   }
   p { line-height: 1.65; }
   ::selection { background-color: color-mix(in oklab, var(--color-gold) 55%, transparent); color: var(--color-navy); }
+}
+
 
 @utility container-wide {
   width: 100%;
