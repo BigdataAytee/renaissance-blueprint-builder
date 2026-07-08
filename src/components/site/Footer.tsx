@@ -19,9 +19,9 @@ export function Footer() {
           </p>
           <div className="mt-6 flex gap-3">
             {[Linkedin, Twitter, Facebook, Instagram, Youtube].map((Icon, i) => (
-              <a key={i} href="#" aria-label="Social" className="size-9 rounded-full grid place-items-center border border-white/15 hover:bg-gold hover:text-navy hover:border-gold transition-colors">
+              <span key={i} aria-label="Social channel" className="size-9 rounded-full grid place-items-center border border-white/15 text-white/60">
                 <Icon className="size-4" />
-              </a>
+              </span>
             ))}
           </div>
         </div>
@@ -39,7 +39,7 @@ export function Footer() {
           <h4 className="text-sm font-semibold text-white mb-4">Business Sectors</h4>
           <ul className="space-y-2.5 text-sm text-white/70">
             {businesses.slice(0, 6).map((b) => (
-              <li key={b.slug}><Link to="/businesses" className="hover:text-gold">{b.title}</Link></li>
+              <li key={b.slug}><Link to="/business-sectors/$slug" params={{ slug: b.slug }} className="hover:text-gold">{b.title}</Link></li>
             ))}
           </ul>
         </div>
@@ -65,8 +65,8 @@ export function Footer() {
           <div>© {new Date().getFullYear()} Dynamic Renaissance Biz Ents. Ltd. All rights reserved.</div>
           <div className="flex gap-5">
             <a href="#" className="hover:text-gold">Privacy Policy</a>
-            <a href="#" className="hover:text-gold">Terms</a>
-            <a href="#" className="hover:text-gold">Cookie Policy</a>
+            <span>Terms</span>
+            <span>Cookie Policy</span>
           </div>
         </div>
       </div>

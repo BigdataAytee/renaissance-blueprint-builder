@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Link } from "@tanstack/react-router";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 
@@ -36,8 +37,8 @@ export function CTA() {
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <a href="/contact" className="btn-green">Request Consultation</a>
-          <a href="/contact" className="inline-flex items-center justify-center px-6 py-3 rounded-md border border-navy/40 text-navy font-semibold hover:bg-navy hover:text-white transition-colors">Contact Us</a>
+          <Link to="/contact" className="btn-green">Request Consultation</Link>
+          <Link to="/contact" className="inline-flex items-center justify-center px-6 py-3 rounded-md border border-navy/40 text-navy font-semibold hover:bg-navy hover:text-white transition-colors">Contact Us</Link>
         </div>
       </div>
     </section>
