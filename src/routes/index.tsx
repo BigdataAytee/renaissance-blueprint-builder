@@ -106,29 +106,6 @@ function Home() {
       </section>
 
 
-      {/* NEWS */}
-      <section className="section-y bg-secondary">
-        <div className="container-wide">
-          <div className="flex items-end justify-between gap-6 flex-wrap">
-            <div>
-              <div className="eyebrow">News & Insights</div>
-              <h2 className="mt-4 text-4xl md:text-5xl font-extrabold">Latest thinking.</h2>
-            </div>
-            <Link to="/news" className="btn-green">All articles <ArrowRight className="size-4" /></Link>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {news.map((n) => (
-              <article key={n.slug} className="card-elevated p-7">
-                <div className="text-xs text-muted-foreground uppercase tracking-[0.15em]">{n.date} · {n.category}</div>
-                <h3 className="mt-3 text-lg font-extrabold leading-snug">{n.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{n.excerpt}</p>
-                <Link to="/news/$slug" params={{ slug: n.slug }} className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">Read more <ArrowRight className="size-3.5" /></Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <CTA />
     </Layout>
   );
