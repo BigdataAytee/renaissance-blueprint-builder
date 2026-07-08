@@ -33,7 +33,7 @@ export function Header() {
   const solid = scrolled || !isHome || mobileOpen;
 
   return (
-    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${solid ? "bg-background/95 backdrop-blur border-b border-border shadow-sm" : "bg-transparent"}`}>
+    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${solid ? "bg-background/85 backdrop-blur-xl border-b border-border/60 shadow-[0_4px_24px_-12px_rgba(15,27,61,0.15)]" : "bg-transparent"}`}>
       {/* top bar */}
       <div className={`hidden lg:block transition-colors ${solid ? "bg-navy text-navy-foreground" : "bg-black/20 text-white"}`}>
         <div className="container-wide flex items-center justify-between py-2 text-xs">
