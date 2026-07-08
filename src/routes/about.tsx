@@ -49,7 +49,7 @@ function About() {
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="relative">
             <img src={aboutTeam} alt="Executive team" className="rounded-lg shadow-2xl" width={1280} height={960} loading="lazy" />
             <div className="absolute -bottom-6 -right-6 hidden md:block bg-gold text-navy p-6 rounded-lg shadow-xl max-w-xs">
-              <div className="text-4xl font-extrabold">15+</div>
+              <div className="text-4xl font-extrabold">10+</div>
               <div className="text-sm font-semibold">Years of combined leadership across vital business sectors.</div>
             </div>
           </motion.div>
