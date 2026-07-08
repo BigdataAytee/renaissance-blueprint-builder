@@ -23,10 +23,11 @@ export function Footer() {
           </p>
           <div className="mt-6 flex gap-3">
             {[Linkedin, Twitter, Facebook, Instagram, Youtube].map((Icon, i) => (
-              <span key={i} aria-label="Social channel" className="size-9 rounded-full grid place-items-center border border-white/15 text-white/60">
+              <a key={i} href="#" aria-label="Social channel" className="size-10 rounded-full grid place-items-center border border-white/15 text-white/70 hover:text-gold hover:border-gold/60 hover:bg-white/5 transition-all duration-300 hover:-translate-y-0.5">
                 <Icon className="size-4" />
-              </span>
+              </a>
             ))}
+
           </div>
         </div>
 
