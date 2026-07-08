@@ -274,7 +274,7 @@ export const sectorContent: Record<string, SectorContent> = {
     ],
     stats: [
       { value: "45,000", label: "sqm warehouse capacity" },
-      { value: "36", label: "States served" },
+      { value: "10+", label: "Years experience" },
       { value: "GPS", label: "Tracked fleet" },
       { value: "24/7", label: "Dispatch coverage" },
     ],
@@ -328,7 +328,7 @@ export const sectorContent: Record<string, SectorContent> = {
     ],
     stats: [
       { value: "Multi", label: "Product categories" },
-      { value: "36", label: "States distributed" },
+      { value: "10+", label: "Years experience" },
       { value: "QA", label: "Quality-controlled" },
       { value: "B2B/B2C", label: "Channels served" },
     ],
@@ -357,7 +357,7 @@ export const sectorContent: Record<string, SectorContent> = {
       { q: "Can you customise packaging or specifications?", a: "Yes. We work with clients on custom formulations, packaging formats and branding within regulatory limits." },
       { q: "How do you price wholesale and distribution deals?", a: "Based on volume, category, exclusivity, credit terms and route-to-market commitments — we structure tailored agreements." },
       { q: "Do you support distributors and dealers?", a: "Yes. We provide training, merchandising, credit-line structuring and route-to-market support to our distributor network." },
-      { q: "Which markets do you reach?", a: "Modern trade, traditional trade, institutional buyers, industrial off-takers and B2B clients across 36 states." },
+      { q: "Which markets do you reach?", a: "Modern trade, traditional trade, institutional buyers, industrial off-takers and B2B clients globally." },
       { q: "How do I become a distributor?", a: "Contact our commercial team with your coverage area, capacity and credentials to start the assessment process." },
     ],
   },
