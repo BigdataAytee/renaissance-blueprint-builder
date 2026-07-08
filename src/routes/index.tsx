@@ -127,33 +127,6 @@ function Home() {
         </div>
       </section>
 
-      {/* FEATURED PROJECTS */}
-      <section className="section-y bg-navy text-navy-foreground relative overflow-hidden">
-        <div className="absolute inset-0 opacity-40 [background:radial-gradient(60%_60%_at_90%_10%,color-mix(in_oklab,var(--color-primary)_40%,transparent),transparent)]" />
-        <div className="container-wide relative">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <div className="max-w-2xl">
-              <div className="eyebrow text-gold">Featured Projects</div>
-              <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-balance">Delivering landmark work across priority sectors.</h2>
-            </div>
-            <Link to="/projects" className="btn-outline-white self-start">View all projects <ArrowRight className="size-4" /></Link>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.slice(0, 6).map((p) => (
-              <Link key={p.slug} to="/projects/$slug" params={{ slug: p.slug }} className="group block overflow-hidden rounded-lg bg-white/5 border border-white/10 hover:border-gold/60 transition-colors">
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-                </div>
-                <div className="p-6">
-                  <div className="text-xs uppercase tracking-[0.18em] text-gold">{p.category} · {p.location}</div>
-                  <h3 className="mt-2 text-xl font-extrabold text-white">{p.title}</h3>
-                  <p className="mt-2 text-sm text-white/70 line-clamp-2">{p.summary}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* INDUSTRIES */}
       <section className="section-y bg-background">
