@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import { businesses } from "@/lib/site-data";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
