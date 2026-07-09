@@ -28,12 +28,6 @@ export type SectorService = {
   industries: string[];
 };
 
-export type SectorMediaCard = {
-  title: string;
-  caption: string;
-  products: string[];
-};
-
 export type SectorContent = {
   heroImage: string;
   headline: string;
@@ -43,7 +37,6 @@ export type SectorContent = {
   stats: { value: string; label: string }[];
   services: SectorService[];
   equipment: { title: string; body: string }[];
-  mediaShowcase: SectorMediaCard[];
   faqs: { q: string; a: string }[];
 };
 
@@ -140,11 +133,6 @@ export const sectorContent: Record<string, SectorContent> = {
       { title: "Modern construction equipment", body: "Cranes, lifts, formwork systems and specialist plant matched to project scale and complexity." },
       { title: "IoT facility monitoring", body: "Smart building sensors and analytics for energy, occupancy and asset performance." },
     ],
-    mediaShowcase: [
-      { title: "High-rise commercial & residential developments", caption: "Turn-key delivery of residential estates, office complexes, shopping malls and hotels — engineered end-to-end from feasibility to handover.", products: ["Residential developments", "Office complexes", "Shopping malls", "Hotels"] },
-      { title: "Roads, bridges, hospitals & schools", caption: "Civil engineering programmes covering roads, bridges, industrial facilities and public infrastructure such as hospitals and schools.", products: ["Roads", "Bridges", "Hospitals", "Schools", "Civil engineering"] },
-      { title: "Facility management & construction supervision", caption: "Architectural design, quantity surveying and construction supervision — followed by facility management, estate management and renovation across the asset lifecycle.", products: ["Facility management", "Quantity surveying", "Estate management", "Renovation"] },
-    ],
     faqs: [
       { q: "How do you keep large projects on time and on budget?", a: "We combine disciplined project controls, weekly performance reporting, integrated cost/schedule tracking and experienced project leaders who intervene early when risks emerge." },
       { q: "Do you handle design or only construction?", a: "Both. We can lead the design team, coordinate consultants or take a design-build role, depending on how clients want to structure the programme." },
@@ -198,11 +186,6 @@ export const sectorContent: Record<string, SectorContent> = {
       { title: "Automated loading gantries", body: "Metered loading systems and calibrated flow meters that eliminate product losses." },
       { title: "Safety instrumentation", body: "Fire detection, gas monitoring and emergency shutdown systems across handling facilities." },
       { title: "Digital dispatch platforms", body: "Real-time order, dispatch and delivery visibility for corporate customers." },
-    ],
-    mediaShowcase: [
-      { title: "Offshore platforms & pipelines", caption: "Offshore support, pipeline integrity, EPC and marine logistics across the upstream and midstream value chain — engineered around safety-led operations.", products: ["Offshore support", "Pipelines", "EPC", "Marine logistics", "Well services"] },
-      { title: "Storage tanks, terminals & fuel loading", caption: "Depot and terminal operations for PMS, AGO, DPK and Jet A1 — with calibrated loading gantries, safety instrumentation and certified operators.", products: ["Storage tanks", "PMS", "AGO", "DPK", "Jet A1", "Bitumen"] },
-      { title: "LPG, LNG & tanker distribution", caption: "Nationwide distribution of LPG (bulk and cylinder), LNG for industrial users and refined petroleum products via a GPS-tracked, DPR-compliant tanker fleet.", products: ["LPG", "LNG", "Lubricants", "Tanker fleet", "Safety systems"] },
     ],
     faqs: [
       { q: "What products do you supply?", a: "PMS (petrol), AGO (diesel), DPK (kerosene), ATK (aviation fuel), lubricants, LPG and industrial gases through vetted supply partnerships." },
@@ -258,11 +241,6 @@ export const sectorContent: Record<string, SectorContent> = {
       { title: "Post-harvest infrastructure", body: "Drying, cleaning and storage systems designed to reduce losses and preserve quality." },
       { title: "Biosecurity systems", body: "Structured biosecurity protocols across poultry and livestock operations." },
     ],
-    mediaShowcase: [
-      { title: "Cocoa, rubber & palm oil plantations", caption: "Commercial plantations and processing across cocoa, rubber, oil palm and palm kernel — with agronomy-led production and structured off-take.", products: ["Cocoa", "Rubber", "Palm oil", "Palm kernel", "Sesame", "Ginger"] },
-      { title: "Rice, maize & mechanised grain farming", caption: "Large-scale grain and tuber production — rice, maize, sorghum, soybeans, cassava, yam and groundnuts — with tractors, irrigation systems and greenhouse farming.", products: ["Rice", "Maize", "Sorghum", "Soybeans", "Cassava", "Yam", "Groundnuts"] },
-      { title: "Poultry, fish farming & agro-processing", caption: "Poultry, fish farming and livestock operations feeding into agro-processing, storage silos and export packaging — plus fertilizer, seed and agrochemical distribution.", products: ["Poultry", "Fish farming", "Livestock", "Agro-processing", "Fertilizers", "Seeds"] },
-    ],
     faqs: [
       { q: "What crops do you focus on?", a: "Grains (maize, rice, sorghum), tubers (cassava, yam), oil crops and selected cash and horticultural crops depending on the region and off-take profile." },
       { q: "Do you run your own farms or manage for third parties?", a: "Both. We operate our own commercial estates and provide professional farm-management services to landowners, investors and government-linked programmes." },
@@ -317,11 +295,6 @@ export const sectorContent: Record<string, SectorContent> = {
       { title: "Warehouse management systems", body: "Digital inventory, order management and cycle-count tools for accuracy and visibility." },
       { title: "Cold-chain capability", body: "Refrigerated storage and transport options for temperature-sensitive goods." },
     ],
-    mediaShowcase: [
-      { title: "Cargo trucks, haulage & tanker fleet", caption: "Long-haul trucking of fuel, cement, containers and industrial cargo across 36 states, operated with GPS-tracked, compliant vehicles and certified drivers.", products: ["Trucking", "Haulage", "Tanker fleet", "Fleet management"] },
-      { title: "Warehouses, forklifts & inventory operations", caption: "Ambient, secured and cross-dock warehousing with WMS-driven inventory management, cold chain capability and cargo handling.", products: ["Warehousing", "Cold chain logistics", "Inventory management", "Cargo handling"] },
-      { title: "Shipping containers & freight forwarding", caption: "Container transport, freight forwarding, customs clearance and multi-modal import/export across sea, air and land.", products: ["Container transport", "Freight forwarding", "Customs clearance", "Distribution networks"] },
-    ],
     faqs: [
       { q: "What kind of goods do you move?", a: "General cargo, FMCG products, industrial equipment, agricultural produce, construction materials, hazardous goods (with the right permits) and fuel." },
       { q: "Do you offer dedicated fleets?", a: "Yes. We provide dedicated tankers, trucks and vans to clients with consistent, high-volume movement." },
@@ -375,11 +348,6 @@ export const sectorContent: Record<string, SectorContent> = {
       { title: "ERP-driven operations", body: "Integrated ERP systems covering procurement, production, inventory and finance." },
       { title: "Distribution technology", body: "Route-to-market platforms, van sales tools and mobile order capture." },
     ],
-    mediaShowcase: [
-      { title: "Industrial lubricants, filters & spare parts", caption: "Supply of engine oil, hydraulic oil, grease, air/oil/fuel filters, bearings, fasteners and forklift/generator spare parts — with technical selection support.", products: ["Engine oil", "Hydraulic oil", "Grease", "Filters", "Bearings", "Fasteners"] },
-      { title: "Pipes, valves, pumps & electrical cables", caption: "Wholesale distribution of pipes, valves, pumps, welding consumables, safety equipment and electrical cables for plants, EPC contractors and industrial buyers.", products: ["Pipes", "Valves", "Pumps", "Electrical cables", "Welding consumables"] },
-      { title: "Cement, steel, paints & building materials", caption: "Building-materials distribution — cement, steel products, roofing materials, paints, chemicals and packaging — with warehousing and route-to-market coverage.", products: ["Cement", "Steel", "Roofing materials", "Paints", "Chemicals", "Packaging"] },
-    ],
     faqs: [
       { q: "Do you manufacture products under your own brand?", a: "Yes, and we also produce for partner brands under contract or private-label arrangements." },
       { q: "What product categories do you cover?", a: "Consumer packaged goods, industrial consumables, construction-related products, agro-inputs and specialised trading portfolios." },
@@ -430,11 +398,6 @@ export const sectorContent: Record<string, SectorContent> = {
       { title: "Diagnostic and testing tools", body: "Vibration, thermographic and ultrasonic tools for condition monitoring." },
       { title: "Modern workshop capability", body: "Machining, welding and rebuild capability for industrial equipment repairs." },
       { title: "Digital maintenance management", body: "CMMS platforms for planning, tracking and reporting maintenance work." },
-    ],
-    mediaShowcase: [
-      { title: "Welding, fabrication & steel works", caption: "On-site and workshop welding, structural fabrication and mechanical repairs on pumps, motors, gearboxes and piping — with certified technicians at work.", products: ["Welding", "Steel fabrication", "Mechanical repairs", "Heavy equipment"] },
-      { title: "Plant maintenance & industrial cleaning", caption: "Preventive maintenance, shutdown services, high-pressure industrial cleaning and sandblasting across factories, refineries and hospitals.", products: ["Plant maintenance", "Industrial cleaning", "Sandblasting", "Shutdown services"] },
-      { title: "Equipment installation & protective coatings", caption: "Equipment installation, corrosion protection, protective coatings and electrical maintenance for tanks, pipelines and offshore assets.", products: ["Equipment installation", "Protective coatings", "Corrosion protection", "Electrical maintenance"] },
     ],
     faqs: [
       { q: "What industrial cleaning services do you provide?", a: "High-pressure cleaning, tank cleaning, plant decontamination, confined-space cleaning, HVAC cleaning and specialist decontamination." },
@@ -489,11 +452,6 @@ export const sectorContent: Record<string, SectorContent> = {
       { title: "Event AV and staging", body: "Modern audio-visual, staging and lighting equipment for large-scale events and conferences." },
       { title: "Digital guest experience", body: "Online bookings, digital check-in, loyalty and guest-feedback platforms." },
     ],
-    mediaShowcase: [
-      { title: "Luxury hotels & guest accommodation", caption: "Full-service hotel and resort operations with refined guest experience, wellness and F&B — including long-stay corporate accommodation.", products: ["Hotels", "Resorts", "Guest accommodation", "Tourism services"] },
-      { title: "Fine dining, catering & banquet halls", caption: "Signature restaurants, banqueting and large-scale catering under HACCP-aligned food-safety controls for weddings, conferences and government functions.", products: ["Restaurants", "Catering", "Banqueting", "Wedding venues"] },
-      { title: "Conference centres & event venues", caption: "Modern conference centres, corporate events and entertainment programming with integrated AV, hospitality and delegate services.", products: ["Conference centres", "Corporate events", "Event venues", "Entertainment"] },
-    ],
     faqs: [
       { q: "Do you operate your own hotels?", a: "Yes. We own, operate and partner in hospitality venues across accommodation, dining and entertainment." },
       { q: "Can you host large conferences?", a: "Yes. Our conference facilities and event teams handle events from small executive meetings to multi-day international conferences." },
@@ -546,11 +504,6 @@ export const sectorContent: Record<string, SectorContent> = {
       { title: "Data & analytics tools", body: "Modern analytics, dashboarding and modelling tools that turn data into decisions." },
       { title: "Digital delivery capability", body: "Cross-functional squads capable of running discovery, design and delivery sprints." },
       { title: "Learning platforms", body: "Blended learning platforms combining in-person, virtual and self-paced formats." },
-    ],
-    mediaShowcase: [
-      { title: "Corporate boardrooms & executive meetings", caption: "Board-level advisory, business transformation and stakeholder engagement — grounded in on-the-ground operating experience.", products: ["Corporate advisory", "Business strategy", "Risk management", "Compliance"] },
-      { title: "Financial analysis & investment advisory", caption: "Bankable financial models, feasibility studies, market research and investment advisory for corporates, funds and public agencies.", products: ["Feasibility studies", "Financial advisory", "Investment advisory", "Market research"] },
-      { title: "Digital transformation & team collaboration", caption: "Consulting workshops, digital transformation programmes, corporate training and modern operating models delivered end-to-end.", products: ["Digital transformation", "Corporate training", "HR consulting", "Procurement consulting"] },
     ],
     faqs: [
       { q: "What kinds of clients do you work with?", a: "Corporates, financial institutions, government agencies, NGOs and ambitious SMEs across sectors." },
