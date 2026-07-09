@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, CheckCircle2, Phone } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, CheckCircle2, Phone, PlayCircle } from "lucide-react";
 import { Layout, CTA } from "@/components/site/Layout";
 import { businesses } from "@/lib/site-data";
-import { sectorContent } from "@/lib/sector-content";
+import { sectorContent, type SectorMediaCard } from "@/lib/sector-content";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
