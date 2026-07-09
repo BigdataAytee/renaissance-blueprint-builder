@@ -406,6 +406,11 @@ export const sectorContent: Record<string, SectorContent> = {
       { title: "Modern workshop capability", body: "Machining, welding and rebuild capability for industrial equipment repairs." },
       { title: "Digital maintenance management", body: "CMMS platforms for planning, tracking and reporting maintenance work." },
     ],
+    mediaShowcase: [
+      { title: "Welding, fabrication & steel works", caption: "On-site and workshop welding, structural fabrication and mechanical repairs on pumps, motors, gearboxes and piping — with certified technicians at work.", products: ["Welding", "Steel fabrication", "Mechanical repairs", "Heavy equipment"] },
+      { title: "Plant maintenance & industrial cleaning", caption: "Preventive maintenance, shutdown services, high-pressure industrial cleaning and sandblasting across factories, refineries and hospitals.", products: ["Plant maintenance", "Industrial cleaning", "Sandblasting", "Shutdown services"] },
+      { title: "Equipment installation & protective coatings", caption: "Equipment installation, corrosion protection, protective coatings and electrical maintenance for tanks, pipelines and offshore assets.", products: ["Equipment installation", "Protective coatings", "Corrosion protection", "Electrical maintenance"] },
+    ],
     faqs: [
       { q: "What industrial cleaning services do you provide?", a: "High-pressure cleaning, tank cleaning, plant decontamination, confined-space cleaning, HVAC cleaning and specialist decontamination." },
       { q: "Do you handle hazardous environments?", a: "Yes. We work in oil and gas, chemical and industrial environments with full HSE governance, PSSR, permit-to-work and specialist PPE." },
