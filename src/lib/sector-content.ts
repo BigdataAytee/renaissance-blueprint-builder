@@ -91,7 +91,98 @@ export const clientBenefits: { icon: LucideIcon; title: string; body: string }[]
   { icon: Sparkles, title: "Innovative Approaches", body: "Fresh thinking, modern tools and continuous improvement in every engagement." },
 ];
 
+// -------- Per-service background slideshows --------
+// Each keyword becomes one image in a rotating background slideshow behind the
+// service card. Keywords are Flickr-style tags related to the products,
+// commodities, equipment or facilities referenced in the card's description.
+
+export const serviceSlideshows: Record<string, Record<string, string[]>> = {
+  "project-property-management": {
+    "Project Planning & Feasibility": ["blueprint,architecture", "construction,planning", "engineer,site", "residential,estate"],
+    "Construction Management": ["construction,crane", "highrise,construction", "building,site", "hotel,construction"],
+    "Civil Engineering & Infrastructure": ["bridge,construction", "highway,construction", "civil,engineering", "hospital,building"],
+    "Property Development & Estate Management": ["residential,estate", "apartment,complex", "modern,house", "commercial,building"],
+    "Facility Management": ["office,building", "shopping,mall", "hotel,lobby", "facility,management"],
+    "Architectural Design & Engineering Consultancy": ["architecture,design", "blueprint,plans", "modern,building", "structural,engineering"],
+    "General Contracting & Renovation": ["renovation,interior", "office,fitout", "construction,workers", "refurbishment,building"],
+    "Maintenance Services": ["maintenance,building", "workers,repair", "facility,worker", "commercial,cleaning"],
+  },
+  "oil-and-gas": {
+    "Petroleum Marketing": ["fuel,station", "petrol,pump", "aviation,fuel", "lubricant,oil"],
+    "Fuel Distribution": ["tanker,truck", "fuel,tanker", "diesel,delivery", "petroleum,logistics"],
+    "Pipeline & EPC Support": ["oil,pipeline", "pipeline,construction", "gas,pipeline", "welding,pipeline"],
+    "Storage Tanks & Terminals": ["oil,storage,tank", "fuel,depot", "terminal,tank", "refinery,tank"],
+    "LNG & Industrial Gas Supply": ["lng,plant", "natural,gas,facility", "gas,industry", "liquefied,gas"],
+    "LPG Distribution": ["lpg,cylinder", "gas,cylinder", "cooking,gas", "propane,tank"],
+    "Maintenance & Inspection": ["oil,worker", "inspection,pipeline", "industrial,maintenance", "gas,inspection"],
+    "Offshore & Marine Logistics": ["offshore,rig", "oil,platform", "offshore,vessel", "drilling,rig"],
+    "Safety Systems & Industrial Energy": ["industrial,safety", "gas,detector", "fire,safety", "control,room"],
+  },
+  agriculture: {
+    "Commercial Crop Production": ["cocoa,plantation", "rice,field", "maize,farm", "sorghum,field", "cassava,farm", "soybean,farm"],
+    "Mechanised & Irrigation Farming": ["tractor,field", "combine,harvester", "irrigation,farm", "greenhouse,farming"],
+    "Palm Oil, Rubber & Ginger Value Chains": ["palm,plantation", "rubber,plantation", "ginger,harvest", "sesame,field"],
+    "Poultry & Fish Farming": ["poultry,farm", "chicken,farm", "fish,farm", "aquaculture,pond"],
+    Livestock: ["cattle,ranch", "cattle,herd", "goat,farm", "livestock,farm"],
+    "Agro-Processing, Storage & Packaging": ["grain,silo", "food,packaging", "rice,milling", "cold,storage,warehouse"],
+    "Fertilizers, Seeds & Agrochemicals": ["fertilizer,bags", "seeds,agriculture", "agrochemical,spray", "farm,supplies"],
+    "Agricultural Equipment": ["tractor,farm", "farming,machinery", "greenhouse,agriculture", "irrigation,pipe"],
+    "Commodity Export & Advisory": ["cocoa,beans", "cashew,nuts", "shipping,commodity", "port,export"],
+  },
+  "logistics-distribution": {
+    "Fleet Management": ["truck,fleet", "commercial,vehicles", "delivery,vans", "logistics,fleet"],
+    "Trucking & Haulage": ["haulage,truck", "cargo,truck", "tanker,truck", "heavy,truck"],
+    "Warehousing & Inventory Management": ["warehouse,racking", "warehouse,forklift", "distribution,warehouse", "logistics,warehouse"],
+    "Supply Chain Management": ["supply,chain", "logistics,operations", "shipping,containers", "cargo,shipping"],
+    "Cold Chain Logistics": ["refrigerated,truck", "cold,storage", "reefer,container", "pharmaceutical,logistics"],
+    "Freight Forwarding & Customs Clearance": ["cargo,ship", "container,ship", "customs,port", "air,cargo"],
+    "Container Transport & Cargo Handling": ["container,truck", "container,terminal", "shipping,containers", "port,crane"],
+    "Distribution Networks": ["distribution,center", "delivery,trucks", "warehouse,loading", "logistics,network"],
+    "Last-Mile Delivery": ["delivery,rider", "courier,motorcycle", "package,delivery", "delivery,van"],
+  },
+  "manufacturing-trading": {
+    "Industrial Manufacturing": ["factory,production", "manufacturing,plant", "industrial,factory", "assembly,line"],
+    "Wholesale Trading": ["cement,warehouse", "steel,warehouse", "building,materials", "wholesale,warehouse"],
+    "Retail Distribution": ["retail,shelves", "hardware,store", "supermarket,aisle", "retail,goods"],
+    "Consumer Products": ["packaged,goods", "consumer,products", "fmcg,supermarket", "packaging,production"],
+    "Industrial Products & Spare Parts": ["engine,oil", "hydraulic,oil", "industrial,filter", "bearings", "generator,parts", "forklift,parts"],
+    "Building Materials Distribution": ["cement,factory", "steel,rods", "roofing,sheets", "paint,cans"],
+    "Procurement & Sourcing": ["shipping,cargo", "industrial,machinery", "manufacturing,supply", "raw,materials"],
+    "Supply Chain": ["factory,warehouse", "manufacturing,logistics", "production,inventory", "industrial,supply"],
+  },
+  "industrial-services": {
+    "Industrial Cleaning & Sandblasting": ["industrial,cleaning", "sandblasting", "high,pressure,cleaning", "tank,cleaning"],
+    "Equipment Installation & Supply": ["equipment,installation", "engineer,factory", "machinery,installation", "industrial,commissioning"],
+    "Corrosion Protection & Coatings": ["pipeline,coating", "protective,coating", "corrosion,pipe", "industrial,painting"],
+    "Fabrication, Welding & Mechanical Repairs": ["welder,worker", "steel,fabrication", "workshop,welding", "mechanical,repair"],
+    "Preventive Maintenance & Shutdown Services": ["industrial,maintenance", "plant,maintenance", "turbine,maintenance", "shutdown,industrial"],
+    "Heavy Equipment Servicing": ["generator,industrial", "forklift,service", "compressor,industrial", "heavy,equipment"],
+  },
+  "hospitality-entertainment": {
+    "Hotels & Resorts": ["luxury,hotel", "resort,pool", "hotel,room", "resort,beach"],
+    Restaurants: ["fine,dining", "restaurant,interior", "chef,plating", "gourmet,food"],
+    "Catering & Banqueting": ["banquet,hall", "catering,event", "wedding,catering", "buffet,setup"],
+    "Corporate Events & Wedding Venues": ["wedding,venue", "event,ballroom", "conference,event", "gala,dinner"],
+    "Conference Centres": ["conference,hall", "auditorium", "meeting,room", "convention,center"],
+    "Fast Food & QSR": ["fast,food,restaurant", "quick,service,restaurant", "burger,restaurant", "cafe,counter"],
+    "Recreation & Tourism Services": ["tourism,destination", "resort,leisure", "spa,resort", "entertainment,venue"],
+    Beverages: ["cocktail,bar", "bartender,drinks", "wine,cellar", "beverage,service"],
+  },
+  "business-consultancy": {
+    "Business Strategy & Feasibility Studies": ["business,meeting", "strategy,whiteboard", "consultants,office", "business,plan"],
+    "Financial & Investment Advisory": ["financial,charts", "stock,market", "investment,meeting", "finance,professional"],
+    "Corporate Advisory & Risk Management": ["boardroom,meeting", "corporate,executives", "governance,meeting", "office,executives"],
+    "Marketing & Market Research": ["marketing,office", "market,research", "advertising,campaign", "brand,strategy"],
+    "Project Advisory & Business Development": ["business,handshake", "partnership,office", "business,development", "office,collaboration"],
+    "Corporate Training & HR Consulting": ["corporate,training", "workshop,professionals", "hr,meeting", "leadership,seminar"],
+    "Procurement Consulting & Operations Support": ["procurement,office", "operations,team", "office,workflow", "productivity,office"],
+    "Digital & Business Transformation": ["digital,transformation", "technology,office", "data,dashboard", "office,digital"],
+  },
+};
+
 // -------- Per-sector content --------
+
+
 
 export const sectorContent: Record<string, SectorContent> = {
   "project-property-management": {
