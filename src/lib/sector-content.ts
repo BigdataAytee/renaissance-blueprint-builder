@@ -194,6 +194,11 @@ export const sectorContent: Record<string, SectorContent> = {
       { title: "Safety instrumentation", body: "Fire detection, gas monitoring and emergency shutdown systems across handling facilities." },
       { title: "Digital dispatch platforms", body: "Real-time order, dispatch and delivery visibility for corporate customers." },
     ],
+    mediaShowcase: [
+      { title: "Offshore platforms & pipelines", caption: "Offshore support, pipeline integrity, EPC and marine logistics across the upstream and midstream value chain — engineered around safety-led operations.", products: ["Offshore support", "Pipelines", "EPC", "Marine logistics", "Well services"] },
+      { title: "Storage tanks, terminals & fuel loading", caption: "Depot and terminal operations for PMS, AGO, DPK and Jet A1 — with calibrated loading gantries, safety instrumentation and certified operators.", products: ["Storage tanks", "PMS", "AGO", "DPK", "Jet A1", "Bitumen"] },
+      { title: "LPG, LNG & tanker distribution", caption: "Nationwide distribution of LPG (bulk and cylinder), LNG for industrial users and refined petroleum products via a GPS-tracked, DPR-compliant tanker fleet.", products: ["LPG", "LNG", "Lubricants", "Tanker fleet", "Safety systems"] },
+    ],
     faqs: [
       { q: "What products do you supply?", a: "PMS (petrol), AGO (diesel), DPK (kerosene), ATK (aviation fuel), lubricants, LPG and industrial gases through vetted supply partnerships." },
       { q: "Do you supply bulk fuel for industrial sites?", a: "Yes. We deliver bulk AGO and other products to manufacturing plants, construction sites, telecoms operators and other large industrial consumers." },
