@@ -24,13 +24,22 @@ export const stats = [
   { value: 100, suffix: "%", label: "Commitment to Excellence" },
 ];
 
+import vidPPM from "@/assets/sector-videos/project-property-management.mp4.asset.json";
+import vidOil from "@/assets/sector-videos/oil-and-gas.mp4.asset.json";
+import vidAgri from "@/assets/sector-videos/agriculture.mp4.asset.json";
+import vidLog from "@/assets/sector-videos/logistics-distribution.mp4.asset.json";
+import vidMfg from "@/assets/sector-videos/manufacturing-trading.mp4.asset.json";
+import vidInd from "@/assets/sector-videos/industrial-services.mp4.asset.json";
+import vidHosp from "@/assets/sector-videos/hospitality-entertainment.mp4.asset.json";
+import vidCons from "@/assets/sector-videos/business-consultancy.mp4.asset.json";
+
 export const businesses = [
   {
     slug: "project-property-management",
     icon: Building2,
     title: "Project & Property Management",
     short: "End-to-end delivery of infrastructure, real estate and facility management programmes.",
-    video: "https://assets.mixkit.co/videos/1439/1439-1080.mp4",
+    video: vidPPM.url,
     services: [
       "Project Planning", "Construction Management", "Facility Management",
       "Infrastructure Development", "Property Management", "General Contracting",
@@ -42,7 +51,7 @@ export const businesses = [
     icon: Fuel,
     title: "Oil & Gas Services",
     short: "Upstream, midstream and downstream services with an unwavering safety culture.",
-    video: "https://assets.mixkit.co/videos/4010/4010-1080.mp4",
+    video: vidOil.url,
     services: [
       "Oilfield Services", "Petroleum Marketing", "Fuel Distribution",
       "Pipeline Support", "Storage Facilities", "Gas Supply",
@@ -54,7 +63,7 @@ export const businesses = [
     icon: Wheat,
     title: "Agriculture",
     short: "Mechanised farming, agro-processing and food security programmes across Nigeria.",
-    video: "https://assets.mixkit.co/videos/2851/2851-1080.mp4",
+    video: vidAgri.url,
     services: [
       "Commercial Farming", "Mechanized Farming", "Crop Production",
       "Poultry", "Livestock", "Agro Processing",
@@ -66,7 +75,7 @@ export const businesses = [
     icon: Truck,
     title: "Logistics & Distribution",
     short: "Fleet, haulage, warehousing and last-mile execution engineered for reliability.",
-    video: "https://assets.mixkit.co/videos/4705/4705-1080.mp4",
+    video: vidLog.url,
     services: [
       "Fleet Management", "Haulage", "Warehousing", "Supply Chain",
       "Procurement", "Import & Export", "Freight Services",
@@ -78,7 +87,7 @@ export const businesses = [
     icon: Factory,
     title: "Manufacturing & Trading",
     short: "Industrial manufacturing, wholesale and retail distribution at scale.",
-    video: "https://assets.mixkit.co/videos/4010/4010-1080.mp4",
+    video: vidMfg.url,
     services: [
       "Industrial Manufacturing", "Wholesale", "Retail",
       "Consumer Products", "Industrial Products", "Product Distribution",
@@ -90,7 +99,7 @@ export const businesses = [
     icon: Wrench,
     title: "Industrial Services",
     short: "Turn-key industrial cleaning, maintenance and equipment solutions.",
-    video: "https://assets.mixkit.co/videos/2852/2852-1080.mp4",
+    video: vidInd.url,
     services: [
       "Industrial Cleaning", "Equipment Supply", "Industrial Chemicals",
       "Equipment Repairs", "Industrial Maintenance", "Commercial Solutions",
@@ -101,7 +110,7 @@ export const businesses = [
     icon: UtensilsCrossed,
     title: "Hospitality & Entertainment",
     short: "Hotels, restaurants and event experiences with world-class service standards.",
-    video: "https://assets.mixkit.co/videos/4043/4043-1080.mp4",
+    video: vidHosp.url,
     services: [
       "Hotels", "Restaurants", "Catering", "Event Management",
       "Conference Facilities", "Fast Food", "Entertainment", "Beverages",
@@ -112,13 +121,14 @@ export const businesses = [
     icon: Briefcase,
     title: "Business Support & Consultancy",
     short: "Strategy, advisory and transformation services that unlock growth.",
-    video: "https://assets.mixkit.co/videos/42644/42644-1080.mp4",
+    video: vidCons.url,
     services: [
       "Business Consulting", "Strategy", "Corporate Advisory", "Marketing",
       "Business Development", "Training", "Operations Support", "Digital Transformation",
     ],
   },
 ];
+
 
 
 export const whyChoose = [
