@@ -138,7 +138,8 @@ function BusinessSectorDetail() {
       </section>
 
       {/* INDUSTRIES WE SERVE */}
-      <section className="section-y bg-secondary">
+      <section className="section-y">
+
 
         <div className="container-wide grid gap-12 lg:grid-cols-[0.9fr_1.1fr] items-start">
           <div>
