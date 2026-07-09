@@ -23,13 +23,15 @@ export function CardSlideshow({
   const [hovered, setHovered] = useState(false);
   const [index, setIndex] = useState(0);
 
-  // Build stable, tag-matched image URLs. `lock` seeds the specific Flickr
-  // photo so the image is deterministic per (keyword, seed) pair.
+  // Build stable, tag-matched image URLs. `/all` forces intersection across
+  // every comma-separated tag so images match ALL keywords, not any of them.
+  // `lock` seeds the specific Flickr photo so the choice is deterministic.
   const urls = keywords.map((kw, i) => {
-    const seed = ((hashString(kw) + i) % 900) + 1;
-    const tag = encodeURIComponent(kw.trim());
-    return `https://loremflickr.com/1200/800/${tag}?lock=${seed}`;
+    const seed = ((hashString(kw) + i * 17) % 900) + 1;
+    const tag = kw.split(",").map((t) => encodeURIComponent(t.trim())).join(",");
+    return `https://loremflickr.com/1200/800/${tag}/all?lock=${seed}`;
   });
+
 
   useEffect(() => {
     const el = rootRef.current;
