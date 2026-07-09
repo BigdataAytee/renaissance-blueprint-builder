@@ -355,6 +355,11 @@ export const sectorContent: Record<string, SectorContent> = {
       { title: "ERP-driven operations", body: "Integrated ERP systems covering procurement, production, inventory and finance." },
       { title: "Distribution technology", body: "Route-to-market platforms, van sales tools and mobile order capture." },
     ],
+    mediaShowcase: [
+      { title: "Industrial lubricants, filters & spare parts", caption: "Supply of engine oil, hydraulic oil, grease, air/oil/fuel filters, bearings, fasteners and forklift/generator spare parts — with technical selection support.", products: ["Engine oil", "Hydraulic oil", "Grease", "Filters", "Bearings", "Fasteners"] },
+      { title: "Pipes, valves, pumps & electrical cables", caption: "Wholesale distribution of pipes, valves, pumps, welding consumables, safety equipment and electrical cables for plants, EPC contractors and industrial buyers.", products: ["Pipes", "Valves", "Pumps", "Electrical cables", "Welding consumables"] },
+      { title: "Cement, steel, paints & building materials", caption: "Building-materials distribution — cement, steel products, roofing materials, paints, chemicals and packaging — with warehousing and route-to-market coverage.", products: ["Cement", "Steel", "Roofing materials", "Paints", "Chemicals", "Packaging"] },
+    ],
     faqs: [
       { q: "Do you manufacture products under your own brand?", a: "Yes, and we also produce for partner brands under contract or private-label arrangements." },
       { q: "What product categories do you cover?", a: "Consumer packaged goods, industrial consumables, construction-related products, agro-inputs and specialised trading portfolios." },
