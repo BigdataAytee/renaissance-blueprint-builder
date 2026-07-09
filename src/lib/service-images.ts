@@ -21,6 +21,7 @@ import agriEquip1 from "@/assets/service-slides/agriculture/equip-1.jpg";
 import agriEquip2 from "@/assets/service-slides/agriculture/equip-2.jpg";
 import agriExport1 from "@/assets/service-slides/agriculture/export-1.jpg";
 import agriExport2 from "@/assets/service-slides/agriculture/export-2.jpg";
+import agriCrop3 from "@/assets/service-slides/agriculture/crop-3.jpg";
 
 // -------- Oil & Gas --------
 import ogPetroleum from "@/assets/service-slides/oil-and-gas/petroleum-marketing.jpg";
