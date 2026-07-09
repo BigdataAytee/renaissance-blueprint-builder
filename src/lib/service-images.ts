@@ -52,6 +52,7 @@ import indHeavy2 from "@/assets/service-slides/industrial-services/heavy-equipme
 // -------- Logistics & Distribution --------
 import logiFleet from "@/assets/service-slides/logistics-distribution/fleet-management.jpg";
 import logiTruck from "@/assets/service-slides/logistics-distribution/trucking-haulage.jpg";
+import logiTruck2 from "@/assets/service-slides/logistics-distribution/trucking-haulage-2.jpg";
 import logiWare from "@/assets/service-slides/logistics-distribution/warehousing.jpg";
 import logiSupply from "@/assets/service-slides/logistics-distribution/supply-chain.jpg";
 import logiCold from "@/assets/service-slides/logistics-distribution/cold-chain.jpg";
@@ -66,7 +67,10 @@ import mtWhole from "@/assets/service-slides/manufacturing-trading/wholesale-tra
 import mtRetail from "@/assets/service-slides/manufacturing-trading/retail-distribution.jpg";
 import mtConsumer from "@/assets/service-slides/manufacturing-trading/consumer-products.jpg";
 import mtIndProd from "@/assets/service-slides/manufacturing-trading/industrial-products.jpg";
+import mtIndProd2 from "@/assets/service-slides/manufacturing-trading/industrial-products-2.jpg";
+import mtIndProd3 from "@/assets/service-slides/manufacturing-trading/industrial-products-3.jpg";
 import mtBuild from "@/assets/service-slides/manufacturing-trading/building-materials.jpg";
+import mtBuild2 from "@/assets/service-slides/manufacturing-trading/building-materials-2.jpg";
 import mtProc from "@/assets/service-slides/manufacturing-trading/procurement.jpg";
 import mtSupply from "@/assets/service-slides/manufacturing-trading/supply-chain.jpg";
 
