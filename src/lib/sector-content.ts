@@ -459,6 +459,11 @@ export const sectorContent: Record<string, SectorContent> = {
       { title: "Event AV and staging", body: "Modern audio-visual, staging and lighting equipment for large-scale events and conferences." },
       { title: "Digital guest experience", body: "Online bookings, digital check-in, loyalty and guest-feedback platforms." },
     ],
+    mediaShowcase: [
+      { title: "Luxury hotels & guest accommodation", caption: "Full-service hotel and resort operations with refined guest experience, wellness and F&B — including long-stay corporate accommodation.", products: ["Hotels", "Resorts", "Guest accommodation", "Tourism services"] },
+      { title: "Fine dining, catering & banquet halls", caption: "Signature restaurants, banqueting and large-scale catering under HACCP-aligned food-safety controls for weddings, conferences and government functions.", products: ["Restaurants", "Catering", "Banqueting", "Wedding venues"] },
+      { title: "Conference centres & event venues", caption: "Modern conference centres, corporate events and entertainment programming with integrated AV, hospitality and delegate services.", products: ["Conference centres", "Corporate events", "Event venues", "Entertainment"] },
+    ],
     faqs: [
       { q: "Do you operate your own hotels?", a: "Yes. We own, operate and partner in hospitality venues across accommodation, dining and entertainment." },
       { q: "Can you host large conferences?", a: "Yes. Our conference facilities and event teams handle events from small executive meetings to multi-day international conferences." },
