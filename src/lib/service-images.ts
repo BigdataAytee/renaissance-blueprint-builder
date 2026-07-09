@@ -21,14 +21,20 @@ import agriEquip1 from "@/assets/service-slides/agriculture/equip-1.jpg";
 import agriEquip2 from "@/assets/service-slides/agriculture/equip-2.jpg";
 import agriExport1 from "@/assets/service-slides/agriculture/export-1.jpg";
 import agriExport2 from "@/assets/service-slides/agriculture/export-2.jpg";
+import agriCrop3 from "@/assets/service-slides/agriculture/crop-3.jpg";
 
 // -------- Oil & Gas --------
 import ogPetroleum from "@/assets/service-slides/oil-and-gas/petroleum-marketing.jpg";
+import ogPetroleum2 from "@/assets/service-slides/oil-and-gas/petroleum-marketing-2.jpg";
+import ogPetroleum3 from "@/assets/service-slides/oil-and-gas/petroleum-marketing-3.jpg";
 import ogFuel from "@/assets/service-slides/oil-and-gas/fuel-distribution.jpg";
+import ogFuel2 from "@/assets/service-slides/oil-and-gas/fuel-distribution-2.jpg";
 import ogPipeline from "@/assets/service-slides/oil-and-gas/pipeline-epc.jpg";
 import ogStorage from "@/assets/service-slides/oil-and-gas/storage-tanks.jpg";
+import ogStorage2 from "@/assets/service-slides/oil-and-gas/storage-tanks-2.jpg";
 import ogLng from "@/assets/service-slides/oil-and-gas/lng-supply.jpg";
 import ogLpg from "@/assets/service-slides/oil-and-gas/lpg-distribution.jpg";
+import ogLpg2 from "@/assets/service-slides/oil-and-gas/lpg-distribution-2.jpg";
 import ogMaint from "@/assets/service-slides/oil-and-gas/maintenance-inspection.jpg";
 import ogOffshore from "@/assets/service-slides/oil-and-gas/offshore-marine.jpg";
 import ogSafety from "@/assets/service-slides/oil-and-gas/safety-systems.jpg";
@@ -36,14 +42,18 @@ import ogSafety from "@/assets/service-slides/oil-and-gas/safety-systems.jpg";
 // -------- Industrial Services --------
 import indClean from "@/assets/service-slides/industrial-services/cleaning-sandblasting.jpg";
 import indEquip from "@/assets/service-slides/industrial-services/equipment-installation.jpg";
+import indEquip2 from "@/assets/service-slides/industrial-services/equipment-installation-2.jpg";
+import indEquip3 from "@/assets/service-slides/industrial-services/equipment-installation-3.jpg";
 import indCorr from "@/assets/service-slides/industrial-services/corrosion-coatings.jpg";
 import indFab from "@/assets/service-slides/industrial-services/fabrication-welding.jpg";
 import indPrev from "@/assets/service-slides/industrial-services/preventive-maintenance.jpg";
 import indHeavy from "@/assets/service-slides/industrial-services/heavy-equipment.jpg";
+import indHeavy2 from "@/assets/service-slides/industrial-services/heavy-equipment-2.jpg";
 
 // -------- Logistics & Distribution --------
 import logiFleet from "@/assets/service-slides/logistics-distribution/fleet-management.jpg";
 import logiTruck from "@/assets/service-slides/logistics-distribution/trucking-haulage.jpg";
+import logiTruck2 from "@/assets/service-slides/logistics-distribution/trucking-haulage-2.jpg";
 import logiWare from "@/assets/service-slides/logistics-distribution/warehousing.jpg";
 import logiSupply from "@/assets/service-slides/logistics-distribution/supply-chain.jpg";
 import logiCold from "@/assets/service-slides/logistics-distribution/cold-chain.jpg";
@@ -58,7 +68,10 @@ import mtWhole from "@/assets/service-slides/manufacturing-trading/wholesale-tra
 import mtRetail from "@/assets/service-slides/manufacturing-trading/retail-distribution.jpg";
 import mtConsumer from "@/assets/service-slides/manufacturing-trading/consumer-products.jpg";
 import mtIndProd from "@/assets/service-slides/manufacturing-trading/industrial-products.jpg";
+import mtIndProd2 from "@/assets/service-slides/manufacturing-trading/industrial-products-2.jpg";
+import mtIndProd3 from "@/assets/service-slides/manufacturing-trading/industrial-products-3.jpg";
 import mtBuild from "@/assets/service-slides/manufacturing-trading/building-materials.jpg";
+import mtBuild2 from "@/assets/service-slides/manufacturing-trading/building-materials-2.jpg";
 import mtProc from "@/assets/service-slides/manufacturing-trading/procurement.jpg";
 import mtSupply from "@/assets/service-slides/manufacturing-trading/supply-chain.jpg";
 
@@ -80,6 +93,7 @@ import hospEvents from "@/assets/service-slides/hospitality-entertainment/events
 import hospConf from "@/assets/service-slides/hospitality-entertainment/conference-centres.jpg";
 import hospFast from "@/assets/service-slides/hospitality-entertainment/fast-food.jpg";
 import hospRec from "@/assets/service-slides/hospitality-entertainment/recreation-tourism.jpg";
+import hospRec2 from "@/assets/service-slides/hospitality-entertainment/recreation-tourism-2.jpg";
 import hospBev from "@/assets/service-slides/hospitality-entertainment/beverages.jpg";
 
 // -------- Business Consultancy --------
