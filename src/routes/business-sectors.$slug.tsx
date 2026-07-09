@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, CheckCircle2, Phone } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, CheckCircle2, Phone, PlayCircle } from "lucide-react";
 import { Layout, CTA } from "@/components/site/Layout";
 import { businesses } from "@/lib/site-data";
-import { sectorContent } from "@/lib/sector-content";
+import { sectorContent, type SectorMediaCard } from "@/lib/sector-content";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
@@ -113,8 +114,33 @@ function BusinessSectorDetail() {
         </div>
       </section>
 
+      {/* PRODUCTS & SOLUTIONS IN MOTION */}
+      <section className="section-y">
+        <div className="container-wide">
+          <div className="max-w-3xl">
+            <div className="eyebrow">Products & Solutions in Motion</div>
+            <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-balance">See the products, materials and services behind the work.</h2>
+            <p className="mt-5 text-muted-foreground text-lg">Cinematic snapshots of the equipment, commodities and operations that power our {sector.title.toLowerCase()} practice.</p>
+          </div>
+          <div className="mt-14 space-y-16">
+            {content.mediaShowcase.map((card, i) => (
+              <MediaShowcaseRow
+                key={card.title}
+                card={card}
+                index={i}
+                videoWebm={sector.videoWebm}
+                videoMp4={sector.video}
+                fallbackImage={content.heroImage}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* INDUSTRIES WE SERVE */}
       <section className="section-y">
+
+
         <div className="container-wide grid gap-12 lg:grid-cols-[0.9fr_1.1fr] items-start">
           <div>
             <div className="eyebrow">Industries We Serve</div>
@@ -158,3 +184,96 @@ function BusinessSectorDetail() {
     </Layout>
   );
 }
+
+function MediaShowcaseRow({
+  card,
+  index,
+  videoWebm,
+  videoMp4,
+  fallbackImage,
+}: {
+  card: SectorMediaCard;
+  index: number;
+  videoWebm: string;
+  videoMp4: string;
+  fallbackImage: string;
+}) {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [nearViewport, setNearViewport] = useState(false);
+  const [inViewport, setInViewport] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const reverse = index % 2 === 1;
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") { setNearViewport(true); return; }
+    const near = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setNearViewport(true); near.disconnect(); } },
+      { rootMargin: "500px 0px" },
+    );
+    const vis = new IntersectionObserver(
+      ([e]) => setInViewport(e.isIntersecting),
+      { threshold: 0.25 },
+    );
+    near.observe(el);
+    vis.observe(el);
+    return () => { near.disconnect(); vis.disconnect(); };
+  }, []);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (inViewport) v.play().catch(() => {});
+    else v.pause();
+  }, [inViewport, loaded]);
+
+  return (
+    <div ref={wrapRef} className={`grid gap-8 lg:gap-14 items-center lg:grid-cols-2 ${reverse ? "lg:[&>*:first-child]:order-2" : ""}`}>
+      {/* Media */}
+      <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-border shadow-2xl bg-navy">
+        {nearViewport && (
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+            onLoadedData={() => setLoaded(true)}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"} motion-safe:[animation:kenburns_20s_ease-in-out_infinite_alternate]`}
+          >
+            <source src={videoWebm} type="video/webm" />
+            <source src={videoMp4} type="video/mp4" />
+          </video>
+        )}
+        <img
+          src={fallbackImage}
+          alt=""
+          aria-hidden="true"
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${loaded ? "opacity-0" : "opacity-100"}`}
+        />
+        <div className="absolute inset-0 bg-gradient-to-tr from-navy/70 via-navy/30 to-transparent" />
+        <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/50 backdrop-blur-sm px-3 py-1.5 text-xs font-semibold text-white">
+          <PlayCircle className="size-3.5 text-gold" /> Live footage
+        </div>
+      </div>
+
+      {/* Text */}
+      <div>
+        <div className="eyebrow">Featured capability</div>
+        <h3 className="mt-3 text-2xl md:text-3xl font-extrabold text-balance leading-tight">{card.title}</h3>
+        <p className="mt-4 text-muted-foreground text-base md:text-lg leading-relaxed">{card.caption}</p>
+        <div className="mt-6 flex flex-wrap gap-2">
+          {card.products.map((p) => (
+            <span key={p} className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-semibold">
+              <CheckCircle2 className="size-3 text-primary" /> {p}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
