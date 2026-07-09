@@ -512,6 +512,11 @@ export const sectorContent: Record<string, SectorContent> = {
       { title: "Digital delivery capability", body: "Cross-functional squads capable of running discovery, design and delivery sprints." },
       { title: "Learning platforms", body: "Blended learning platforms combining in-person, virtual and self-paced formats." },
     ],
+    mediaShowcase: [
+      { title: "Corporate boardrooms & executive meetings", caption: "Board-level advisory, business transformation and stakeholder engagement — grounded in on-the-ground operating experience.", products: ["Corporate advisory", "Business strategy", "Risk management", "Compliance"] },
+      { title: "Financial analysis & investment advisory", caption: "Bankable financial models, feasibility studies, market research and investment advisory for corporates, funds and public agencies.", products: ["Feasibility studies", "Financial advisory", "Investment advisory", "Market research"] },
+      { title: "Digital transformation & team collaboration", caption: "Consulting workshops, digital transformation programmes, corporate training and modern operating models delivered end-to-end.", products: ["Digital transformation", "Corporate training", "HR consulting", "Procurement consulting"] },
+    ],
     faqs: [
       { q: "What kinds of clients do you work with?", a: "Corporates, financial institutions, government agencies, NGOs and ambitious SMEs across sectors." },
       { q: "How do engagements typically start?", a: "Usually with a scoping conversation followed by a written proposal defining objectives, approach, deliverables and pricing." },
