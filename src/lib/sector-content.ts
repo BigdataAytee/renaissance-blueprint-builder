@@ -302,6 +302,11 @@ export const sectorContent: Record<string, SectorContent> = {
       { title: "Warehouse management systems", body: "Digital inventory, order management and cycle-count tools for accuracy and visibility." },
       { title: "Cold-chain capability", body: "Refrigerated storage and transport options for temperature-sensitive goods." },
     ],
+    mediaShowcase: [
+      { title: "Cargo trucks, haulage & tanker fleet", caption: "Long-haul trucking of fuel, cement, containers and industrial cargo across 36 states, operated with GPS-tracked, compliant vehicles and certified drivers.", products: ["Trucking", "Haulage", "Tanker fleet", "Fleet management"] },
+      { title: "Warehouses, forklifts & inventory operations", caption: "Ambient, secured and cross-dock warehousing with WMS-driven inventory management, cold chain capability and cargo handling.", products: ["Warehousing", "Cold chain logistics", "Inventory management", "Cargo handling"] },
+      { title: "Shipping containers & freight forwarding", caption: "Container transport, freight forwarding, customs clearance and multi-modal import/export across sea, air and land.", products: ["Container transport", "Freight forwarding", "Customs clearance", "Distribution networks"] },
+    ],
     faqs: [
       { q: "What kind of goods do you move?", a: "General cargo, FMCG products, industrial equipment, agricultural produce, construction materials, hazardous goods (with the right permits) and fuel." },
       { q: "Do you offer dedicated fleets?", a: "Yes. We provide dedicated tankers, trucks and vans to clients with consistent, high-volume movement." },
