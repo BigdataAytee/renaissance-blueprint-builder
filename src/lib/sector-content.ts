@@ -248,6 +248,11 @@ export const sectorContent: Record<string, SectorContent> = {
       { title: "Post-harvest infrastructure", body: "Drying, cleaning and storage systems designed to reduce losses and preserve quality." },
       { title: "Biosecurity systems", body: "Structured biosecurity protocols across poultry and livestock operations." },
     ],
+    mediaShowcase: [
+      { title: "Cocoa, rubber & palm oil plantations", caption: "Commercial plantations and processing across cocoa, rubber, oil palm and palm kernel — with agronomy-led production and structured off-take.", products: ["Cocoa", "Rubber", "Palm oil", "Palm kernel", "Sesame", "Ginger"] },
+      { title: "Rice, maize & mechanised grain farming", caption: "Large-scale grain and tuber production — rice, maize, sorghum, soybeans, cassava, yam and groundnuts — with tractors, irrigation systems and greenhouse farming.", products: ["Rice", "Maize", "Sorghum", "Soybeans", "Cassava", "Yam", "Groundnuts"] },
+      { title: "Poultry, fish farming & agro-processing", caption: "Poultry, fish farming and livestock operations feeding into agro-processing, storage silos and export packaging — plus fertilizer, seed and agrochemical distribution.", products: ["Poultry", "Fish farming", "Livestock", "Agro-processing", "Fertilizers", "Seeds"] },
+    ],
     faqs: [
       { q: "What crops do you focus on?", a: "Grains (maize, rice, sorghum), tubers (cassava, yam), oil crops and selected cash and horticultural crops depending on the region and off-take profile." },
       { q: "Do you run your own farms or manage for third parties?", a: "Both. We operate our own commercial estates and provide professional farm-management services to landowners, investors and government-linked programmes." },
