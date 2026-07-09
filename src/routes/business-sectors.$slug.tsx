@@ -95,20 +95,24 @@ function BusinessSectorDetail() {
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {content.services.map((s) => {
               const Icon = s.icon;
+              const images = serviceImages[slug]?.[s.name];
               const keywords = serviceSlideshows[slug]?.[s.name] ?? [];
+              const hasBackdrop = (images && images.length > 0) || keywords.length > 0;
               return (
                 <div
                   key={s.name}
                   className="group relative overflow-hidden rounded-xl border border-white/10 p-7 text-white shadow-[0_20px_50px_-30px_rgba(13,31,60,0.45)] hover:shadow-[0_30px_80px_-30px_rgba(13,31,60,0.7)] hover:-translate-y-1 transition-all min-h-[420px] flex flex-col"
                 >
-                  {keywords.length > 0 ? (
+                  {hasBackdrop ? (
                     <CardSlideshow
+                      images={images}
                       keywords={keywords}
                       overlayClassName="bg-gradient-to-t from-navy/95 via-navy/75 to-navy/55 group-hover:from-navy/90 group-hover:via-navy/65 group-hover:to-navy/40 transition-colors duration-500"
                     />
                   ) : (
                     <div className="absolute inset-0 bg-navy" />
                   )}
+
                   <div className="relative flex flex-col h-full">
                     <div className="size-12 rounded-md bg-gold text-navy grid place-items-center shadow-lg transition-transform group-hover:scale-110">
                       <Icon className="size-6" />
