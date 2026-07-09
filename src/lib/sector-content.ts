@@ -140,6 +140,11 @@ export const sectorContent: Record<string, SectorContent> = {
       { title: "Modern construction equipment", body: "Cranes, lifts, formwork systems and specialist plant matched to project scale and complexity." },
       { title: "IoT facility monitoring", body: "Smart building sensors and analytics for energy, occupancy and asset performance." },
     ],
+    mediaShowcase: [
+      { title: "High-rise commercial & residential developments", caption: "Turn-key delivery of residential estates, office complexes, shopping malls and hotels — engineered end-to-end from feasibility to handover.", products: ["Residential developments", "Office complexes", "Shopping malls", "Hotels"] },
+      { title: "Roads, bridges, hospitals & schools", caption: "Civil engineering programmes covering roads, bridges, industrial facilities and public infrastructure such as hospitals and schools.", products: ["Roads", "Bridges", "Hospitals", "Schools", "Civil engineering"] },
+      { title: "Facility management & construction supervision", caption: "Architectural design, quantity surveying and construction supervision — followed by facility management, estate management and renovation across the asset lifecycle.", products: ["Facility management", "Quantity surveying", "Estate management", "Renovation"] },
+    ],
     faqs: [
       { q: "How do you keep large projects on time and on budget?", a: "We combine disciplined project controls, weekly performance reporting, integrated cost/schedule tracking and experienced project leaders who intervene early when risks emerge." },
       { q: "Do you handle design or only construction?", a: "Both. We can lead the design team, coordinate consultants or take a design-build role, depending on how clients want to structure the programme." },
