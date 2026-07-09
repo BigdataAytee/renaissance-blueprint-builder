@@ -28,6 +28,12 @@ export type SectorService = {
   industries: string[];
 };
 
+export type SectorMediaCard = {
+  title: string;
+  caption: string;
+  products: string[];
+};
+
 export type SectorContent = {
   heroImage: string;
   headline: string;
@@ -37,6 +43,7 @@ export type SectorContent = {
   stats: { value: string; label: string }[];
   services: SectorService[];
   equipment: { title: string; body: string }[];
+  mediaShowcase: SectorMediaCard[];
   faqs: { q: string; a: string }[];
 };
 
