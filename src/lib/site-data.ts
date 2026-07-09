@@ -32,6 +32,14 @@ import vidMfg from "@/assets/sector-videos/manufacturing-trading.mp4.asset.json"
 import vidInd from "@/assets/sector-videos/industrial-services.mp4.asset.json";
 import vidHosp from "@/assets/sector-videos/hospitality-entertainment.mp4.asset.json";
 import vidCons from "@/assets/sector-videos/business-consultancy.mp4.asset.json";
+import webmPPM from "@/assets/sector-videos/project-property-management.webm.asset.json";
+import webmOil from "@/assets/sector-videos/oil-and-gas.webm.asset.json";
+import webmAgri from "@/assets/sector-videos/agriculture.webm.asset.json";
+import webmLog from "@/assets/sector-videos/logistics-distribution.webm.asset.json";
+import webmMfg from "@/assets/sector-videos/manufacturing-trading.webm.asset.json";
+import webmInd from "@/assets/sector-videos/industrial-services.webm.asset.json";
+import webmHosp from "@/assets/sector-videos/hospitality-entertainment.webm.asset.json";
+import webmCons from "@/assets/sector-videos/business-consultancy.webm.asset.json";
 
 export const businesses = [
   {
@@ -39,6 +47,7 @@ export const businesses = [
     icon: Building2,
     title: "Project & Property Management",
     short: "End-to-end delivery of infrastructure, real estate and facility management programmes.",
+    videoWebm: webmPPM.url,
     video: vidPPM.url,
     services: [
       "Project Planning", "Construction Management", "Facility Management",
@@ -51,6 +60,7 @@ export const businesses = [
     icon: Fuel,
     title: "Oil & Gas Services",
     short: "Upstream, midstream and downstream services with an unwavering safety culture.",
+    videoWebm: webmOil.url,
     video: vidOil.url,
     services: [
       "Oilfield Services", "Petroleum Marketing", "Fuel Distribution",
@@ -63,6 +73,7 @@ export const businesses = [
     icon: Wheat,
     title: "Agriculture",
     short: "Mechanised farming, agro-processing and food security programmes across Nigeria.",
+    videoWebm: webmAgri.url,
     video: vidAgri.url,
     services: [
       "Commercial Farming", "Mechanized Farming", "Crop Production",
@@ -75,6 +86,7 @@ export const businesses = [
     icon: Truck,
     title: "Logistics & Distribution",
     short: "Fleet, haulage, warehousing and last-mile execution engineered for reliability.",
+    videoWebm: webmLog.url,
     video: vidLog.url,
     services: [
       "Fleet Management", "Haulage", "Warehousing", "Supply Chain",
@@ -87,6 +99,7 @@ export const businesses = [
     icon: Factory,
     title: "Manufacturing & Trading",
     short: "Industrial manufacturing, wholesale and retail distribution at scale.",
+    videoWebm: webmMfg.url,
     video: vidMfg.url,
     services: [
       "Industrial Manufacturing", "Wholesale", "Retail",
@@ -99,6 +112,7 @@ export const businesses = [
     icon: Wrench,
     title: "Industrial Services",
     short: "Turn-key industrial cleaning, maintenance and equipment solutions.",
+    videoWebm: webmInd.url,
     video: vidInd.url,
     services: [
       "Industrial Cleaning", "Equipment Supply", "Industrial Chemicals",
@@ -110,6 +124,7 @@ export const businesses = [
     icon: UtensilsCrossed,
     title: "Hospitality & Entertainment",
     short: "Hotels, restaurants and event experiences with world-class service standards.",
+    videoWebm: webmHosp.url,
     video: vidHosp.url,
     services: [
       "Hotels", "Restaurants", "Catering", "Event Management",
@@ -121,6 +136,7 @@ export const businesses = [
     icon: Briefcase,
     title: "Business Support & Consultancy",
     short: "Strategy, advisory and transformation services that unlock growth.",
+    videoWebm: webmCons.url,
     video: vidCons.url,
     services: [
       "Business Consulting", "Strategy", "Corporate Advisory", "Marketing",
