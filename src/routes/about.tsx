@@ -1,10 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import { motion } from "framer-motion";
-import { company, coreValues, executiveTeam, stats, whyChoose, industries } from "@/lib/site-data";
-import { Counter } from "@/components/site/Counter";
+import { company, coreValues, executiveTeam } from "@/lib/site-data";
 import aboutTeam from "@/assets/about-team.jpg";
-import { ShieldCheck, Target, Eye, Compass, CheckCircle2 } from "lucide-react";
+import { Target, Eye, Compass } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
   component: About,
