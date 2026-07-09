@@ -1,19 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 
 type Props = {
-  keywords: string[];
+  /** Pre-picked image URLs (AI-generated, curated, etc.). Takes priority over keywords. */
+  images?: string[];
+  /** Fallback tag-matched images (loremflickr) when no curated images are supplied. */
+  keywords?: string[];
   intervalMs?: number;
   className?: string;
   overlayClassName?: string;
 };
 
 /**
- * A background slideshow of tag-based stock images (loremflickr) with
- * cross-fade, Ken Burns zoom, dark overlay for readability, and
- * hover-to-pause. Lazy-loads only when scrolled near the viewport.
+ * A background slideshow of images with cross-fade, Ken Burns zoom, dark
+ * overlay for readability, and hover-to-slow. Lazy-loads only when
+ * scrolled near the viewport. Prefers explicit `images` (curated URLs);
+ * falls back to `keywords` (Flickr tag search) when no images are given.
  */
 export function CardSlideshow({
-  keywords,
+  images,
+  keywords = [],
   intervalMs = 4000,
   className = "",
   overlayClassName = "bg-black/55",
@@ -23,14 +28,15 @@ export function CardSlideshow({
   const [hovered, setHovered] = useState(false);
   const [index, setIndex] = useState(0);
 
-  // Build stable, tag-matched image URLs. `/all` forces intersection across
-  // every comma-separated tag so images match ALL keywords, not any of them.
-  // `lock` seeds the specific Flickr photo so the choice is deterministic.
-  const urls = keywords.map((kw, i) => {
-    const seed = ((hashString(kw) + i * 17) % 900) + 1;
-    const tag = kw.split(",").map((t) => encodeURIComponent(t.trim())).join(",");
-    return `https://loremflickr.com/1200/800/${tag}/all?lock=${seed}`;
-  });
+  const urls =
+    images && images.length > 0
+      ? images
+      : keywords.map((kw, i) => {
+          const seed = ((hashString(kw) + i * 17) % 900) + 1;
+          const tag = kw.split(",").map((t) => encodeURIComponent(t.trim())).join(",");
+          return `https://loremflickr.com/1200/800/${tag}/all?lock=${seed}`;
+        });
+
 
 
   useEffect(() => {
