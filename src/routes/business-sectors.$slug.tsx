@@ -114,8 +114,32 @@ function BusinessSectorDetail() {
         </div>
       </section>
 
-      {/* INDUSTRIES WE SERVE */}
+      {/* PRODUCTS & SOLUTIONS IN MOTION */}
       <section className="section-y">
+        <div className="container-wide">
+          <div className="max-w-3xl">
+            <div className="eyebrow">Products & Solutions in Motion</div>
+            <h2 className="mt-4 text-4xl md:text-5xl font-extrabold text-balance">See the products, materials and services behind the work.</h2>
+            <p className="mt-5 text-muted-foreground text-lg">Cinematic snapshots of the equipment, commodities and operations that power our {sector.title.toLowerCase()} practice.</p>
+          </div>
+          <div className="mt-14 space-y-16">
+            {content.mediaShowcase.map((card, i) => (
+              <MediaShowcaseRow
+                key={card.title}
+                card={card}
+                index={i}
+                videoWebm={sector.videoWebm}
+                videoMp4={sector.video}
+                fallbackImage={content.heroImage}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* INDUSTRIES WE SERVE */}
+      <section className="section-y bg-secondary">
+
         <div className="container-wide grid gap-12 lg:grid-cols-[0.9fr_1.1fr] items-start">
           <div>
             <div className="eyebrow">Industries We Serve</div>
