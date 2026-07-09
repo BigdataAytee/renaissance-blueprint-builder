@@ -81,7 +81,6 @@ function SectorCard({ b, index }: { b: Sector; index: number }) {
         {nearViewport && (
           <video
             ref={videoRef}
-            src={b.video}
             autoPlay
             muted
             loop
@@ -90,7 +89,10 @@ function SectorCard({ b, index }: { b: Sector; index: number }) {
             aria-hidden="true"
             onLoadedData={() => setLoaded(true)}
             className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"} motion-safe:[animation:kenburns_18s_ease-in-out_infinite_alternate]`}
-          />
+          >
+            <source src={b.videoWebm} type="video/webm" />
+            <source src={b.video} type="video/mp4" />
+          </video>
         )}
         {/* Fallback / poster background — always in DOM so it's the graceful fallback */}
         <div
