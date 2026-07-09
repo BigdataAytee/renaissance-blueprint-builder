@@ -93,6 +93,7 @@ import hospEvents from "@/assets/service-slides/hospitality-entertainment/events
 import hospConf from "@/assets/service-slides/hospitality-entertainment/conference-centres.jpg";
 import hospFast from "@/assets/service-slides/hospitality-entertainment/fast-food.jpg";
 import hospRec from "@/assets/service-slides/hospitality-entertainment/recreation-tourism.jpg";
+import hospRec2 from "@/assets/service-slides/hospitality-entertainment/recreation-tourism-2.jpg";
 import hospBev from "@/assets/service-slides/hospitality-entertainment/beverages.jpg";
 
 // -------- Business Consultancy --------
