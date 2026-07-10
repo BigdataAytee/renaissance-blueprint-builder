@@ -17,17 +17,16 @@ export function ServiceCardBackground({
 
   useEffect(() => {
     if (images.length <= 1) return;
-    const startTimer = setTimeout(() => {
+    let intervalId: ReturnType<typeof setInterval> | undefined;
+    const startId = setTimeout(() => {
       setIndex((i) => (i + 1) % images.length);
-      const id = setInterval(() => {
+      intervalId = setInterval(() => {
         setIndex((i) => (i + 1) % images.length);
       }, interval);
-      (startTimer as unknown as { _id?: number })._id = id as unknown as number;
     }, delay);
     return () => {
-      clearTimeout(startTimer);
-      const id = (startTimer as unknown as { _id?: number })._id;
-      if (id) clearInterval(id as unknown as number);
+      clearTimeout(startId);
+      if (intervalId) clearInterval(intervalId);
     };
   }, [images.length, interval, delay]);
 
