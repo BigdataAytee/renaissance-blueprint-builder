@@ -8,14 +8,15 @@ export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({ meta: [{ title: "Admin — Dynamic Renaissance" }, { name: "robots", content: "noindex,nofollow" }] }),
 });
 
-const nav = [
+type NavItem = { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean };
+const nav: NavItem[] = [
   { to: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
   { to: "/admin/vacancies", label: "Vacancies", icon: Briefcase },
   { to: "/admin/news", label: "News", icon: Newspaper },
   { to: "/admin/events", label: "Events", icon: CalendarDays },
   { to: "/admin/gallery", label: "Gallery", icon: Images },
   { to: "/admin/team", label: "Team", icon: Users },
-] as const;
+];
 
 function AdminLayout() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
