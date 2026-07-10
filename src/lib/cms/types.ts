@@ -58,6 +58,26 @@ export type TeamMember = {
   updated_at: string;
 };
 
+export type Project = {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  location: string;
+  timeline: string;
+  client: string;
+  value: string;
+  summary: string;
+  image_url: string | null;
+  overview: string;
+  scope: string[];
+  outcomes: string[];
+  is_published: boolean;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+};
+
 // Untyped table accessor — Database types are auto-generated later.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const tbl = (client: any, name: string) => client.from(name);
