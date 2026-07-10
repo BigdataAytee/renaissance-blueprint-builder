@@ -2,11 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, CheckCircle2, Phone } from "lucide-react";
 import { Layout, CTA } from "@/components/site/Layout";
 import { businesses } from "@/lib/site-data";
-import { sectorContent, serviceSlideshows } from "@/lib/sector-content";
-import { serviceImages } from "@/lib/service-images";
-import { CardSlideshow } from "@/components/site/CardSlideshow";
-
-
+import { sectorContent } from "@/lib/sector-content";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
@@ -95,43 +91,24 @@ function BusinessSectorDetail() {
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {content.services.map((s) => {
               const Icon = s.icon;
-              const images = serviceImages[slug]?.[s.name];
-              const keywords = serviceSlideshows[slug]?.[s.name] ?? [];
-              const hasBackdrop = (images && images.length > 0) || keywords.length > 0;
               return (
-                <div
-                  key={s.name}
-                  className="group relative overflow-hidden rounded-xl border border-white/10 p-7 text-white shadow-[0_20px_50px_-30px_rgba(13,31,60,0.45)] hover:shadow-[0_30px_80px_-30px_rgba(13,31,60,0.7)] hover:-translate-y-1 transition-all min-h-[420px] flex flex-col"
-                >
-                  {hasBackdrop ? (
-                    <CardSlideshow
-                      images={images}
-                      keywords={keywords}
-                      overlayClassName="bg-gradient-to-t from-navy/95 via-navy/75 to-navy/55 group-hover:from-navy/90 group-hover:via-navy/65 group-hover:to-navy/40 transition-colors duration-500"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 bg-navy" />
-                  )}
-
-                  <div className="relative flex flex-col h-full">
-                    <div className="size-12 rounded-md bg-gold text-navy grid place-items-center shadow-lg transition-transform group-hover:scale-110">
-                      <Icon className="size-6" />
-                    </div>
-                    <h3 className="mt-5 text-xl font-extrabold drop-shadow">{s.name}</h3>
-                    <p className="mt-3 text-sm text-white/85 leading-relaxed">{s.description}</p>
-                    <div className="mt-auto pt-5 border-t border-white/15">
-                      <div className="text-[11px] uppercase tracking-[0.15em] text-gold font-semibold">Key Benefits</div>
-                      <ul className="mt-3 space-y-1.5">
-                        {s.benefits.map((b) => (
-                          <li key={b} className="flex items-start gap-2 text-xs text-white/90"><CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-gold" />{b}</li>
-                        ))}
-                      </ul>
-                    </div>
+                <div key={s.name} className="group rounded-lg border border-border bg-background p-7 hover:shadow-xl hover:-translate-y-1 transition-all">
+                  <div className="size-12 rounded-md bg-primary/10 text-primary grid place-items-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                    <Icon className="size-6" />
+                  </div>
+                  <h3 className="mt-5 text-xl font-extrabold">{s.name}</h3>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{s.description}</p>
+                  <div className="mt-5 pt-5 border-t border-border">
+                    <div className="text-[11px] uppercase tracking-[0.15em] text-primary font-semibold">Key Benefits</div>
+                    <ul className="mt-3 space-y-1.5">
+                      {s.benefits.map((b) => (
+                        <li key={b} className="flex items-start gap-2 text-xs"><CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />{b}</li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               );
             })}
-
           </div>
         </div>
       </section>
