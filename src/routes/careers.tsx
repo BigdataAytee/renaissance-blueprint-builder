@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import { GraduationCap, Users, TrendingUp, Heart } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import type { Vacancy } from "@/lib/cms/types";
 
 export const Route = createFileRoute("/careers")({
   component: Careers,
@@ -15,14 +18,7 @@ export const Route = createFileRoute("/careers")({
   }),
 });
 
-const vacancies = [
-  { role: "Project Manager — Infrastructure", loc: "Abuja", type: "Full-time" },
-  { role: "HSE Officer — Downstream", loc: "Port Harcourt", type: "Full-time" },
-  { role: "Agronomist — Grain Operations", loc: "Kaduna", type: "Full-time" },
-  { role: "Fleet Operations Lead", loc: "Lagos", type: "Full-time" },
-  { role: "Corporate Strategy Analyst", loc: "Abuja", type: "Full-time" },
-  { role: "Graduate Trainee Programme", loc: "Multiple", type: "Graduate" },
-];
+const fallbackVacancies: Vacancy[] = [];
 
 function Careers() {
   return (
