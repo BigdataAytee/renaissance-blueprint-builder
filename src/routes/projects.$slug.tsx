@@ -54,7 +54,13 @@ function ProjectDetail() {
 
   return (
     <Layout>
+      {!project.is_published && (
+        <div className="bg-amber-500 text-black text-center text-sm font-semibold py-2 px-4">
+          Draft preview — this project is not yet visible on the public site.
+        </div>
+      )}
       <PageHero eyebrow={project.category} title={project.title} subtitle={project.summary} />
+
 
       <section className="section-y">
         <div className="container-wide grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
