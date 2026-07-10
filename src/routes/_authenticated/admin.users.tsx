@@ -86,7 +86,7 @@ function AdminUsersPage() {
         title="Admin users"
         subtitle="Invite people and manage who can access the dashboard."
         action={
-          <EditorDialog<{ email: string; role: Role }>
+          <EditorDialog<{ id: string; email: string; role: Role }>
             triggerLabel={
               <button className="inline-flex items-center gap-2 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90">
                 <UserPlus className="size-4" /> Invite user
