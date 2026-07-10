@@ -58,13 +58,16 @@ function Careers() {
             <h2 className="mt-4 text-4xl font-extrabold">Open roles across the group.</h2>
           </div>
           <div className="mt-10 divide-y divide-border rounded-lg border border-border bg-background">
-            {vacancies.map((v) => (
-              <div key={v.role} className="p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            {vacancies.length === 0 ? (
+              <div className="p-8 text-center text-muted-foreground">No open roles right now. Please check back soon.</div>
+            ) : vacancies.map((v) => (
+              <div key={v.id} className="p-6 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                 <div>
-                  <div className="font-extrabold">{v.role}</div>
-                  <div className="text-sm text-muted-foreground">{v.loc} · {v.type}</div>
+                  <div className="font-extrabold">{v.title}</div>
+                  <div className="text-sm text-muted-foreground">{v.location} · {v.employment_type}</div>
+                  {v.description && <p className="mt-2 text-sm text-muted-foreground max-w-2xl">{v.description}</p>}
                 </div>
-                <button className="btn-green">Apply</button>
+                <a href={`/contact?role=${encodeURIComponent(v.title)}`} className="btn-green shrink-0">Apply</a>
               </div>
             ))}
           </div>
