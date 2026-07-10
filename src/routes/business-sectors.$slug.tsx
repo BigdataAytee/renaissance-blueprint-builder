@@ -115,10 +115,6 @@ function BusinessSectorDetail() {
         </div>
       </section>
 
-      {/* GOODS & SERVICES SLIDESHOW */}
-      {sectorSlides[slug] && (
-        <SectorSlideshow slides={sectorSlides[slug]} sectorTitle={sector.title} />
-      )}
 
       {/* INDUSTRIES WE SERVE */}
       <section className="section-y">
