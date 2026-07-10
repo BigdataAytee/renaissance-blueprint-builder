@@ -9,8 +9,8 @@ export const company = {
   tagline: "Building Today. Transforming Tomorrow.",
   description:
     "Dynamic Renaissance Biz Ents. Ltd. delivers integrated solutions across infrastructure, energy, agriculture, logistics, manufacturing, and commercial services — helping businesses and communities thrive through innovation and operational excellence.",
-  phone: "+234 (0) 800 000 0000",
-  email: "info@dynamicrenaissance.ng",
+  phone: "+2348106332490",
+  email: "admin@dynamicrenaissance.org",
   hours: "Mon – Fri, 8:00 – 18:00 WAT",
   address: "Corporate Head Office, Central Business District, Abuja, Nigeria",
 };
