@@ -3,8 +3,6 @@ import { ArrowLeft, ArrowRight, CheckCircle2, Phone } from "lucide-react";
 import { Layout, CTA } from "@/components/site/Layout";
 import { businesses } from "@/lib/site-data";
 import { sectorContent } from "@/lib/sector-content";
-import { sectorSlides } from "@/lib/sector-slides";
-import { SectorSlideshow } from "@/components/site/SectorSlideshow";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
@@ -115,10 +113,6 @@ function BusinessSectorDetail() {
         </div>
       </section>
 
-      {/* GOODS & SERVICES SLIDESHOW */}
-      {sectorSlides[slug] && (
-        <SectorSlideshow slides={sectorSlides[slug]} sectorTitle={sector.title} />
-      )}
 
       {/* INDUSTRIES WE SERVE */}
       <section className="section-y">
