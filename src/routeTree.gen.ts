@@ -24,6 +24,11 @@ import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as BusinessSectorsSlugRouteImport } from './routes/business-sectors.$slug'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminVacanciesRouteImport } from './routes/_authenticated/admin.vacancies'
+import { Route as AuthenticatedAdminTeamRouteImport } from './routes/_authenticated/admin.team'
+import { Route as AuthenticatedAdminNewsRouteImport } from './routes/_authenticated/admin.news'
+import { Route as AuthenticatedAdminGalleryRouteImport } from './routes/_authenticated/admin.gallery'
+import { Route as AuthenticatedAdminEventsRouteImport } from './routes/_authenticated/admin.events'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -99,6 +104,34 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminVacanciesRoute =
+  AuthenticatedAdminVacanciesRouteImport.update({
+    id: '/vacancies',
+    path: '/vacancies',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminTeamRoute = AuthenticatedAdminTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminNewsRoute = AuthenticatedAdminNewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminGalleryRoute =
+  AuthenticatedAdminGalleryRouteImport.update({
+    id: '/gallery',
+    path: '/gallery',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminEventsRoute =
+  AuthenticatedAdminEventsRouteImport.update({
+    id: '/events',
+    path: '/events',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -114,6 +147,11 @@ export interface FileRoutesByFullPath {
   '/business-sectors/$slug': typeof BusinessSectorsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/business-sectors/': typeof BusinessSectorsIndexRoute
+  '/admin/events': typeof AuthenticatedAdminEventsRoute
+  '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
+  '/admin/news': typeof AuthenticatedAdminNewsRoute
+  '/admin/team': typeof AuthenticatedAdminTeamRoute
+  '/admin/vacancies': typeof AuthenticatedAdminVacanciesRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -128,6 +166,11 @@ export interface FileRoutesByTo {
   '/business-sectors/$slug': typeof BusinessSectorsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/business-sectors': typeof BusinessSectorsIndexRoute
+  '/admin/events': typeof AuthenticatedAdminEventsRoute
+  '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
+  '/admin/news': typeof AuthenticatedAdminNewsRoute
+  '/admin/team': typeof AuthenticatedAdminTeamRoute
+  '/admin/vacancies': typeof AuthenticatedAdminVacanciesRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
@@ -146,6 +189,11 @@ export interface FileRoutesById {
   '/business-sectors/$slug': typeof BusinessSectorsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/business-sectors/': typeof BusinessSectorsIndexRoute
+  '/_authenticated/admin/events': typeof AuthenticatedAdminEventsRoute
+  '/_authenticated/admin/gallery': typeof AuthenticatedAdminGalleryRoute
+  '/_authenticated/admin/news': typeof AuthenticatedAdminNewsRoute
+  '/_authenticated/admin/team': typeof AuthenticatedAdminTeamRoute
+  '/_authenticated/admin/vacancies': typeof AuthenticatedAdminVacanciesRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -164,6 +212,11 @@ export interface FileRouteTypes {
     | '/business-sectors/$slug'
     | '/projects/$slug'
     | '/business-sectors/'
+    | '/admin/events'
+    | '/admin/gallery'
+    | '/admin/news'
+    | '/admin/team'
+    | '/admin/vacancies'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -178,6 +231,11 @@ export interface FileRouteTypes {
     | '/business-sectors/$slug'
     | '/projects/$slug'
     | '/business-sectors'
+    | '/admin/events'
+    | '/admin/gallery'
+    | '/admin/news'
+    | '/admin/team'
+    | '/admin/vacancies'
     | '/admin'
   id:
     | '__root__'
@@ -195,6 +253,11 @@ export interface FileRouteTypes {
     | '/business-sectors/$slug'
     | '/projects/$slug'
     | '/business-sectors/'
+    | '/_authenticated/admin/events'
+    | '/_authenticated/admin/gallery'
+    | '/_authenticated/admin/news'
+    | '/_authenticated/admin/team'
+    | '/_authenticated/admin/vacancies'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -318,14 +381,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/vacancies': {
+      id: '/_authenticated/admin/vacancies'
+      path: '/vacancies'
+      fullPath: '/admin/vacancies'
+      preLoaderRoute: typeof AuthenticatedAdminVacanciesRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/team': {
+      id: '/_authenticated/admin/team'
+      path: '/team'
+      fullPath: '/admin/team'
+      preLoaderRoute: typeof AuthenticatedAdminTeamRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/news': {
+      id: '/_authenticated/admin/news'
+      path: '/news'
+      fullPath: '/admin/news'
+      preLoaderRoute: typeof AuthenticatedAdminNewsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/gallery': {
+      id: '/_authenticated/admin/gallery'
+      path: '/gallery'
+      fullPath: '/admin/gallery'
+      preLoaderRoute: typeof AuthenticatedAdminGalleryRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/events': {
+      id: '/_authenticated/admin/events'
+      path: '/events'
+      fullPath: '/admin/events'
+      preLoaderRoute: typeof AuthenticatedAdminEventsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
   }
 }
 
 interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminEventsRoute: typeof AuthenticatedAdminEventsRoute
+  AuthenticatedAdminGalleryRoute: typeof AuthenticatedAdminGalleryRoute
+  AuthenticatedAdminNewsRoute: typeof AuthenticatedAdminNewsRoute
+  AuthenticatedAdminTeamRoute: typeof AuthenticatedAdminTeamRoute
+  AuthenticatedAdminVacanciesRoute: typeof AuthenticatedAdminVacanciesRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminEventsRoute: AuthenticatedAdminEventsRoute,
+  AuthenticatedAdminGalleryRoute: AuthenticatedAdminGalleryRoute,
+  AuthenticatedAdminNewsRoute: AuthenticatedAdminNewsRoute,
+  AuthenticatedAdminTeamRoute: AuthenticatedAdminTeamRoute,
+  AuthenticatedAdminVacanciesRoute: AuthenticatedAdminVacanciesRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
 
