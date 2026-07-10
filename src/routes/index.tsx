@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Layout, CTA } from "@/components/site/Layout";
 import { Counter } from "@/components/site/Counter";
+import { SectorCardBackground } from "@/components/site/SectorCardBackground";
 import {
   company, stats, businesses,
   heroImg,
@@ -28,60 +28,6 @@ const fadeUp = {
 type Sector = (typeof businesses)[number];
 
 function HomeSectorCard({ b, index }: { b: Sector; index: number }) {
-  const cardRef = useRef<HTMLAnchorElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [nearViewport, setNearViewport] = useState(false);
-  const [inViewport, setInViewport] = useState(false);
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    const el = cardRef.current;
-    if (!el || typeof IntersectionObserver === "undefined") {
-      setNearViewport(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setNearViewport(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "650px 0px" },
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const el = cardRef.current;
-    if (!el || typeof IntersectionObserver === "undefined") {
-      setInViewport(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setInViewport(entry.isIntersecting),
-      { threshold: 0.15 },
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (inViewport) {
-      video.play().catch(() => {});
-    } else {
-      video.pause();
-    }
-  }, [inViewport, loaded]);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -92,35 +38,12 @@ function HomeSectorCard({ b, index }: { b: Sector; index: number }) {
       className="h-full"
     >
       <Link
-        ref={cardRef}
         to="/business-sectors/$slug"
         params={{ slug: b.slug }}
         className="group relative block h-[360px] overflow-hidden rounded-xl border border-white/10 bg-navy shadow-[0_20px_60px_-30px_rgba(13,31,60,0.65)] transition-shadow hover:shadow-[0_30px_80px_-30px_rgba(13,31,60,0.8)]"
       >
-        {nearViewport && (
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            aria-hidden="true"
-            onLoadedData={() => setLoaded(true)}
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"} motion-safe:[animation:kenburns_18s_ease-in-out_infinite_alternate]`}
-          >
-            <source src={b.videoWebm} type="video/webm" />
-            <source src={b.video} type="video/mp4" />
-          </video>
-        )}
+        <SectorCardBackground slug={b.slug} />
 
-        <div
-          className={`absolute inset-0 transition-opacity duration-700 ${loaded ? "opacity-0" : "opacity-100"}`}
-          style={{
-            backgroundImage:
-              "radial-gradient(60% 60% at 15% 15%, color-mix(in oklab, var(--color-primary) 42%, transparent), transparent), radial-gradient(55% 55% at 85% 25%, color-mix(in oklab, var(--color-gold) 30%, transparent), transparent)",
-          }}
-        />
         <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/68 to-navy/30 transition-colors duration-500 group-hover:from-navy/86 group-hover:via-navy/54 group-hover:to-navy/18" />
 
         <div className="relative flex h-full flex-col justify-between p-6 text-white">

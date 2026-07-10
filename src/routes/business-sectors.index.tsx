@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import { businesses } from "@/lib/site-data";
+import { SectorCardBackground } from "@/components/site/SectorCardBackground";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 export const Route = createFileRoute("/business-sectors/")({
@@ -22,46 +22,6 @@ export const Route = createFileRoute("/business-sectors/")({
 type Sector = (typeof businesses)[number];
 
 function SectorCard({ b, index }: { b: Sector; index: number }) {
-  const cardRef = useRef<HTMLAnchorElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [nearViewport, setNearViewport] = useState(false);
-  const [inViewport, setInViewport] = useState(false);
-  const [loaded, setLoaded] = useState(false);
-
-  // Load video when near viewport (lazy) using a generous rootMargin.
-  useEffect(() => {
-    const el = cardRef.current;
-    if (!el || typeof IntersectionObserver === "undefined") {
-      setNearViewport(true);
-      return;
-    }
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setNearViewport(true); obs.disconnect(); } },
-      { rootMargin: "400px 0px" },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  // Play/pause based on true visibility to conserve resources.
-  useEffect(() => {
-    const el = cardRef.current;
-    if (!el || typeof IntersectionObserver === "undefined") return;
-    const obs = new IntersectionObserver(
-      ([entry]) => setInViewport(entry.isIntersecting),
-      { threshold: 0.25 },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (inViewport) v.play().catch(() => {});
-    else v.pause();
-  }, [inViewport, loaded]);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -72,35 +32,13 @@ function SectorCard({ b, index }: { b: Sector; index: number }) {
       className="h-full"
     >
       <Link
-        ref={cardRef}
         to="/business-sectors/$slug"
         params={{ slug: b.slug }}
         className="group relative block h-[440px] overflow-hidden rounded-xl border border-white/10 shadow-[0_20px_60px_-30px_rgba(13,31,60,0.6)] hover:shadow-[0_30px_80px_-30px_rgba(13,31,60,0.75)] transition-shadow"
       >
-        {/* Video background */}
-        {nearViewport && (
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-hidden="true"
-            onLoadedData={() => setLoaded(true)}
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"} motion-safe:[animation:kenburns_18s_ease-in-out_infinite_alternate]`}
-          >
-            <source src={b.videoWebm} type="video/webm" />
-            <source src={b.video} type="video/mp4" />
-          </video>
-        )}
-        {/* Fallback / poster background — always in DOM so it's the graceful fallback */}
-        <div
-          className={`absolute inset-0 bg-navy transition-opacity duration-700 ${loaded ? "opacity-0" : "opacity-100"}`}
-          style={{
-            backgroundImage: "radial-gradient(60% 60% at 15% 15%, color-mix(in oklab, var(--color-primary) 40%, transparent), transparent), radial-gradient(50% 50% at 85% 30%, color-mix(in oklab, var(--color-gold) 30%, transparent), transparent)",
-          }}
-        />
+        {/* Background slideshow */}
+        <SectorCardBackground slug={b.slug} />
+
 
         {/* Dark overlay for readability — lightens slightly on hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/70 to-navy/40 group-hover:from-navy/85 group-hover:via-navy/55 group-hover:to-navy/25 transition-colors duration-500" />
