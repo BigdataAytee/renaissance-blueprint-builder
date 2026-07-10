@@ -21,6 +21,14 @@ export const Route = createFileRoute("/careers")({
 const fallbackVacancies: Vacancy[] = [];
 
 function Careers() {
+  const { data: vacancies = fallbackVacancies } = useQuery({
+    queryKey: ["vacancies", "public"],
+    queryFn: async () => {
+      const { data, error } = await supabase.from("vacancies" as never).select("*").eq("is_published", true).order("sort_order", { ascending: true });
+      if (error) throw error;
+      return (data ?? []) as Vacancy[];
+    },
+  });
   return (
     <Layout>
       <PageHero eyebrow="Careers" title="Build your career at Dynamic Renaissance."
