@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout, PageHero, CTA } from "@/components/site/Layout";
-import { projects } from "@/lib/site-data";
-import { useState } from "react";
-
-const cats = ["All", "Construction", "Oil & Gas", "Agriculture", "Logistics", "Hospitality", "Manufacturing"];
+import { useMemo, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import type { Project } from "@/lib/cms/types";
 
 export const Route = createFileRoute("/projects")({
   component: Projects,
@@ -21,6 +21,17 @@ export const Route = createFileRoute("/projects")({
 
 function Projects() {
   const [cat, setCat] = useState("All");
+  const { data: projects = [] } = useQuery({
+    queryKey: ["projects", "public"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("projects" as never).select("*")
+        .eq("is_published", true).order("sort_order", { ascending: true });
+      if (error) throw error;
+      return (data ?? []) as Project[];
+    },
+  });
+  const cats = useMemo(() => ["All", ...Array.from(new Set(projects.map((p) => p.category).filter(Boolean)))], [projects]);
   const list = cat === "All" ? projects : projects.filter((p) => p.category === cat);
   return (
     <Layout>
@@ -36,25 +47,31 @@ function Projects() {
                 }`}>{c}</button>
             ))}
           </div>
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {list.map((p) => (
-              <Link key={p.slug} to="/projects/$slug" params={{ slug: p.slug }} className="group rounded-lg overflow-hidden border border-border bg-background hover:shadow-2xl transition-all">
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-                </div>
-                <div className="p-6">
-                  <div className="text-xs uppercase tracking-[0.15em] text-primary font-semibold">{p.category} · {p.location}</div>
-                  <h3 className="mt-2 text-xl font-extrabold">{p.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{p.summary}</p>
-                  <dl className="mt-4 grid grid-cols-3 gap-2 text-xs">
-                    <div><dt className="text-muted-foreground">Value</dt><dd className="font-semibold">{p.value}</dd></div>
-                    <div><dt className="text-muted-foreground">Timeline</dt><dd className="font-semibold">{p.timeline}</dd></div>
-                    <div><dt className="text-muted-foreground">Client</dt><dd className="font-semibold">{p.client}</dd></div>
-                  </dl>
-                </div>
-              </Link>
-            ))}
-          </div>
+          {list.length === 0 ? (
+            <div className="mt-10 p-10 text-center text-muted-foreground rounded-lg border border-border">No projects to show yet.</div>
+          ) : (
+            <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {list.map((p) => (
+                <Link key={p.slug} to="/projects/$slug" params={{ slug: p.slug }} className="group rounded-lg overflow-hidden border border-border bg-background hover:shadow-2xl transition-all">
+                  {p.image_url && (
+                    <div className="aspect-[4/3] overflow-hidden">
+                      <img src={p.image_url} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                    </div>
+                  )}
+                  <div className="p-6">
+                    <div className="text-xs uppercase tracking-[0.15em] text-primary font-semibold">{p.category}{p.location ? ` · ${p.location}` : ""}</div>
+                    <h3 className="mt-2 text-xl font-extrabold">{p.title}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{p.summary}</p>
+                    <dl className="mt-4 grid grid-cols-3 gap-2 text-xs">
+                      <div><dt className="text-muted-foreground">Value</dt><dd className="font-semibold">{p.value}</dd></div>
+                      <div><dt className="text-muted-foreground">Timeline</dt><dd className="font-semibold">{p.timeline}</dd></div>
+                      <div><dt className="text-muted-foreground">Client</dt><dd className="font-semibold">{p.client}</dd></div>
+                    </dl>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
       <CTA />
