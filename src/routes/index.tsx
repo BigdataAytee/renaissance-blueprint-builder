@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Layout, CTA } from "@/components/site/Layout";
 import { Counter } from "@/components/site/Counter";
+import { SectorCardBackground } from "@/components/site/SectorCardBackground";
 import {
   company, stats, businesses,
   heroImg,
