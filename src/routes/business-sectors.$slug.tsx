@@ -91,22 +91,33 @@ function BusinessSectorDetail() {
             <p className="mt-5 text-muted-foreground text-lg">Each of our service lines is designed, resourced and delivered by specialists — with a clear focus on measurable benefits for our clients.</p>
           </div>
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {content.services.map((s) => {
+            {content.services.map((s, i) => {
               const Icon = s.icon;
+              const images = serviceSlides[slug]?.[i] ?? [];
               return (
-                <div key={s.name} className="group rounded-lg border border-border bg-background p-7 hover:shadow-xl hover:-translate-y-1 transition-all">
-                  <div className="size-12 rounded-md bg-primary/10 text-primary grid place-items-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <Icon className="size-6" />
-                  </div>
-                  <h3 className="mt-5 text-xl font-extrabold">{s.name}</h3>
-                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{s.description}</p>
-                  <div className="mt-5 pt-5 border-t border-border">
-                    <div className="text-[11px] uppercase tracking-[0.15em] text-primary font-semibold">Key Benefits</div>
-                    <ul className="mt-3 space-y-1.5">
-                      {s.benefits.map((b) => (
-                        <li key={b} className="flex items-start gap-2 text-xs"><CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />{b}</li>
-                      ))}
-                    </ul>
+                <div
+                  key={s.name}
+                  className="group relative overflow-hidden rounded-lg border border-border bg-navy text-white hover:shadow-xl hover:-translate-y-1 transition-all"
+                >
+                  {/* Background slideshow */}
+                  <ServiceCardBackground images={images} delay={i * 350} />
+                  {/* Dark readability overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/80 to-navy/55 group-hover:from-navy/90 group-hover:via-navy/70 group-hover:to-navy/40 transition-colors duration-500" />
+
+                  <div className="relative p-7">
+                    <div className="size-12 rounded-md bg-gold text-navy grid place-items-center shadow-lg group-hover:scale-105 transition-transform">
+                      <Icon className="size-6" />
+                    </div>
+                    <h3 className="mt-5 text-xl font-extrabold drop-shadow-lg">{s.name}</h3>
+                    <p className="mt-3 text-sm text-white/85 leading-relaxed">{s.description}</p>
+                    <div className="mt-5 pt-5 border-t border-white/20">
+                      <div className="text-[11px] uppercase tracking-[0.15em] text-gold font-semibold">Key Benefits</div>
+                      <ul className="mt-3 space-y-1.5">
+                        {s.benefits.map((b) => (
+                          <li key={b} className="flex items-start gap-2 text-xs text-white/90"><CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-gold" />{b}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               );
