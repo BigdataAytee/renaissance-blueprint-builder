@@ -1,7 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { AdminHeader, DeleteButton, EditorDialog, Field, Pencil, inputCls, textareaCls, useCollection } from "@/components/admin/CrudPage";
 import type { Project } from "@/lib/cms/types";
 import { Switch } from "@/components/ui/switch";
+import { Eye, EyeOff, ExternalLink } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/admin/projects")({ component: Page });
 
@@ -71,7 +72,7 @@ function Page() {
   return (
     <div>
       <AdminHeader
-        title="Projects" subtitle="Published projects appear on /projects."
+        title="Projects" subtitle="Toggle Published to show a project on /projects. Draft projects stay hidden from the public site so you can preview edits first."
         action={<EditorDialog<Project> triggerLabel="New project" title="New project" initial={empty}
           onSave={(v) => create.mutateAsync(v)}>{editor()}</EditorDialog>}
       />
@@ -80,15 +81,49 @@ function Page() {
           !data?.length ? <div className="p-10 text-center text-muted-foreground">No projects yet.</div> :
             <table className="w-full text-sm">
               <thead className="bg-secondary text-left"><tr>
-                <th className="p-3">Title</th><th className="p-3">Category</th><th className="p-3">Location</th><th className="p-3">Status</th><th className="p-3 w-24"></th>
+                <th className="p-3">Title</th><th className="p-3">Category</th><th className="p-3">Status</th><th className="p-3 w-56">Visibility</th><th className="p-3 w-32"></th>
               </tr></thead>
               <tbody>
                 {data.map((v) => (
                   <tr key={v.id} className="border-t border-border">
-                    <td className="p-3 font-medium">{v.title}</td>
+                    <td className="p-3 font-medium">
+                      <div>{v.title}</div>
+                      <div className="text-xs text-muted-foreground">{v.location}</div>
+                    </td>
                     <td className="p-3 text-muted-foreground">{v.category}</td>
-                    <td className="p-3 text-muted-foreground">{v.location}</td>
-                    <td className="p-3"><span className={`text-xs px-2 py-0.5 rounded ${v.is_published ? "bg-green-100 text-green-800" : "bg-muted text-muted-foreground"}`}>{v.is_published ? "Published" : "Draft"}</span></td>
+                    <td className="p-3">
+                      <span className={`text-xs px-2 py-0.5 rounded font-medium ${v.is_published ? "bg-green-100 text-green-800" : "bg-amber-100 text-amber-800"}`}>
+                        {v.is_published ? "Published" : "Draft"}
+                      </span>
+                    </td>
+                    <td className="p-3">
+                      <div className="flex items-center gap-3">
+                        <button
+                          type="button"
+                          onClick={() => update.mutate({ id: v.id, values: { is_published: !v.is_published } })}
+                          disabled={update.isPending}
+                          className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-semibold border transition-colors ${
+                            v.is_published
+                              ? "border-border bg-background text-foreground hover:bg-secondary"
+                              : "border-primary bg-primary text-primary-foreground hover:bg-primary/90"
+                          }`}
+                          title={v.is_published ? "Hide from public site" : "Show on public site"}
+                        >
+                          {v.is_published ? (<><EyeOff className="size-3.5" /> Hide</>) : (<><Eye className="size-3.5" /> Publish</>)}
+                        </button>
+                        {!v.is_published && (
+                          <Link
+                            to="/projects/$slug"
+                            params={{ slug: v.slug }}
+                            target="_blank"
+                            className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary"
+                            title="Preview draft"
+                          >
+                            <ExternalLink className="size-3.5" /> Preview
+                          </Link>
+                        )}
+                      </div>
+                    </td>
                     <td className="p-3 flex justify-end gap-1">
                       <EditorDialog<Project>
                         triggerLabel={<button className="p-2 text-muted-foreground hover:text-primary"><Pencil className="size-4" /></button>}
