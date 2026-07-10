@@ -22,9 +22,10 @@ function ProjectDetail() {
   const { data: project, isLoading } = useQuery({
     queryKey: ["projects", slug],
     queryFn: async () => {
+      // RLS: anonymous visitors only see published rows; admins also see drafts (for previewing).
       const { data, error } = await supabase
         .from("projects" as never).select("*")
-        .eq("slug", slug).eq("is_published", true).maybeSingle();
+        .eq("slug", slug).maybeSingle();
       if (error) throw error;
       return (data ?? null) as Project | null;
     },
