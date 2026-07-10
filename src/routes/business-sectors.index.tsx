@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import { businesses } from "@/lib/site-data";
+import { SectorCardBackground } from "@/components/site/SectorCardBackground";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 export const Route = createFileRoute("/business-sectors/")({
