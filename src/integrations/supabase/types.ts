@@ -122,6 +122,66 @@ export type Database = {
         }
         Relationships: []
       }
+      projects: {
+        Row: {
+          category: string
+          client: string
+          created_at: string
+          id: string
+          image_url: string | null
+          is_published: boolean
+          location: string
+          outcomes: string[]
+          overview: string
+          scope: string[]
+          slug: string
+          sort_order: number
+          summary: string
+          timeline: string
+          title: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          category?: string
+          client?: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          is_published?: boolean
+          location?: string
+          outcomes?: string[]
+          overview?: string
+          scope?: string[]
+          slug: string
+          sort_order?: number
+          summary?: string
+          timeline?: string
+          title: string
+          updated_at?: string
+          value?: string
+        }
+        Update: {
+          category?: string
+          client?: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          is_published?: boolean
+          location?: string
+          outcomes?: string[]
+          overview?: string
+          scope?: string[]
+          slug?: string
+          sort_order?: number
+          summary?: string
+          timeline?: string
+          title?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
       team_members: {
         Row: {
           bio: string
