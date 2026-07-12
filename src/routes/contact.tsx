@@ -78,16 +78,16 @@ function Contact() {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="p-8 rounded-lg border border-border bg-secondary">
-            <h2 className="text-2xl font-extrabold">Send us a message</h2>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          <form onSubmit={handleSubmit} className="relative overflow-hidden rounded-2xl bg-card border border-border p-8 md:p-10 lg:p-12 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)]">
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-foreground">Send us a message</h2>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
               <Field name="name" label="Full name" required />
               <Field name="company" label="Company" />
               <Field name="email" label="Email" type="email" required />
               <Field name="phone" label="Phone" type="tel" />
               <div className="sm:col-span-2">
-                <label className="text-sm font-semibold">Department</label>
-                <select name="department" defaultValue="General Enquiry" className="mt-1.5 w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm outline-none focus:border-primary">
+                <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Department</label>
+                <select name="department" defaultValue="General Enquiry" className="mt-2 w-full cursor-pointer rounded-xl border border-border bg-muted px-4 py-3.5 text-sm text-foreground outline-none transition-all duration-300 hover:bg-background hover:border-primary/30 focus:border-primary focus:bg-background focus:ring-4 focus:ring-primary/10">
                   <option>General Enquiry</option>
                   <option>Project & Property Management</option>
                   <option>Oil & Gas Services</option>
@@ -98,15 +98,20 @@ function Contact() {
                 </select>
               </div>
               <div className="sm:col-span-2">
-                <label className="text-sm font-semibold">Message</label>
-                <textarea name="message" required rows={5} className="mt-1.5 w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm outline-none focus:border-primary" />
+                <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Message</label>
+                <textarea name="message" required rows={5} className="mt-2 w-full min-h-[140px] resize-none rounded-xl border border-border bg-muted px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all duration-300 hover:bg-background hover:border-primary/30 focus:border-primary focus:bg-background focus:ring-4 focus:ring-primary/10" />
               </div>
             </div>
-            <button type="submit" className="btn-gold mt-6 w-full sm:w-auto">Send message</button>
+            <button type="submit" className="group mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gold px-8 py-4 text-sm font-bold text-gold-foreground shadow-[0_12px_32px_-8px_rgba(199,154,46,0.45)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[color-mix(in_oklab,var(--color-gold)_88%,black)] hover:shadow-[0_16px_40px_-10px_rgba(199,154,46,0.55)] active:translate-y-0 sm:w-auto">
+              Send message
+              <Send className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
             {sent && (
-              <p className="mt-4 text-sm text-primary font-semibold">
-                Your email app should open with the message ready to send to {company.email}. If it doesn't, please email us directly.
-              </p>
+              <div className="mt-6 rounded-xl border border-primary/20 bg-primary/10 p-4">
+                <p className="text-sm font-semibold text-primary">
+                  Your email app should open with the message ready to send to {company.email}. If it doesn't, please email us directly.
+                </p>
+              </div>
             )}
           </form>
         </div>
