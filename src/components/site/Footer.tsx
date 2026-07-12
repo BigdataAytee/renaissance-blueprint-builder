@@ -1,8 +1,34 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Linkedin, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Linkedin, Twitter, Instagram, Youtube, Mail, Phone, MapPin, Loader2 } from "lucide-react";
 import { company, businesses } from "@/lib/site-data";
+import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
+
 
 export function Footer() {
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setLoading(true);
+    const { error } = await supabase.from("newsletter_subscribers").insert({ email });
+    setLoading(false);
+    if (error) {
+      if (error.code === "23505") {
+        toast.info("You're already subscribed. Thanks!");
+        setEmail("");
+      } else {
+        toast.error(error.message || "Could not subscribe. Please try again.");
+      }
+      return;
+    }
+    toast.success("Subscribed! Thanks for joining our newsletter.");
+    setEmail("");
+  };
+
   return (
     <footer className="bg-navy text-navy-foreground">
       <div className="container-wide py-14">
@@ -56,11 +82,22 @@ export function Footer() {
               <li className="flex gap-2.5 items-center"><Phone className="size-3.5 shrink-0 text-gold" />{company.phone}</li>
               <li className="flex gap-2.5 items-center"><Mail className="size-3.5 shrink-0 text-gold" />{company.email}</li>
             </ul>
-            <form className="mt-5" onSubmit={(e) => e.preventDefault()}>
+            <form className="mt-5" onSubmit={handleSubscribe}>
               <label className="text-[10px] uppercase tracking-[0.14em] text-white/50">Newsletter</label>
               <div className="mt-1.5 flex">
-                <input type="email" required placeholder="Your email" className="flex-1 min-w-0 bg-white/5 border border-white/10 rounded-l-md px-3 py-2 text-sm outline-none focus:border-gold" />
-                <button className="bg-gold text-navy rounded-r-md px-4 text-sm font-semibold hover:brightness-95 shrink-0">Join</button>
+                <input
+                  type="email"
+                  required
+                  placeholder="Your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={loading}
+                  className="flex-1 min-w-0 bg-white/5 border border-white/10 rounded-l-md px-3 py-2 text-sm outline-none focus:border-gold disabled:opacity-60"
+                />
+                <button type="submit" disabled={loading} className="bg-gold text-navy rounded-r-md px-4 text-sm font-semibold hover:brightness-95 shrink-0 disabled:opacity-60 flex items-center gap-1.5">
+                  {loading ? <Loader2 className="size-3.5 animate-spin" /> : null}
+                  {loading ? "Joining" : "Join"}
+                </button>
               </div>
             </form>
           </div>
