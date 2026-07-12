@@ -123,8 +123,8 @@ function Contact() {
 function Field({ name, label, type = "text", required }: { name: string; label: string; type?: string; required?: boolean }) {
   return (
     <div>
-      <label className="text-sm font-semibold">{label}{required && " *"}</label>
-      <input name={name} type={type} required={required} className="mt-1.5 w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm outline-none focus:border-primary" />
+      <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{label}{required && " *"}</label>
+      <input name={name} type={type} required={required} className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all duration-300 hover:bg-background hover:border-primary/30 focus:border-primary focus:bg-background focus:ring-4 focus:ring-primary/10" />
     </div>
   );
 }
