@@ -12,7 +12,7 @@ export const company = {
   phone: "+2348106332490",
   email: "admin@dynamicrenaissance.org",
   hours: "Mon – Fri, 8:00 – 18:00 WAT",
-  address: "Corporate Head Office, Central Business District, Abuja, Nigeria",
+  address: "30 Sasere Ajibade off Saidku Street, Ilasamaja, Mushin, Lagos",
 };
 
 export const stats = [
