@@ -70,7 +70,7 @@ function Contact() {
             <div className="rounded-lg overflow-hidden border border-border bg-secondary aspect-video">
               <iframe
                 title="Dynamic Renaissance head office map"
-                src="https://www.google.com/maps?q=Central%20Business%20District%20Abuja&output=embed"
+                src="https://www.google.com/maps?q=30%20Sasere%20Ajibade%20off%20Saidku%20Street%20Ilasamaja%20Mushin%20Lagos&output=embed"
                 className="h-full w-full"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
