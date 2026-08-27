@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, CheckCircle2, Phone } from "lucide-react";
 import { Layout, CTA } from "@/components/site/Layout";
 import { businesses } from "@/lib/site-data";
+import { absoluteUrl } from "@/lib/site-config";
 import { sectorContent } from "@/lib/sector-content";
 import { serviceSlides } from "@/lib/service-slides";
 import { ServiceCardBackground } from "@/components/site/ServiceCardBackground";
@@ -21,13 +22,16 @@ export const Route = createFileRoute("/business-sectors/$slug")({
     const sector = businesses.find((b) => b.slug === params.slug);
     const title = sector ? `${sector.title} — Dynamic Renaissance` : "Business Sector — Dynamic Renaissance";
     const description = sector?.short ?? "Explore Dynamic Renaissance sector capabilities, services, industries served and consultation options.";
+    const url = absoluteUrl(`/business-sectors/${params.slug}`);
     return {
       meta: [
         { title },
         { name: "description", content: description },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
+        { property: "og:url", content: url },
       ],
+      links: [{ rel: "canonical", href: url }],
     };
   },
 });

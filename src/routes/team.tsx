@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import type { TeamMember } from "@/lib/cms/types";
+import { absoluteUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/team")({
   component: Team,
@@ -12,7 +13,7 @@ export const Route = createFileRoute("/team")({
       { name: "description", content: "Meet the leadership and people behind Dynamic Renaissance." },
       { property: "og:title", content: "Team — Dynamic Renaissance" },
     ],
-    links: [{ rel: "canonical", href: "/team" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/team") }],
   }),
 });
 
@@ -38,7 +39,7 @@ function Team() {
                 {data.map((m) => (
                   <div key={m.id} className="rounded-lg border border-border bg-background p-6 text-center">
                     <div className="size-28 mx-auto rounded-full overflow-hidden bg-secondary">
-                      {m.photo_url && <img src={m.photo_url} alt={m.name} className="w-full h-full object-cover" />}
+                      {m.photo_url && <img src={m.photo_url} alt={m.name} className="w-full h-full object-cover" loading="lazy" width={112} height={112} />}
                     </div>
                     <div className="mt-4 font-extrabold">{m.name}</div>
                     <div className="text-sm text-primary">{m.role}</div>

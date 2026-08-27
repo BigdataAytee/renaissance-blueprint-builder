@@ -1,7 +1,7 @@
 // Auto-generated mapping: sector slug -> array (matching sector-content.ts service order) of image sets.
 // Two industry-specific product/service images per service card.
 
-const modules = import.meta.glob("@/assets/service-slides/*.jpg", {
+const modules = import.meta.glob("@/assets/service-slides/*.webp", {
   eager: true,
   import: "default",
   query: "?url",
@@ -9,7 +9,7 @@ const modules = import.meta.glob("@/assets/service-slides/*.jpg", {
 
 function url(sector: string, service: string, variant: "a" | "b"): string {
   const key = Object.keys(modules).find((k) =>
-    k.endsWith(`/${sector}__${service}__${variant}.jpg`),
+    k.endsWith(`/${sector}__${service}__${variant}.webp`),
   );
   if (!key) throw new Error(`Missing service slide: ${sector} ${service} ${variant}`);
   return modules[key];

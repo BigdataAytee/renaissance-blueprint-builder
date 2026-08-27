@@ -30,3 +30,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local environment — never commit, even though these keys are publishable
+.env
+.env.local
+
+# Pre-optimisation image originals (see scripts/optimize-images.mjs)
+asset-backup/

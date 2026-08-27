@@ -3,6 +3,10 @@ import { Layout, PageHero } from "@/components/site/Layout";
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import { company } from "@/lib/site-data";
 import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
+import { Honeypot } from "@/components/site/Honeypot";
+import { absoluteUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/contact")({
   component: Contact,
@@ -10,17 +14,18 @@ export const Route = createFileRoute("/contact")({
     meta: [
       { title: "Contact — Dynamic Renaissance" },
       { name: "description", content: "Get in touch with our team for consultations, partnerships and general enquiries." },
-      { property: "og:url", content: "/contact" },
+      { property: "og:url", content: absoluteUrl("/contact") },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/contact") }],
   }),
 });
 
 function Contact() {
-  const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (submitting) return;
     const form = e.currentTarget;
     const data = new FormData(form);
     const name = String(data.get("name") || "").trim();
@@ -30,21 +35,35 @@ function Contact() {
     const department = String(data.get("department") || "").trim();
     const message = String(data.get("message") || "").trim();
 
-    const subject = `Consultation Request — ${department || "General Enquiry"}${name ? ` — ${name}` : ""}`;
-    const body = [
-      `Name: ${name}`,
-      `Company: ${companyName}`,
-      `Email: ${email}`,
-      `Phone: ${phone}`,
-      `Department: ${department}`,
-      "",
-      "Message:",
-      message,
-    ].join("\n");
+    // Honeypot: only automated submissions fill a field humans cannot see.
+    if (String(data.get("website") || "").trim()) {
+      form.reset();
+      toast.success("Thank you — your message has been sent.");
+      return;
+    }
 
-    const mailto = `mailto:${company.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
-    setSent(true);
+    setSubmitting(true);
+    const submission = { name, company: companyName, email, phone, department, message };
+    const { error } = await supabase.from("contact_messages" as never).insert(submission as never);
+    setSubmitting(false);
+
+    if (error) {
+      toast.error(error.message || "Could not send your message. Please try again.");
+      return;
+    }
+
+    // Best-effort notification — the message is already stored, so a mail
+    // failure must not be surfaced as a failed submission. invoke() reports a
+    // non-2xx response in `error` rather than rejecting, so both are checked.
+    void supabase.functions
+      .invoke("notify-contact", { body: submission })
+      .then(({ error: notifyError }) => {
+        if (notifyError) console.error("notify-contact failed", notifyError);
+      })
+      .catch((err) => console.error("notify-contact failed", err));
+
+    form.reset();
+    toast.success("Thank you — your message has been sent. We respond within one business day.");
   };
 
   return (
@@ -86,8 +105,8 @@ function Contact() {
               <Field name="email" label="Email" type="email" required />
               <Field name="phone" label="Phone" type="tel" />
               <div className="sm:col-span-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Department</label>
-                <select name="department" defaultValue="General Enquiry" className="mt-2 w-full cursor-pointer rounded-xl border border-border bg-muted px-4 py-3.5 text-sm text-foreground outline-none transition-all duration-300 hover:bg-background hover:border-primary/30 focus:border-primary focus:bg-background focus:ring-4 focus:ring-primary/10">
+                <label htmlFor="contact-department" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Department</label>
+                <select id="contact-department" name="department" defaultValue="General Enquiry" className="mt-2 w-full cursor-pointer rounded-xl border border-border bg-muted px-4 py-3.5 text-sm text-foreground outline-none transition-all duration-300 hover:bg-background hover:border-primary/30 focus:border-primary focus:bg-background focus:ring-4 focus:ring-primary/10">
                   <option>General Enquiry</option>
                   <option>Project & Property Management</option>
                   <option>Oil & Gas Services</option>
@@ -98,21 +117,15 @@ function Contact() {
                 </select>
               </div>
               <div className="sm:col-span-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Message</label>
-                <textarea name="message" required rows={5} className="mt-2 w-full min-h-[140px] resize-none rounded-xl border border-border bg-muted px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all duration-300 hover:bg-background hover:border-primary/30 focus:border-primary focus:bg-background focus:ring-4 focus:ring-primary/10" />
+                <label htmlFor="contact-message" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Message</label>
+                <textarea id="contact-message" name="message" required rows={5} className="mt-2 w-full min-h-[140px] resize-none rounded-xl border border-border bg-muted px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all duration-300 hover:bg-background hover:border-primary/30 focus:border-primary focus:bg-background focus:ring-4 focus:ring-primary/10" />
               </div>
             </div>
+            <Honeypot />
             <button type="submit" className="group mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gold px-8 py-4 text-sm font-bold text-gold-foreground shadow-[0_12px_32px_-8px_rgba(199,154,46,0.45)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[color-mix(in_oklab,var(--color-gold)_88%,black)] hover:shadow-[0_16px_40px_-10px_rgba(199,154,46,0.55)] active:translate-y-0 sm:w-auto">
               Send message
               <Send className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
-            {sent && (
-              <div className="mt-6 rounded-xl border border-primary/20 bg-primary/10 p-4">
-                <p className="text-sm font-semibold text-primary">
-                  Your email app should open with the message ready to send to {company.email}. If it doesn't, please email us directly.
-                </p>
-              </div>
-            )}
           </form>
         </div>
       </section>
@@ -121,10 +134,11 @@ function Contact() {
 }
 
 function Field({ name, label, type = "text", required }: { name: string; label: string; type?: string; required?: boolean }) {
+  const id = `contact-${name}`;
   return (
     <div>
-      <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{label}{required && " *"}</label>
-      <input name={name} type={type} required={required} className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all duration-300 hover:bg-background hover:border-primary/30 focus:border-primary focus:bg-background focus:ring-4 focus:ring-primary/10" />
+      <label htmlFor={id} className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{label}{required && " *"}</label>
+      <input id={id} name={name} type={type} required={required} className="mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all duration-300 hover:bg-background hover:border-primary/30 focus:border-primary focus:bg-background focus:ring-4 focus:ring-primary/10" />
     </div>
   );
 }

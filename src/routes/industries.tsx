@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import { industries } from "@/lib/site-data";
 import { CheckCircle2 } from "lucide-react";
+import { absoluteUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/industries")({
   component: Industries,
@@ -9,9 +10,9 @@ export const Route = createFileRoute("/industries")({
     meta: [
       { title: "Industries — Dynamic Renaissance" },
       { name: "description", content: "Sixteen industries served across the wider economy." },
-      { property: "og:url", content: "/industries" },
+      { property: "og:url", content: absoluteUrl("/industries") },
     ],
-    links: [{ rel: "canonical", href: "/industries" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/industries") }],
   }),
 });
 

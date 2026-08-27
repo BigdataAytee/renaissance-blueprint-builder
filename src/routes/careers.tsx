@@ -4,6 +4,8 @@ import { GraduationCap, Users, TrendingUp, Heart } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import type { Vacancy } from "@/lib/cms/types";
+import { absoluteUrl } from "@/lib/site-config";
+import { ApplyDialog } from "@/components/site/ApplyDialog";
 
 export const Route = createFileRoute("/careers")({
   component: Careers,
@@ -12,9 +14,9 @@ export const Route = createFileRoute("/careers")({
       { title: "Careers — Dynamic Renaissance" },
       { name: "description", content: "Build your career at an ambitious diversified enterprise with roles across multiple business sectors." },
       { property: "og:description", content: "Explore careers, job listings and company culture at Dynamic Renaissance." },
-      { property: "og:url", content: "/careers" },
+      { property: "og:url", content: absoluteUrl("/careers") },
     ],
-    links: [{ rel: "canonical", href: "/careers" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/careers") }],
   }),
 });
 
@@ -67,7 +69,7 @@ function Careers() {
                   <div className="text-sm text-muted-foreground">{v.location} · {v.employment_type}</div>
                   {v.description && <p className="mt-2 text-sm text-muted-foreground max-w-2xl">{v.description}</p>}
                 </div>
-                <a href={`/contact?role=${encodeURIComponent(v.title)}`} className="btn-green shrink-0">Apply</a>
+                <ApplyDialog vacancyId={v.id} vacancyTitle={v.title} />
               </div>
             ))}
           </div>

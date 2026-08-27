@@ -1,6 +1,6 @@
 import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
-import { Briefcase, Newspaper, CalendarDays, Images, Users, LayoutDashboard, LogOut, ExternalLink, ShieldCheck, FolderKanban } from "lucide-react";
+import { Briefcase, Newspaper, CalendarDays, Images, Users, LayoutDashboard, LogOut, ExternalLink, ShieldCheck, FolderKanban, Inbox } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 
 export const Route = createFileRoute("/_authenticated/admin")({
@@ -13,6 +13,7 @@ const nav: NavItem[] = [
   { to: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
   { to: "/admin/projects", label: "Projects", icon: FolderKanban },
   { to: "/admin/vacancies", label: "Vacancies", icon: Briefcase },
+  { to: "/admin/applications", label: "Applications", icon: Inbox },
   { to: "/admin/news", label: "News", icon: Newspaper },
   { to: "/admin/events", label: "Events", icon: CalendarDays },
   { to: "/admin/gallery", label: "Gallery", icon: Images },

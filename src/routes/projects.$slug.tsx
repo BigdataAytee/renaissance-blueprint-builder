@@ -4,16 +4,20 @@ import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import type { Project } from "@/lib/cms/types";
+import { findFallbackProject } from "@/lib/cms/fallback-projects";
+import { absoluteUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/projects/$slug")({
   component: ProjectDetail,
-  head: () => ({
+  head: ({ params }) => ({
     meta: [
       { title: "Project Detail — Dynamic Renaissance" },
       { name: "description", content: "Read a Dynamic Renaissance project case study with scope, outcomes, timeline, location and sector context." },
       { property: "og:title", content: "Project Detail — Dynamic Renaissance" },
       { property: "og:description", content: "Project case study, scope and outcomes from Dynamic Renaissance." },
+      { property: "og:url", content: absoluteUrl(`/projects/${params.slug}`) },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl(`/projects/${params.slug}`) }],
   }),
 });
 
@@ -27,8 +31,15 @@ function ProjectDetail() {
         .from("projects" as never).select("*")
         .eq("slug", slug).maybeSingle();
       if (error) throw error;
-      return (data ?? null) as Project | null;
+      // Fall back to the bundled portfolio so a seeded-but-unreachable database
+      // never turns a known project page into a 404.
+      return ((data ?? findFallbackProject(slug)) as Project | null);
     },
+    // `undefined`, not `null`, when there is no bundled stand-in: React Query
+    // treats a `null` placeholder as real data, which would resolve the query
+    // to "no such project" and render the not-found page before the fetch
+    // lands. Returning undefined keeps isLoading true until it does.
+    placeholderData: () => findFallbackProject(slug) ?? undefined,
   });
 
   if (isLoading) {
@@ -66,7 +77,7 @@ function ProjectDetail() {
         <div className="container-wide grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
             {project.image_url && (
-              <img src={project.image_url} alt={project.title} className="rounded-lg shadow-xl" loading="lazy" />
+              <img src={project.image_url} alt={project.title} className="rounded-lg shadow-xl" loading="lazy" width={1200} height={800} />
             )}
             {project.overview && (
               <>

@@ -3,11 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Layout } from "@/components/site/Layout";
 import type { NewsPost } from "@/lib/cms/types";
+import { absoluteUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/news/$slug")({
   component: NewsDetail,
-  head: () => ({
-    meta: [{ title: "Article — Dynamic Renaissance" }],
+  head: ({ params }) => ({
+    meta: [
+      { title: "Article — Dynamic Renaissance" },
+      { property: "og:url", content: absoluteUrl(`/news/${params.slug}`) },
+    ],
+    links: [{ rel: "canonical", href: absoluteUrl(`/news/${params.slug}`) }],
   }),
 });
 
@@ -37,7 +42,7 @@ function NewsDetail() {
                     {data.published_at ? new Date(data.published_at).toLocaleDateString() : ""}
                   </div>
                   <h1 className="mt-3 text-4xl md:text-5xl font-extrabold text-balance">{data.title}</h1>
-                  {data.cover_url && <img src={data.cover_url} alt={data.title} className="mt-8 w-full rounded-lg" />}
+                  {data.cover_url && <img src={data.cover_url} alt={data.title} className="mt-8 w-full rounded-lg" loading="lazy" width={1200} height={675} />}
                   {data.excerpt && <p className="mt-6 text-lg text-muted-foreground">{data.excerpt}</p>}
                   <div className="mt-8 prose max-w-none whitespace-pre-wrap text-foreground">{data.body_md}</div>
                 </>

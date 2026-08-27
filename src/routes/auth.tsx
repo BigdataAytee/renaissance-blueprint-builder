@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Layout } from "@/components/site/Layout";
 import { toast } from "sonner";
+import { useQuery } from "@tanstack/react-query";
+import { adminExists } from "@/lib/cms/auth.functions";
 
 export const Route = createFileRoute("/auth")({
   component: AuthPage,
@@ -18,6 +20,13 @@ function AuthPage() {
   const navigate = useNavigate();
   const router = useRouter();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
+  // Once an administrator exists, public sign-up closes and this is a sign-in
+  // page only. Assume it is closed until proven otherwise.
+  const { data: hasAdmin = true } = useQuery({
+    queryKey: ["admin-exists"],
+    queryFn: () => adminExists(),
+    staleTime: 5 * 60 * 1000,
+  });
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -28,11 +37,16 @@ function AuthPage() {
     });
   }, [navigate]);
 
+  useEffect(() => {
+    if (hasAdmin) setMode("signin");
+  }, [hasAdmin]);
+
   const handle = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
       if (mode === "signup") {
+        if (hasAdmin) throw new Error("Sign-up is closed. Ask an administrator for an invite.");
         const { error } = await supabase.auth.signUp({
           email,
           password,
@@ -89,17 +103,19 @@ function AuthPage() {
             {loading ? "Please wait..." : mode === "signin" ? "Sign in" : "Create account"}
           </button>
 
-          <div className="text-center text-sm text-muted-foreground">
-            {mode === "signin" ? (
-              <button type="button" onClick={() => setMode("signup")} className="underline">
-                Set up the first admin account
-              </button>
-            ) : (
-              <button type="button" onClick={() => setMode("signin")} className="underline">
-                Already have an account? Sign in
-              </button>
-            )}
-          </div>
+          {!hasAdmin && (
+            <div className="text-center text-sm text-muted-foreground">
+              {mode === "signin" ? (
+                <button type="button" onClick={() => setMode("signup")} className="underline">
+                  Set up the first admin account
+                </button>
+              ) : (
+                <button type="button" onClick={() => setMode("signin")} className="underline">
+                  Already have an account? Sign in
+                </button>
+              )}
+            </div>
+          )}
         </form>
       </div>
     </Layout>
