@@ -19,6 +19,7 @@ export const privacySections: LegalSection[] = [
       "Enquiry form — your name, company, email address, phone number, the department you selected and the message you wrote.",
       "Newsletter signup — your email address only.",
       "Job application — your name, email address, phone number, cover note and, if you attach one, your CV.",
+      "Abuse prevention — when you submit any of these forms we record a one-way cryptographic hash of your IP address, never the address itself, together with the form and the time. It lets us stop automated abuse and cannot be reversed to identify you. These records are deleted automatically after two days.",
     ],
   },
   {
@@ -47,9 +48,10 @@ export const privacySections: LegalSection[] = [
     ],
   },
   {
-    heading: "Cookies and analytics",
+    heading: "Cookies, analytics and anti-spam",
     body: [
       "This site does not set advertising or tracking cookies. Some pages embed a Google Maps frame and load fonts from Google Fonts; those third parties may receive your IP address as part of serving that content, under their own privacy terms.",
+      "Our forms are protected by Cloudflare Turnstile, which checks that a submission comes from a person rather than a script. Cloudflare receives your IP address and limited information about your browser in order to make that assessment, under Cloudflare's own privacy terms. Turnstile is designed not to profile or track visitors across sites, and we receive only a pass or fail result.",
     ],
   },
   {
