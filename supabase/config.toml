@@ -1,4 +1,1 @@
 project_id = "ievtwovwogwrisjhjqll"
-# Called from the public contact form, so it must accept unauthenticated requests.
-[functions.notify-contact]
-verify_jwt = false
