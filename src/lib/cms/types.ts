@@ -78,6 +78,17 @@ export type Project = {
   updated_at: string;
 };
 
+export type JobApplication = {
+  id: string;
+  vacancy_id: string | null;
+  name: string;
+  email: string;
+  phone: string;
+  cover_note: string;
+  cv_path: string | null;
+  created_at: string;
+};
+
 // Untyped table accessor — Database types are auto-generated later.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const tbl = (client: any, name: string) => client.from(name);

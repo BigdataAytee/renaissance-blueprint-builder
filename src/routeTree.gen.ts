@@ -31,6 +31,7 @@ import { Route as NewsSlugRouteImport } from './routes/news.$slug'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminApplicationsRouteImport } from './routes/_authenticated/admin.applications'
 import { Route as AuthenticatedAdminEventsRouteImport } from './routes/_authenticated/admin.events'
 import { Route as AuthenticatedAdminGalleryRouteImport } from './routes/_authenticated/admin.gallery'
 import { Route as AuthenticatedAdminNewsRouteImport } from './routes/_authenticated/admin.news'
@@ -148,6 +149,12 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminApplicationsRoute =
+  AuthenticatedAdminApplicationsRouteImport.update({
+    id: '/applications',
+    path: '/applications',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminEventsRoute =
   AuthenticatedAdminEventsRouteImport.update({
     id: '/events',
@@ -209,6 +216,7 @@ export interface FileRoutesByFullPath {
   '/business-sectors/': typeof BusinessSectorsIndexRoute
   '/news/': typeof NewsIndexRoute
   '/projects/': typeof ProjectsIndexRoute
+  '/admin/applications': typeof AuthenticatedAdminApplicationsRoute
   '/admin/events': typeof AuthenticatedAdminEventsRoute
   '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/admin/news': typeof AuthenticatedAdminNewsRoute
@@ -235,6 +243,7 @@ export interface FileRoutesByTo {
   '/business-sectors': typeof BusinessSectorsIndexRoute
   '/news': typeof NewsIndexRoute
   '/projects': typeof ProjectsIndexRoute
+  '/admin/applications': typeof AuthenticatedAdminApplicationsRoute
   '/admin/events': typeof AuthenticatedAdminEventsRoute
   '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/admin/news': typeof AuthenticatedAdminNewsRoute
@@ -267,6 +276,7 @@ export interface FileRoutesById {
   '/business-sectors/': typeof BusinessSectorsIndexRoute
   '/news/': typeof NewsIndexRoute
   '/projects/': typeof ProjectsIndexRoute
+  '/_authenticated/admin/applications': typeof AuthenticatedAdminApplicationsRoute
   '/_authenticated/admin/events': typeof AuthenticatedAdminEventsRoute
   '/_authenticated/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/_authenticated/admin/news': typeof AuthenticatedAdminNewsRoute
@@ -299,6 +309,7 @@ export interface FileRouteTypes {
     | '/business-sectors/'
     | '/news/'
     | '/projects/'
+    | '/admin/applications'
     | '/admin/events'
     | '/admin/gallery'
     | '/admin/news'
@@ -325,6 +336,7 @@ export interface FileRouteTypes {
     | '/business-sectors'
     | '/news'
     | '/projects'
+    | '/admin/applications'
     | '/admin/events'
     | '/admin/gallery'
     | '/admin/news'
@@ -356,6 +368,7 @@ export interface FileRouteTypes {
     | '/business-sectors/'
     | '/news/'
     | '/projects/'
+    | '/_authenticated/admin/applications'
     | '/_authenticated/admin/events'
     | '/_authenticated/admin/gallery'
     | '/_authenticated/admin/news'
@@ -539,6 +552,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/applications': {
+      id: '/_authenticated/admin/applications'
+      path: '/applications'
+      fullPath: '/admin/applications'
+      preLoaderRoute: typeof AuthenticatedAdminApplicationsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/events': {
       id: '/_authenticated/admin/events'
       path: '/events'
@@ -592,6 +612,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminApplicationsRoute: typeof AuthenticatedAdminApplicationsRoute
   AuthenticatedAdminEventsRoute: typeof AuthenticatedAdminEventsRoute
   AuthenticatedAdminGalleryRoute: typeof AuthenticatedAdminGalleryRoute
   AuthenticatedAdminNewsRoute: typeof AuthenticatedAdminNewsRoute
@@ -603,6 +624,7 @@ interface AuthenticatedAdminRouteChildren {
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminApplicationsRoute: AuthenticatedAdminApplicationsRoute,
   AuthenticatedAdminEventsRoute: AuthenticatedAdminEventsRoute,
   AuthenticatedAdminGalleryRoute: AuthenticatedAdminGalleryRoute,
   AuthenticatedAdminNewsRoute: AuthenticatedAdminNewsRoute,
