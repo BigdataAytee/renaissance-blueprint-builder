@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { toast } from "sonner";
+import { errorMessage } from "@/lib/cms/error-message";
 import { ShieldCheck, Pencil, Trash2, UserPlus } from "lucide-react";
 import {
   listAdminUsers,
@@ -57,7 +58,7 @@ function AdminUsersPage() {
       toast.success("Invitation sent");
       qc.invalidateQueries({ queryKey: ["admin-users"] });
     },
-    onError: (e) => toast.error(e instanceof Error ? e.message : "Failed to invite"),
+    onError: (e) => toast.error(errorMessage(e, "Failed to invite")),
   });
 
   const roleMut = useMutation({
@@ -66,7 +67,7 @@ function AdminUsersPage() {
       toast.success("Role updated");
       qc.invalidateQueries({ queryKey: ["admin-users"] });
     },
-    onError: (e) => toast.error(e instanceof Error ? e.message : "Failed"),
+    onError: (e) => toast.error(errorMessage(e, "Failed")),
   });
 
   const removeMut = useMutation({
@@ -75,7 +76,7 @@ function AdminUsersPage() {
       toast.success("Access removed");
       qc.invalidateQueries({ queryKey: ["admin-users"] });
     },
-    onError: (e) => toast.error(e instanceof Error ? e.message : "Failed"),
+    onError: (e) => toast.error(errorMessage(e, "Failed")),
   });
 
   const rows = q.data ?? [];

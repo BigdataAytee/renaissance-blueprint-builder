@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
+import { errorMessage } from "@/lib/cms/error-message";
 import { Pencil, Plus, Trash2 } from "lucide-react";
 
 type Row = { id: string; [k: string]: unknown };
@@ -25,7 +26,7 @@ export function useCollection<T extends Row>(table: string, orderBy: string = "c
       if (error) throw error;
     },
     onSuccess: () => { toast.success("Created"); invalidate(); },
-    onError: (e) => toast.error(e instanceof Error ? e.message : "Failed"),
+    onError: (e) => toast.error(errorMessage(e, "Failed")),
   });
   const update = useMutation({
     mutationFn: async ({ id, values }: { id: string; values: Partial<T> }) => {
@@ -33,7 +34,7 @@ export function useCollection<T extends Row>(table: string, orderBy: string = "c
       if (error) throw error;
     },
     onSuccess: () => { toast.success("Saved"); invalidate(); },
-    onError: (e) => toast.error(e instanceof Error ? e.message : "Failed"),
+    onError: (e) => toast.error(errorMessage(e, "Failed")),
   });
   const remove = useMutation({
     mutationFn: async (id: string) => {
@@ -41,7 +42,7 @@ export function useCollection<T extends Row>(table: string, orderBy: string = "c
       if (error) throw error;
     },
     onSuccess: () => { toast.success("Deleted"); invalidate(); },
-    onError: (e) => toast.error(e instanceof Error ? e.message : "Failed"),
+    onError: (e) => toast.error(errorMessage(e, "Failed")),
   });
   return { ...q, create, update, remove };
 }

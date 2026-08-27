@@ -5,6 +5,7 @@ import { AdminHeader } from "@/components/admin/CrudPage";
 import type { JobApplication, Vacancy } from "@/lib/cms/types";
 import { Download, Loader2, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import { errorMessage } from "@/lib/cms/error-message";
 
 export const Route = createFileRoute("/_authenticated/admin/applications")({ component: Page });
 
@@ -158,7 +159,7 @@ function CleanUpOrphansButton() {
       );
       qc.invalidateQueries({ queryKey: ["job_applications"] });
     },
-    onError: (e) => toast.error(e instanceof Error ? e.message : "Cleanup failed"),
+    onError: (e) => toast.error(errorMessage(e, "Cleanup failed")),
   });
 
   return (
