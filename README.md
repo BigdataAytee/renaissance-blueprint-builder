@@ -930,3 +930,9 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Deploying
+
+Releases follow [`docs/RELEASE-RUNBOOK.md`](docs/RELEASE-RUNBOOK.md) — publish
+order, required secrets, the migration step and a smoke test. Read the ordering
+note before applying a migration that removes an access grant.
