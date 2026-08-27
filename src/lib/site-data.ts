@@ -235,12 +235,12 @@ export const businessSectorDetails: Record<string, {
   },
 };
 
-import heroImg from "@/assets/hero-building.jpg";
-import construction from "@/assets/project-construction.jpg";
-import oilgas from "@/assets/project-oilgas.jpg";
-import agri from "@/assets/project-agriculture.jpg";
-import logi from "@/assets/project-logistics.jpg";
-import hosp from "@/assets/project-hospitality.jpg";
+import heroImg from "@/assets/hero-building.webp";
+import construction from "@/assets/project-construction.webp";
+import oilgas from "@/assets/project-oilgas.webp";
+import agri from "@/assets/project-agriculture.webp";
+import logi from "@/assets/project-logistics.webp";
+import hosp from "@/assets/project-hospitality.webp";
 
 export { heroImg };
 

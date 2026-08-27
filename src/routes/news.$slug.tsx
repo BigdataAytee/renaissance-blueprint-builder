@@ -37,7 +37,7 @@ function NewsDetail() {
                     {data.published_at ? new Date(data.published_at).toLocaleDateString() : ""}
                   </div>
                   <h1 className="mt-3 text-4xl md:text-5xl font-extrabold text-balance">{data.title}</h1>
-                  {data.cover_url && <img src={data.cover_url} alt={data.title} className="mt-8 w-full rounded-lg" />}
+                  {data.cover_url && <img src={data.cover_url} alt={data.title} className="mt-8 w-full rounded-lg" loading="lazy" width={1200} height={675} />}
                   {data.excerpt && <p className="mt-6 text-lg text-muted-foreground">{data.excerpt}</p>}
                   <div className="mt-8 prose max-w-none whitespace-pre-wrap text-foreground">{data.body_md}</div>
                 </>

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import { motion } from "framer-motion";
 import { company, coreValues, executiveTeam } from "@/lib/site-data";
-import aboutTeam from "@/assets/about-team.jpg";
+import aboutTeam from "@/assets/about-team.webp";
 import { Target, Eye, Compass } from "lucide-react";
 
 export const Route = createFileRoute("/about")({

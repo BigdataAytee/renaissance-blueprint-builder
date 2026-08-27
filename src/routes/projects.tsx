@@ -55,7 +55,7 @@ function Projects() {
                 <Link key={p.slug} to="/projects/$slug" params={{ slug: p.slug }} className="group rounded-lg overflow-hidden border border-border bg-background hover:shadow-2xl transition-all">
                   {p.image_url && (
                     <div className="aspect-[4/3] overflow-hidden">
-                      <img src={p.image_url} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                      <img src={p.image_url} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" width={800} height={600} />
                     </div>
                   )}
                   <div className="p-6">

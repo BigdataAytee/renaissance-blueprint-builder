@@ -39,7 +39,7 @@ function NewsList() {
                 {data.map((p) => (
                   <Link key={p.id} to="/news/$slug" params={{ slug: p.slug }} className="group block rounded-lg border border-border bg-background overflow-hidden hover:shadow-lg transition">
                     <div className="aspect-video bg-secondary overflow-hidden">
-                      {p.cover_url && <img src={p.cover_url} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition" />}
+                      {p.cover_url && <img src={p.cover_url} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition" loading="lazy" width={800} height={450} />}
                     </div>
                     <div className="p-5">
                       <div className="text-xs uppercase tracking-wider text-muted-foreground">{p.published_at ? new Date(p.published_at).toLocaleDateString() : ""}</div>

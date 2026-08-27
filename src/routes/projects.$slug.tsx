@@ -66,7 +66,7 @@ function ProjectDetail() {
         <div className="container-wide grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
             {project.image_url && (
-              <img src={project.image_url} alt={project.title} className="rounded-lg shadow-xl" loading="lazy" />
+              <img src={project.image_url} alt={project.title} className="rounded-lg shadow-xl" loading="lazy" width={1200} height={800} />
             )}
             {project.overview && (
               <>

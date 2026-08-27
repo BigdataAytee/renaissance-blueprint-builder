@@ -38,7 +38,7 @@ function Gallery() {
                 {data.map((g) => (
                   <figure key={g.id} className="group rounded-lg overflow-hidden border border-border bg-background">
                     <div className="aspect-square overflow-hidden bg-secondary">
-                      <img src={g.image_url} alt={g.caption} className="w-full h-full object-cover group-hover:scale-105 transition" />
+                      <img src={g.image_url} alt={g.caption} className="w-full h-full object-cover group-hover:scale-105 transition" loading="lazy" width={600} height={600} />
                     </div>
                     {g.caption && <figcaption className="p-3 text-sm text-muted-foreground">{g.caption}</figcaption>}
                   </figure>

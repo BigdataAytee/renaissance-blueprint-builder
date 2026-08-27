@@ -39,7 +39,7 @@ function Events() {
                 {data.map((e) => (
                   <article key={e.id} className="grid md:grid-cols-[240px_1fr] gap-6 p-6 rounded-lg border border-border bg-background">
                     {e.cover_url ? (
-                      <img src={e.cover_url} alt={e.title} className="w-full h-40 md:h-full object-cover rounded" />
+                      <img src={e.cover_url} alt={e.title} className="w-full h-40 md:h-full object-cover rounded" loading="lazy" width={240} height={160} />
                     ) : (
                       <div className="bg-secondary rounded p-6 flex flex-col items-center justify-center">
                         <CalendarDays className="size-8 text-primary" />

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Phone, Mail, Clock, Menu, X, Search, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { company, businesses } from "@/lib/site-data";
-import logoMark from "@/assets/logo-mark.png";
+import logoMark from "@/assets/logo-mark.webp";
 
 const navItems = [
   { to: "/", label: "Home" },

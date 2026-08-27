@@ -9,87 +9,41 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TeamRouteImport } from './routes/team'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as ProjectsRouteImport } from './routes/projects'
-import { Route as NewsRouteImport } from './routes/news'
-import { Route as IndustriesRouteImport } from './routes/industries'
-import { Route as GalleryRouteImport } from './routes/gallery'
-import { Route as EventsRouteImport } from './routes/events'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as CareersRouteImport } from './routes/careers'
-import { Route as BusinessSectorsRouteImport } from './routes/business-sectors'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as BusinessSectorsIndexRouteImport } from './routes/business-sectors.index'
-import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
-import { Route as NewsSlugRouteImport } from './routes/news.$slug'
-import { Route as BusinessSectorsSlugRouteImport } from './routes/business-sectors.$slug'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BusinessSectorsRouteImport } from './routes/business-sectors'
+import { Route as CareersRouteImport } from './routes/careers'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as IndustriesRouteImport } from './routes/industries'
+import { Route as NewsRouteImport } from './routes/news'
+import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TeamRouteImport } from './routes/team'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as BusinessSectorsIndexRouteImport } from './routes/business-sectors.index'
+import { Route as BusinessSectorsSlugRouteImport } from './routes/business-sectors.$slug'
+import { Route as NewsSlugRouteImport } from './routes/news.$slug'
+import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
-import { Route as AuthenticatedAdminVacanciesRouteImport } from './routes/_authenticated/admin.vacancies'
-import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
-import { Route as AuthenticatedAdminTeamRouteImport } from './routes/_authenticated/admin.team'
-import { Route as AuthenticatedAdminProjectsRouteImport } from './routes/_authenticated/admin.projects'
-import { Route as AuthenticatedAdminNewsRouteImport } from './routes/_authenticated/admin.news'
-import { Route as AuthenticatedAdminGalleryRouteImport } from './routes/_authenticated/admin.gallery'
 import { Route as AuthenticatedAdminEventsRouteImport } from './routes/_authenticated/admin.events'
+import { Route as AuthenticatedAdminGalleryRouteImport } from './routes/_authenticated/admin.gallery'
+import { Route as AuthenticatedAdminNewsRouteImport } from './routes/_authenticated/admin.news'
+import { Route as AuthenticatedAdminProjectsRouteImport } from './routes/_authenticated/admin.projects'
+import { Route as AuthenticatedAdminTeamRouteImport } from './routes/_authenticated/admin.team'
+import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
+import { Route as AuthenticatedAdminVacanciesRouteImport } from './routes/_authenticated/admin.vacancies'
 
-const TeamRoute = TeamRouteImport.update({
-  id: '/team',
-  path: '/team',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProjectsRoute = ProjectsRouteImport.update({
-  id: '/projects',
-  path: '/projects',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NewsRoute = NewsRouteImport.update({
-  id: '/news',
-  path: '/news',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndustriesRoute = IndustriesRouteImport.update({
-  id: '/industries',
-  path: '/industries',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GalleryRoute = GalleryRouteImport.update({
-  id: '/gallery',
-  path: '/gallery',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EventsRoute = EventsRouteImport.update({
-  id: '/events',
-  path: '/events',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CareersRoute = CareersRouteImport.update({
-  id: '/careers',
-  path: '/careers',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BusinessSectorsRoute = BusinessSectorsRouteImport.update({
-  id: '/business-sectors',
-  path: '/business-sectors',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -97,59 +51,106 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
-  id: '/_authenticated',
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const BusinessSectorsRoute = BusinessSectorsRouteImport.update({
+  id: '/business-sectors',
+  path: '/business-sectors',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BusinessSectorsIndexRoute = BusinessSectorsIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => BusinessSectorsRoute,
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => ProjectsRoute,
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const NewsSlugRoute = NewsSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => NewsRoute,
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const BusinessSectorsSlugRoute = BusinessSectorsSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => BusinessSectorsRoute,
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustriesRoute = IndustriesRouteImport.update({
+  id: '/industries',
+  path: '/industries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   id: '/admin',
   path: '/admin',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const BusinessSectorsIndexRoute = BusinessSectorsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BusinessSectorsRoute,
+} as any)
+const BusinessSectorsSlugRoute = BusinessSectorsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BusinessSectorsRoute,
+} as any)
+const NewsSlugRoute = NewsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => NewsRoute,
+} as any)
+const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ProjectsRoute,
+} as any)
 const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
-const AuthenticatedAdminVacanciesRoute =
-  AuthenticatedAdminVacanciesRouteImport.update({
-    id: '/vacancies',
-    path: '/vacancies',
+const AuthenticatedAdminEventsRoute =
+  AuthenticatedAdminEventsRouteImport.update({
+    id: '/events',
+    path: '/events',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
-const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
-  id: '/users',
-  path: '/users',
-  getParentRoute: () => AuthenticatedAdminRoute,
-} as any)
-const AuthenticatedAdminTeamRoute = AuthenticatedAdminTeamRouteImport.update({
-  id: '/team',
-  path: '/team',
+const AuthenticatedAdminGalleryRoute =
+  AuthenticatedAdminGalleryRouteImport.update({
+    id: '/gallery',
+    path: '/gallery',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminNewsRoute = AuthenticatedAdminNewsRouteImport.update({
+  id: '/news',
+  path: '/news',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
 const AuthenticatedAdminProjectsRoute =
@@ -158,21 +159,20 @@ const AuthenticatedAdminProjectsRoute =
     path: '/projects',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
-const AuthenticatedAdminNewsRoute = AuthenticatedAdminNewsRouteImport.update({
-  id: '/news',
-  path: '/news',
+const AuthenticatedAdminTeamRoute = AuthenticatedAdminTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
-const AuthenticatedAdminGalleryRoute =
-  AuthenticatedAdminGalleryRouteImport.update({
-    id: '/gallery',
-    path: '/gallery',
-    getParentRoute: () => AuthenticatedAdminRoute,
-  } as any)
-const AuthenticatedAdminEventsRoute =
-  AuthenticatedAdminEventsRouteImport.update({
-    id: '/events',
-    path: '/events',
+const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminVacanciesRoute =
+  AuthenticatedAdminVacanciesRouteImport.update({
+    id: '/vacancies',
+    path: '/vacancies',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
 
@@ -365,88 +365,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/team': {
-      id: '/team'
-      path: '/team'
-      fullPath: '/team'
-      preLoaderRoute: typeof TeamRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/projects': {
-      id: '/projects'
-      path: '/projects'
-      fullPath: '/projects'
-      preLoaderRoute: typeof ProjectsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/news': {
-      id: '/news'
-      path: '/news'
-      fullPath: '/news'
-      preLoaderRoute: typeof NewsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/industries': {
-      id: '/industries'
-      path: '/industries'
-      fullPath: '/industries'
-      preLoaderRoute: typeof IndustriesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gallery': {
-      id: '/gallery'
-      path: '/gallery'
-      fullPath: '/gallery'
-      preLoaderRoute: typeof GalleryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/events': {
-      id: '/events'
-      path: '/events'
-      fullPath: '/events'
-      preLoaderRoute: typeof EventsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/careers': {
-      id: '/careers'
-      path: '/careers'
-      fullPath: '/careers'
-      preLoaderRoute: typeof CareersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/business-sectors': {
-      id: '/business-sectors'
-      path: '/business-sectors'
-      fullPath: '/business-sectors'
-      preLoaderRoute: typeof BusinessSectorsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -456,40 +379,89 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/business-sectors/': {
-      id: '/business-sectors/'
-      path: '/'
-      fullPath: '/business-sectors/'
-      preLoaderRoute: typeof BusinessSectorsIndexRouteImport
-      parentRoute: typeof BusinessSectorsRoute
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/projects/$slug': {
-      id: '/projects/$slug'
-      path: '/$slug'
-      fullPath: '/projects/$slug'
-      preLoaderRoute: typeof ProjectsSlugRouteImport
-      parentRoute: typeof ProjectsRoute
+    '/business-sectors': {
+      id: '/business-sectors'
+      path: '/business-sectors'
+      fullPath: '/business-sectors'
+      preLoaderRoute: typeof BusinessSectorsRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/news/$slug': {
-      id: '/news/$slug'
-      path: '/$slug'
-      fullPath: '/news/$slug'
-      preLoaderRoute: typeof NewsSlugRouteImport
-      parentRoute: typeof NewsRoute
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/business-sectors/$slug': {
-      id: '/business-sectors/$slug'
-      path: '/$slug'
-      fullPath: '/business-sectors/$slug'
-      preLoaderRoute: typeof BusinessSectorsSlugRouteImport
-      parentRoute: typeof BusinessSectorsRoute
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industries': {
+      id: '/industries'
+      path: '/industries'
+      fullPath: '/industries'
+      preLoaderRoute: typeof IndustriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
       id: '/_authenticated/admin'
@@ -498,6 +470,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/business-sectors/': {
+      id: '/business-sectors/'
+      path: '/'
+      fullPath: '/business-sectors/'
+      preLoaderRoute: typeof BusinessSectorsIndexRouteImport
+      parentRoute: typeof BusinessSectorsRoute
+    }
+    '/business-sectors/$slug': {
+      id: '/business-sectors/$slug'
+      path: '/$slug'
+      fullPath: '/business-sectors/$slug'
+      preLoaderRoute: typeof BusinessSectorsSlugRouteImport
+      parentRoute: typeof BusinessSectorsRoute
+    }
+    '/news/$slug': {
+      id: '/news/$slug'
+      path: '/$slug'
+      fullPath: '/news/$slug'
+      preLoaderRoute: typeof NewsSlugRouteImport
+      parentRoute: typeof NewsRoute
+    }
+    '/projects/$slug': {
+      id: '/projects/$slug'
+      path: '/$slug'
+      fullPath: '/projects/$slug'
+      preLoaderRoute: typeof ProjectsSlugRouteImport
+      parentRoute: typeof ProjectsRoute
+    }
     '/_authenticated/admin/': {
       id: '/_authenticated/admin/'
       path: '/'
@@ -505,39 +505,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/_authenticated/admin/vacancies': {
-      id: '/_authenticated/admin/vacancies'
-      path: '/vacancies'
-      fullPath: '/admin/vacancies'
-      preLoaderRoute: typeof AuthenticatedAdminVacanciesRouteImport
-      parentRoute: typeof AuthenticatedAdminRoute
-    }
-    '/_authenticated/admin/users': {
-      id: '/_authenticated/admin/users'
-      path: '/users'
-      fullPath: '/admin/users'
-      preLoaderRoute: typeof AuthenticatedAdminUsersRouteImport
-      parentRoute: typeof AuthenticatedAdminRoute
-    }
-    '/_authenticated/admin/team': {
-      id: '/_authenticated/admin/team'
-      path: '/team'
-      fullPath: '/admin/team'
-      preLoaderRoute: typeof AuthenticatedAdminTeamRouteImport
-      parentRoute: typeof AuthenticatedAdminRoute
-    }
-    '/_authenticated/admin/projects': {
-      id: '/_authenticated/admin/projects'
-      path: '/projects'
-      fullPath: '/admin/projects'
-      preLoaderRoute: typeof AuthenticatedAdminProjectsRouteImport
-      parentRoute: typeof AuthenticatedAdminRoute
-    }
-    '/_authenticated/admin/news': {
-      id: '/_authenticated/admin/news'
-      path: '/news'
-      fullPath: '/admin/news'
-      preLoaderRoute: typeof AuthenticatedAdminNewsRouteImport
+    '/_authenticated/admin/events': {
+      id: '/_authenticated/admin/events'
+      path: '/events'
+      fullPath: '/admin/events'
+      preLoaderRoute: typeof AuthenticatedAdminEventsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
     '/_authenticated/admin/gallery': {
@@ -547,11 +519,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminGalleryRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/_authenticated/admin/events': {
-      id: '/_authenticated/admin/events'
-      path: '/events'
-      fullPath: '/admin/events'
-      preLoaderRoute: typeof AuthenticatedAdminEventsRouteImport
+    '/_authenticated/admin/news': {
+      id: '/_authenticated/admin/news'
+      path: '/news'
+      fullPath: '/admin/news'
+      preLoaderRoute: typeof AuthenticatedAdminNewsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/projects': {
+      id: '/_authenticated/admin/projects'
+      path: '/projects'
+      fullPath: '/admin/projects'
+      preLoaderRoute: typeof AuthenticatedAdminProjectsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/team': {
+      id: '/_authenticated/admin/team'
+      path: '/team'
+      fullPath: '/admin/team'
+      preLoaderRoute: typeof AuthenticatedAdminTeamRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/users': {
+      id: '/_authenticated/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AuthenticatedAdminUsersRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/vacancies': {
+      id: '/_authenticated/admin/vacancies'
+      path: '/vacancies'
+      fullPath: '/admin/vacancies'
+      preLoaderRoute: typeof AuthenticatedAdminVacanciesRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
   }

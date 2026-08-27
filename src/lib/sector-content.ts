@@ -11,14 +11,14 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-import sectorConstruction from "@/assets/project-construction.jpg";
-import sectorOilGas from "@/assets/project-oilgas.jpg";
-import sectorAgri from "@/assets/project-agriculture.jpg";
-import sectorLogi from "@/assets/project-logistics.jpg";
-import sectorHosp from "@/assets/project-hospitality.jpg";
-import sectorManufacturing from "@/assets/sector-manufacturing.jpg";
-import sectorIndustrial from "@/assets/sector-industrial.jpg";
-import sectorConsultancy from "@/assets/sector-consultancy.jpg";
+import sectorConstruction from "@/assets/project-construction.webp";
+import sectorOilGas from "@/assets/project-oilgas.webp";
+import sectorAgri from "@/assets/project-agriculture.webp";
+import sectorLogi from "@/assets/project-logistics.webp";
+import sectorHosp from "@/assets/project-hospitality.webp";
+import sectorManufacturing from "@/assets/sector-manufacturing.webp";
+import sectorIndustrial from "@/assets/sector-industrial.webp";
+import sectorConsultancy from "@/assets/sector-consultancy.webp";
 
 export type SectorService = {
   icon: LucideIcon;
