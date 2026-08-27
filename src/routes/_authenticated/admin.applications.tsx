@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { AdminHeader } from "@/components/admin/CrudPage";
 import type { JobApplication, Vacancy } from "@/lib/cms/types";
-import { Download } from "lucide-react";
+import { Download, Loader2, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/admin/applications")({ component: Page });
@@ -46,7 +46,11 @@ function Page() {
 
   return (
     <div>
-      <AdminHeader title="Applications" subtitle="Submissions from the Careers page. Read-only." />
+      <AdminHeader
+        title="Applications"
+        subtitle="Submissions from the Careers page. Read-only."
+        action={<CleanUpOrphansButton />}
+      />
       {isLoading ? (
         <div className="p-6 text-muted-foreground">Loading…</div>
       ) : !applications?.length ? (
@@ -128,6 +132,48 @@ function CvDownloadButton({ path }: { path: string }) {
       className="inline-flex items-center gap-1.5 text-primary hover:underline"
     >
       <Download className="size-4" /> Download
+    </button>
+  );
+}
+
+/**
+ * A CV is uploaded before its application row is written, so an insert that
+ * fails afterwards strands the file. Applicants cannot delete from the private
+ * bucket, so clearing those is an admin job — delete_orphan_application_cvs
+ * removes only files older than a day that no application references.
+ */
+function CleanUpOrphansButton() {
+  const qc = useQueryClient();
+  const cleanUp = useMutation({
+    mutationFn: async () => {
+      const { data, error } = await supabase.rpc("delete_orphan_application_cvs" as never);
+      if (error) throw error;
+      return (data ?? 0) as number;
+    },
+    onSuccess: (removed) => {
+      toast.success(
+        removed === 0
+          ? "No orphaned CVs to remove."
+          : `Removed ${removed} orphaned CV${removed === 1 ? "" : "s"}.`,
+      );
+      qc.invalidateQueries({ queryKey: ["job_applications"] });
+    },
+    onError: (e) => toast.error(e instanceof Error ? e.message : "Cleanup failed"),
+  });
+
+  return (
+    <button
+      onClick={() => cleanUp.mutate()}
+      disabled={cleanUp.isPending}
+      title="Delete CVs older than a day that no application references"
+      className="inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 text-sm text-muted-foreground hover:text-foreground disabled:opacity-60"
+    >
+      {cleanUp.isPending ? (
+        <Loader2 className="size-4 animate-spin" />
+      ) : (
+        <Trash2 className="size-4" />
+      )}
+      Clean up orphaned CVs
     </button>
   );
 }
