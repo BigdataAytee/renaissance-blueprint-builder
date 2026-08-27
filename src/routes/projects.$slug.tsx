@@ -4,6 +4,7 @@ import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import type { Project } from "@/lib/cms/types";
+import { findFallbackProject } from "@/lib/cms/fallback-projects";
 import { absoluteUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/projects/$slug")({
@@ -30,8 +31,11 @@ function ProjectDetail() {
         .from("projects" as never).select("*")
         .eq("slug", slug).maybeSingle();
       if (error) throw error;
-      return (data ?? null) as Project | null;
+      // Fall back to the bundled portfolio so a seeded-but-unreachable database
+      // never turns a known project page into a 404.
+      return ((data ?? findFallbackProject(slug)) as Project | null);
     },
+    placeholderData: () => findFallbackProject(slug),
   });
 
   if (isLoading) {

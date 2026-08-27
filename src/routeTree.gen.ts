@@ -26,7 +26,9 @@ import { Route as TeamRouteImport } from './routes/team'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as BusinessSectorsIndexRouteImport } from './routes/business-sectors.index'
 import { Route as BusinessSectorsSlugRouteImport } from './routes/business-sectors.$slug'
+import { Route as NewsIndexRouteImport } from './routes/news.index'
 import { Route as NewsSlugRouteImport } from './routes/news.$slug'
+import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as AuthenticatedAdminEventsRouteImport } from './routes/_authenticated/admin.events'
@@ -121,10 +123,20 @@ const BusinessSectorsSlugRoute = BusinessSectorsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BusinessSectorsRoute,
 } as any)
+const NewsIndexRoute = NewsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => NewsRoute,
+} as any)
 const NewsSlugRoute = NewsSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
   getParentRoute: () => NewsRoute,
+} as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProjectsRoute,
 } as any)
 const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
   id: '/$slug',
@@ -195,6 +207,8 @@ export interface FileRoutesByFullPath {
   '/news/$slug': typeof NewsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/business-sectors/': typeof BusinessSectorsIndexRoute
+  '/news/': typeof NewsIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
   '/admin/events': typeof AuthenticatedAdminEventsRoute
   '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/admin/news': typeof AuthenticatedAdminNewsRoute
@@ -213,14 +227,14 @@ export interface FileRoutesByTo {
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
   '/industries': typeof IndustriesRoute
-  '/news': typeof NewsRouteWithChildren
-  '/projects': typeof ProjectsRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/team': typeof TeamRoute
   '/business-sectors/$slug': typeof BusinessSectorsSlugRoute
   '/news/$slug': typeof NewsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/business-sectors': typeof BusinessSectorsIndexRoute
+  '/news': typeof NewsIndexRoute
+  '/projects': typeof ProjectsIndexRoute
   '/admin/events': typeof AuthenticatedAdminEventsRoute
   '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/admin/news': typeof AuthenticatedAdminNewsRoute
@@ -251,6 +265,8 @@ export interface FileRoutesById {
   '/news/$slug': typeof NewsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/business-sectors/': typeof BusinessSectorsIndexRoute
+  '/news/': typeof NewsIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
   '/_authenticated/admin/events': typeof AuthenticatedAdminEventsRoute
   '/_authenticated/admin/gallery': typeof AuthenticatedAdminGalleryRoute
   '/_authenticated/admin/news': typeof AuthenticatedAdminNewsRoute
@@ -281,6 +297,8 @@ export interface FileRouteTypes {
     | '/news/$slug'
     | '/projects/$slug'
     | '/business-sectors/'
+    | '/news/'
+    | '/projects/'
     | '/admin/events'
     | '/admin/gallery'
     | '/admin/news'
@@ -299,14 +317,14 @@ export interface FileRouteTypes {
     | '/events'
     | '/gallery'
     | '/industries'
-    | '/news'
-    | '/projects'
     | '/sitemap.xml'
     | '/team'
     | '/business-sectors/$slug'
     | '/news/$slug'
     | '/projects/$slug'
     | '/business-sectors'
+    | '/news'
+    | '/projects'
     | '/admin/events'
     | '/admin/gallery'
     | '/admin/news'
@@ -336,6 +354,8 @@ export interface FileRouteTypes {
     | '/news/$slug'
     | '/projects/$slug'
     | '/business-sectors/'
+    | '/news/'
+    | '/projects/'
     | '/_authenticated/admin/events'
     | '/_authenticated/admin/gallery'
     | '/_authenticated/admin/news'
@@ -484,12 +504,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BusinessSectorsSlugRouteImport
       parentRoute: typeof BusinessSectorsRoute
     }
+    '/news/': {
+      id: '/news/'
+      path: '/'
+      fullPath: '/news/'
+      preLoaderRoute: typeof NewsIndexRouteImport
+      parentRoute: typeof NewsRoute
+    }
     '/news/$slug': {
       id: '/news/$slug'
       path: '/$slug'
       fullPath: '/news/$slug'
       preLoaderRoute: typeof NewsSlugRouteImport
       parentRoute: typeof NewsRoute
+    }
+    '/projects/': {
+      id: '/projects/'
+      path: '/'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof ProjectsRoute
     }
     '/projects/$slug': {
       id: '/projects/$slug'
@@ -609,20 +643,24 @@ const BusinessSectorsRouteWithChildren = BusinessSectorsRoute._addFileChildren(
 
 interface NewsRouteChildren {
   NewsSlugRoute: typeof NewsSlugRoute
+  NewsIndexRoute: typeof NewsIndexRoute
 }
 
 const NewsRouteChildren: NewsRouteChildren = {
   NewsSlugRoute: NewsSlugRoute,
+  NewsIndexRoute: NewsIndexRoute,
 }
 
 const NewsRouteWithChildren = NewsRoute._addFileChildren(NewsRouteChildren)
 
 interface ProjectsRouteChildren {
   ProjectsSlugRoute: typeof ProjectsSlugRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
 const ProjectsRouteChildren: ProjectsRouteChildren = {
   ProjectsSlugRoute: ProjectsSlugRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
 }
 
 const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(
