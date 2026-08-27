@@ -16,11 +16,16 @@ export function WhatsAppButton() {
 
   return (
     <div className="group fixed bottom-6 right-6 z-50 flex items-center gap-2 print:hidden">
+      {/*
+        Always at least faintly visible: hover and focus-visible do not exist on
+        touch devices, which are exactly where a pinned button is worth
+        dismissing, so this must never be fully transparent.
+      */}
       <button
         type="button"
         onClick={() => setDismissed(true)}
         aria-label="Hide the WhatsApp chat button"
-        className="grid size-7 place-items-center rounded-full border border-border bg-background text-muted-foreground opacity-0 transition-opacity duration-200 hover:text-foreground focus-visible:opacity-100 group-hover:opacity-100"
+        className="grid size-7 place-items-center rounded-full border border-border bg-background text-muted-foreground opacity-60 transition-opacity duration-200 hover:text-foreground hover:opacity-100 focus-visible:opacity-100 group-hover:opacity-100"
       >
         <X className="size-3.5" />
       </button>

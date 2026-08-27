@@ -35,7 +35,11 @@ function ProjectDetail() {
       // never turns a known project page into a 404.
       return ((data ?? findFallbackProject(slug)) as Project | null);
     },
-    placeholderData: () => findFallbackProject(slug),
+    // `undefined`, not `null`, when there is no bundled stand-in: React Query
+    // treats a `null` placeholder as real data, which would resolve the query
+    // to "no such project" and render the not-found page before the fetch
+    // lands. Returning undefined keeps isLoading true until it does.
+    placeholderData: () => findFallbackProject(slug) ?? undefined,
   });
 
   if (isLoading) {

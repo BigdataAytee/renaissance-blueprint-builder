@@ -53,9 +53,13 @@ function Contact() {
     }
 
     // Best-effort notification — the message is already stored, so a mail
-    // failure must not be surfaced as a failed submission.
+    // failure must not be surfaced as a failed submission. invoke() reports a
+    // non-2xx response in `error` rather than rejecting, so both are checked.
     void supabase.functions
       .invoke("notify-contact", { body: submission })
+      .then(({ error: notifyError }) => {
+        if (notifyError) console.error("notify-contact failed", notifyError);
+      })
       .catch((err) => console.error("notify-contact failed", err));
 
     form.reset();

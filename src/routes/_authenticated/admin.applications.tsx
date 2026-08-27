@@ -22,7 +22,9 @@ function Page() {
   });
 
   const { data: vacancies } = useQuery({
-    queryKey: ["vacancies"],
+    // Not ["vacancies"] — that key belongs to useCollection() on the Vacancies
+    // CRUD page, whose query orders rows differently.
+    queryKey: ["vacancies", "titles"],
     queryFn: async () => {
       const { data, error } = await supabase.from("vacancies" as never).select("*");
       if (error) throw error;
@@ -33,10 +35,12 @@ function Page() {
   const titleFor = (id: string | null) =>
     vacancies?.find((v) => v.id === id)?.title ?? "Unspecified role";
 
-  // Group by vacancy, preserving the newest-first order of the flat list.
+  // Group by vacancy id, not by title: two vacancies can share a title, and
+  // until the vacancies query resolves every title reads "Unspecified role".
+  // Insertion order preserves the newest-first order of the flat list.
   const groups = new Map<string, JobApplication[]>();
   for (const application of applications ?? []) {
-    const key = titleFor(application.vacancy_id);
+    const key = application.vacancy_id ?? "";
     groups.set(key, [...(groups.get(key) ?? []), application]);
   }
 
@@ -51,10 +55,11 @@ function Page() {
         </div>
       ) : (
         <div className="space-y-8">
-          {[...groups.entries()].map(([role, rows]) => (
-            <section key={role}>
+          {[...groups.entries()].map(([vacancyId, rows]) => (
+            <section key={vacancyId}>
               <h2 className="mb-3 font-extrabold">
-                {role} <span className="text-muted-foreground font-normal">({rows.length})</span>
+                {titleFor(vacancyId || null)}{" "}
+                <span className="text-muted-foreground font-normal">({rows.length})</span>
               </h2>
               <div className="rounded-lg border border-border bg-background overflow-hidden">
                 <table className="w-full text-sm">

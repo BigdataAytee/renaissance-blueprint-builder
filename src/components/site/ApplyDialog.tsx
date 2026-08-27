@@ -12,11 +12,32 @@ import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
 const MAX_CV_BYTES = 5 * 1024 * 1024;
-const ACCEPTED_CV_TYPES = [
-  "application/pdf",
-  "application/msword",
-  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-];
+const DOCX_TYPE = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+const ACCEPTED_CV_TYPES = ["application/pdf", "application/msword", DOCX_TYPE];
+// Mirrors allowed_mime_types on the `applications` bucket.
+const TYPE_BY_EXTENSION: Record<string, string> = {
+  pdf: "application/pdf",
+  doc: "application/msword",
+  docx: DOCX_TYPE,
+};
+
+const extensionOf = (fileName: string) =>
+  fileName.includes(".") ? (fileName.split(".").pop() ?? "").toLowerCase() : "";
+
+/**
+ * The MIME type to upload a CV as, or null when it is not an accepted format.
+ * Browsers report an empty type for some .doc files, so the extension decides
+ * when the browser will not.
+ */
+function contentTypeFor(file: File): string | null {
+  if (file.type) return ACCEPTED_CV_TYPES.includes(file.type) ? file.type : null;
+  return TYPE_BY_EXTENSION[extensionOf(file.name)] ?? null;
+}
+
+/** crypto.randomUUID is unavailable outside secure contexts (plain-http hosts). */
+const randomId = () =>
+  globalThis.crypto?.randomUUID?.() ??
+  `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
 
 // Matches the field styling on the contact form.
 const fieldCls =
@@ -59,48 +80,58 @@ export function ApplyDialog({
         toast.error("Your CV must be 5 MB or smaller.");
         return;
       }
-      if (file.type && !ACCEPTED_CV_TYPES.includes(file.type)) {
+      // Browsers sometimes report an empty type for .doc, so fall back to the
+      // extension. The storage bucket enforces the same allowlist, and letting
+      // an unknown type through would surface its raw error instead of this one.
+      if (contentTypeFor(file) === null) {
         toast.error("Please attach a PDF, DOC or DOCX file.");
         return;
       }
     }
 
     setSubmitting(true);
-    let cvPath: string | null = null;
+    try {
+      let cvPath: string | null = null;
 
-    if (file) {
-      const extension = file.name.includes(".") ? file.name.split(".").pop() : "pdf";
-      // crypto.randomUUID keeps applicants from guessing or overwriting each
-      // other's uploads, since the bucket accepts anonymous writes.
-      cvPath = `${slugify(vacancyTitle)}/${crypto.randomUUID()}.${extension}`;
-      const { error: uploadError } = await supabase.storage
-        .from("applications")
-        .upload(cvPath, file, { contentType: file.type || undefined, upsert: false });
-      if (uploadError) {
-        setSubmitting(false);
-        toast.error(uploadError.message || "Could not upload your CV. Please try again.");
+      if (file) {
+        const extension = extensionOf(file.name) || "pdf";
+        // randomId keeps applicants from guessing or overwriting each other's
+        // uploads, since the bucket accepts anonymous writes.
+        cvPath = `${slugify(vacancyTitle)}/${randomId()}.${extension}`;
+        const { error: uploadError } = await supabase.storage
+          .from("applications")
+          .upload(cvPath, file, { contentType: contentTypeFor(file) ?? undefined, upsert: false });
+        if (uploadError) {
+          toast.error(uploadError.message || "Could not upload your CV. Please try again.");
+          return;
+        }
+      }
+
+      const { error } = await supabase.from("job_applications" as never).insert({
+        vacancy_id: vacancyId,
+        name: String(data.get("name") || "").trim(),
+        email: String(data.get("email") || "").trim(),
+        phone: String(data.get("phone") || "").trim(),
+        cover_note: String(data.get("cover_note") || "").trim(),
+        cv_path: cvPath,
+      } as never);
+
+      if (error) {
+        toast.error(error.message || "Could not send your application. Please try again.");
         return;
       }
+
+      form.reset();
+      setOpen(false);
+      toast.success("Application received. We will be in touch if there is a match.");
+    } catch (err) {
+      // Without this the button would stay stuck on "Sending" with no
+      // explanation if anything above threw unexpectedly.
+      console.error("Application submission failed", err);
+      toast.error("Could not send your application. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
-
-    const { error } = await supabase.from("job_applications" as never).insert({
-      vacancy_id: vacancyId,
-      name: String(data.get("name") || "").trim(),
-      email: String(data.get("email") || "").trim(),
-      phone: String(data.get("phone") || "").trim(),
-      cover_note: String(data.get("cover_note") || "").trim(),
-      cv_path: cvPath,
-    } as never);
-    setSubmitting(false);
-
-    if (error) {
-      toast.error(error.message || "Could not send your application. Please try again.");
-      return;
-    }
-
-    form.reset();
-    setOpen(false);
-    toast.success("Application received. We will be in touch if there is a match.");
   };
 
   return (
