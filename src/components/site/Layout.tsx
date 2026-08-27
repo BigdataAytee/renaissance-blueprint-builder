@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { WhatsAppButton } from "./WhatsAppButton";
 
 export function Layout({ children, transparentNav = false }: { children: ReactNode; transparentNav?: boolean }) {
   return (
@@ -9,6 +10,7 @@ export function Layout({ children, transparentNav = false }: { children: ReactNo
       <Header />
       <main className={transparentNav ? "" : "pt-32"}>{children}</main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }

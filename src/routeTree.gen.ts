@@ -20,9 +20,11 @@ import { Route as EventsRouteImport } from './routes/events'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as NewsRouteImport } from './routes/news'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TeamRouteImport } from './routes/team'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as BusinessSectorsIndexRouteImport } from './routes/business-sectors.index'
 import { Route as BusinessSectorsSlugRouteImport } from './routes/business-sectors.$slug'
@@ -94,6 +96,11 @@ const NewsRoute = NewsRouteImport.update({
   path: '/news',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
@@ -107,6 +114,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
@@ -206,9 +218,11 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/industries': typeof IndustriesRoute
   '/news': typeof NewsRouteWithChildren
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/team': typeof TeamRoute
+  '/terms': typeof TermsRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/business-sectors/$slug': typeof BusinessSectorsSlugRoute
   '/news/$slug': typeof NewsSlugRoute
@@ -235,8 +249,10 @@ export interface FileRoutesByTo {
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
   '/industries': typeof IndustriesRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/team': typeof TeamRoute
+  '/terms': typeof TermsRoute
   '/business-sectors/$slug': typeof BusinessSectorsSlugRoute
   '/news/$slug': typeof NewsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
@@ -266,9 +282,11 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/industries': typeof IndustriesRoute
   '/news': typeof NewsRouteWithChildren
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/team': typeof TeamRoute
+  '/terms': typeof TermsRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/business-sectors/$slug': typeof BusinessSectorsSlugRoute
   '/news/$slug': typeof NewsSlugRoute
@@ -299,9 +317,11 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/industries'
     | '/news'
+    | '/privacy-policy'
     | '/projects'
     | '/sitemap.xml'
     | '/team'
+    | '/terms'
     | '/admin'
     | '/business-sectors/$slug'
     | '/news/$slug'
@@ -328,8 +348,10 @@ export interface FileRouteTypes {
     | '/events'
     | '/gallery'
     | '/industries'
+    | '/privacy-policy'
     | '/sitemap.xml'
     | '/team'
+    | '/terms'
     | '/business-sectors/$slug'
     | '/news/$slug'
     | '/projects/$slug'
@@ -358,9 +380,11 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/industries'
     | '/news'
+    | '/privacy-policy'
     | '/projects'
     | '/sitemap.xml'
     | '/team'
+    | '/terms'
     | '/_authenticated/admin'
     | '/business-sectors/$slug'
     | '/news/$slug'
@@ -391,9 +415,11 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   IndustriesRoute: typeof IndustriesRoute
   NewsRoute: typeof NewsRouteWithChildren
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TeamRoute: typeof TeamRoute
+  TermsRoute: typeof TermsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -475,6 +501,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects': {
       id: '/projects'
       path: '/projects'
@@ -494,6 +527,13 @@ declare module '@tanstack/react-router' {
       path: '/team'
       fullPath: '/team'
       preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
@@ -701,9 +741,11 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   IndustriesRoute: IndustriesRoute,
   NewsRoute: NewsRouteWithChildren,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TeamRoute: TeamRoute,
+  TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

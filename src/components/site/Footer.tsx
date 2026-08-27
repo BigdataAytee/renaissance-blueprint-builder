@@ -126,9 +126,8 @@ export function Footer() {
         <div className="container-wide py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/50">
           <div>© {new Date().getFullYear()} Dynamic Renaissance Biz Ents. Ltd. All rights reserved.</div>
           <div className="flex gap-5">
-            <span className="hover:text-white/80 cursor-pointer transition-colors">Privacy Policy</span>
-            <span className="hover:text-white/80 cursor-pointer transition-colors">Terms</span>
-            <span className="hover:text-white/80 cursor-pointer transition-colors">Cookie Policy</span>
+            <Link to="/privacy-policy" className="hover:text-white/80 transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-white/80 transition-colors">Terms</Link>
           </div>
         </div>
       </div>
