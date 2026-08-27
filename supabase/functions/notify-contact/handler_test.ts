@@ -63,7 +63,10 @@ async function withStubs(
     return { response: await body(request), sent };
   } finally {
     globalThis.fetch = realFetch;
-    for (const [k, v] of previous) v === undefined ? Deno.env.delete(k) : Deno.env.set(k, v);
+    for (const [k, v] of previous) {
+      if (v === undefined) Deno.env.delete(k);
+      else Deno.env.set(k, v);
+    }
   }
 }
 

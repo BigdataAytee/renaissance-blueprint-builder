@@ -8,6 +8,10 @@ import {
 } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { Honeypot } from "@/components/site/Honeypot";
+import { Turnstile } from "@/components/site/Turnstile";
+import { turnstileEnabled } from "@/lib/turnstile-config";
+import { startJobApplication } from "@/lib/cms/public-forms.functions";
+import { errorMessage } from "@/lib/cms/error-message";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
@@ -34,34 +38,10 @@ function contentTypeFor(file: File): string | null {
   return TYPE_BY_EXTENSION[extensionOf(file.name)] ?? null;
 }
 
-/**
- * The bucket's upload rate limit is enforced by its INSERT policy, so hitting it
- * comes back as a raw row-level-security violation. Applicants should not be
- * shown that, and it is not their file that is wrong.
- */
-function uploadErrorMessage(message: string | undefined): string {
-  if (message && /row-level security|violates .*policy/i.test(message)) {
-    return "We are receiving a lot of applications right now. Please try again in a few minutes.";
-  }
-  return message || "Could not upload your CV. Please try again.";
-}
-
-/** crypto.randomUUID is unavailable outside secure contexts (plain-http hosts). */
-const randomId = () =>
-  globalThis.crypto?.randomUUID?.() ??
-  `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
-
 // Matches the field styling on the contact form.
 const fieldCls =
   "mt-2 w-full rounded-xl border border-border bg-muted px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all duration-300 hover:bg-background hover:border-primary/30 focus:border-primary focus:bg-background focus:ring-4 focus:ring-primary/10";
 const labelCls = "text-xs font-bold uppercase tracking-wider text-muted-foreground";
-
-/** Turns "Senior QS Engineer" into "senior-qs-engineer" for the storage path. */
-const slugify = (value: string) =>
-  value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "") || "application";
 
 export function ApplyDialog({
   vacancyId,
@@ -72,6 +52,7 @@ export function ApplyDialog({
 }) {
   const [open, setOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -101,46 +82,56 @@ export function ApplyDialog({
       }
     }
 
+    if (turnstileEnabled && !captchaToken) {
+      toast.error("Please complete the verification challenge and try again.");
+      return;
+    }
+
     setSubmitting(true);
     try {
-      let cvPath: string | null = null;
+      // The server verifies the captcha and the per-IP limit, writes the row,
+      // and hands back a one-shot signed URL for the CV. The bucket no longer
+      // accepts anonymous uploads, so this is the only way a CV gets in.
+      const result = await startJobApplication({
+        data: {
+          vacancyId,
+          vacancyTitle,
+          name: String(data.get("name") || ""),
+          email: String(data.get("email") || ""),
+          phone: String(data.get("phone") || ""),
+          coverNote: String(data.get("cover_note") || ""),
+          cvExtension: file ? extensionOf(file.name) || "pdf" : "",
+          turnstileToken: captchaToken ?? undefined,
+          website: String(data.get("website") || ""),
+        },
+      });
 
-      if (file) {
-        const extension = extensionOf(file.name) || "pdf";
-        // randomId keeps applicants from guessing or overwriting each other's
-        // uploads, since the bucket accepts anonymous writes.
-        cvPath = `${slugify(vacancyTitle)}/${randomId()}.${extension}`;
+      if (result.accepted && result.upload && file) {
         const { error: uploadError } = await supabase.storage
           .from("applications")
-          .upload(cvPath, file, { contentType: contentTypeFor(file) ?? undefined, upsert: false });
+          .uploadToSignedUrl(result.upload.path, result.upload.token, file, {
+            contentType: contentTypeFor(file) ?? undefined,
+          });
         if (uploadError) {
-          toast.error(uploadErrorMessage(uploadError.message));
+          // The application is already recorded, so losing the CV must not read
+          // as a failed application — we ask for it rather than discarding it.
+          toast.warning(
+            "Your application was received, but the CV upload failed. Please email it to us.",
+          );
+          form.reset();
+          setCaptchaToken(null);
+          setOpen(false);
           return;
         }
       }
 
-      const { error } = await supabase.from("job_applications" as never).insert({
-        vacancy_id: vacancyId,
-        name: String(data.get("name") || "").trim(),
-        email: String(data.get("email") || "").trim(),
-        phone: String(data.get("phone") || "").trim(),
-        cover_note: String(data.get("cover_note") || "").trim(),
-        cv_path: cvPath,
-      } as never);
-
-      if (error) {
-        toast.error(error.message || "Could not send your application. Please try again.");
-        return;
-      }
-
       form.reset();
+      setCaptchaToken(null);
       setOpen(false);
       toast.success("Application received. We will be in touch if there is a match.");
     } catch (err) {
-      // Without this the button would stay stuck on "Sending" with no
-      // explanation if anything above threw unexpectedly.
       console.error("Application submission failed", err);
-      toast.error("Could not send your application. Please try again.");
+      toast.error(errorMessage(err, "Could not send your application. Please try again."));
     } finally {
       setSubmitting(false);
     }
@@ -159,6 +150,7 @@ export function ApplyDialog({
         </DialogHeader>
         <form onSubmit={handleSubmit} className="relative space-y-5">
           <Honeypot name="website" />
+          <Turnstile action="careers" onToken={setCaptchaToken} />
           <div>
             <label htmlFor="apply-name" className={labelCls}>
               Full name *
