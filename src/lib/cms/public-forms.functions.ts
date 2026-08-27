@@ -63,16 +63,16 @@ export const submitContactMessage = createServerFn({ method: "POST" })
     if (error) throw new Error(error.message);
 
     // Best-effort notification: the message is already stored, so a mail
-    // failure must not fail the submission. invoke() reports a non-2xx in
-    // `error` rather than rejecting, so both paths are logged.
-    try {
-      const { error: notifyError } = await supabaseAdmin.functions.invoke("notify-contact", {
-        body: row,
-      });
-      if (notifyError) console.error("notify-contact failed", notifyError.message);
-    } catch (notifyError) {
-      console.error("notify-contact failed", notifyError);
-    }
+    // failure must not fail the submission. sendContactNotification never
+    // throws — it reports what happened and we log it.
+    const { sendContactNotification } = await import("./contact-notification");
+    const result = await sendContactNotification(row, {
+      apiKey: process.env.RESEND_API_KEY,
+      to: process.env.CONTACT_NOTIFICATION_TO ?? "admin@dynamicrenaissance.org",
+      from: process.env.CONTACT_NOTIFICATION_FROM ?? "Website <onboarding@resend.dev>",
+    });
+    if ("failed" in result) console.error("Contact notification failed", result.failed);
+    if ("skipped" in result) console.warn("RESEND_API_KEY is not set — no notification sent");
 
     return { ok: true };
   });
