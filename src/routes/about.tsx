@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { company, coreValues, executiveTeam } from "@/lib/site-data";
 import aboutTeam from "@/assets/about-team.webp";
 import { Target, Eye, Compass } from "lucide-react";
+import { absoluteUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/about")({
   component: About,
@@ -13,9 +14,9 @@ export const Route = createFileRoute("/about")({
       { name: "description", content: "Our story, mission, values and leadership across vital business sectors." },
       { property: "og:description", content: "Learn about the history, mission, values and leadership of Dynamic Renaissance." },
       { property: "og:title", content: "About Dynamic Renaissance" },
-      { property: "og:url", content: "/about" },
+      { property: "og:url", content: absoluteUrl("/about") },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/about") }],
   }),
 });
 

@@ -8,6 +8,7 @@ import {
   company, stats, businesses,
   heroImg,
 } from "@/lib/site-data";
+import { absoluteUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -16,7 +17,7 @@ export const Route = createFileRoute("/")({
       { title: "Dynamic Renaissance Biz Ents. Ltd. — Building Today. Transforming Tomorrow." },
       { name: "description", content: "A diversified enterprise group delivering integrated solutions across infrastructure, oil & gas, agriculture, logistics, manufacturing and commercial services." },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/") }],
   }),
 });
 

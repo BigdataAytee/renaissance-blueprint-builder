@@ -4,16 +4,19 @@ import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import type { Project } from "@/lib/cms/types";
+import { absoluteUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/projects/$slug")({
   component: ProjectDetail,
-  head: () => ({
+  head: ({ params }) => ({
     meta: [
       { title: "Project Detail — Dynamic Renaissance" },
       { name: "description", content: "Read a Dynamic Renaissance project case study with scope, outcomes, timeline, location and sector context." },
       { property: "og:title", content: "Project Detail — Dynamic Renaissance" },
       { property: "og:description", content: "Project case study, scope and outcomes from Dynamic Renaissance." },
+      { property: "og:url", content: absoluteUrl(`/projects/${params.slug}`) },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl(`/projects/${params.slug}`) }],
   }),
 });
 

@@ -4,6 +4,7 @@ import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import { businesses } from "@/lib/site-data";
 import { SectorCardBackground } from "@/components/site/SectorCardBackground";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { absoluteUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/business-sectors/")({
   component: Businesses,
@@ -13,9 +14,9 @@ export const Route = createFileRoute("/business-sectors/")({
       { name: "description", content: "Eight integrated business sectors delivering infrastructure, energy, agriculture, logistics, manufacturing, industrial, hospitality and advisory solutions." },
       { property: "og:title", content: "Business Sectors — Dynamic Renaissance" },
       { property: "og:description", content: "Explore the company's diversified business platforms and sector capabilities." },
-      { property: "og:url", content: "/business-sectors" },
+      { property: "og:url", content: absoluteUrl("/business-sectors") },
     ],
-    links: [{ rel: "canonical", href: "/business-sectors" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/business-sectors") }],
   }),
 });
 

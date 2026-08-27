@@ -3,17 +3,19 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import type { NewsPost } from "@/lib/cms/types";
+import { leafOnlyCanonical, leafOnlyOgUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/news")({
   component: NewsList,
-  head: () => ({
+  head: (ctx) => ({
     meta: [
       { title: "News — Dynamic Renaissance" },
       { name: "description", content: "Latest news, announcements and updates from Dynamic Renaissance Biz Ents. Ltd." },
       { property: "og:title", content: "News — Dynamic Renaissance" },
       { property: "og:description", content: "Latest news and announcements from across our business sectors." },
+      ...leafOnlyOgUrl(ctx, "/news"),
     ],
-    links: [{ rel: "canonical", href: "/news" }],
+    links: leafOnlyCanonical(ctx, "/news"),
   }),
 });
 

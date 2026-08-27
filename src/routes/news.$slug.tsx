@@ -3,11 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Layout } from "@/components/site/Layout";
 import type { NewsPost } from "@/lib/cms/types";
+import { absoluteUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/news/$slug")({
   component: NewsDetail,
-  head: () => ({
-    meta: [{ title: "Article — Dynamic Renaissance" }],
+  head: ({ params }) => ({
+    meta: [
+      { title: "Article — Dynamic Renaissance" },
+      { property: "og:url", content: absoluteUrl(`/news/${params.slug}`) },
+    ],
+    links: [{ rel: "canonical", href: absoluteUrl(`/news/${params.slug}`) }],
   }),
 });
 

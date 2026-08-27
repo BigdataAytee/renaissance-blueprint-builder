@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import { CalendarDays, MapPin } from "lucide-react";
 import type { EventItem } from "@/lib/cms/types";
+import { absoluteUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/events")({
   component: Events,
@@ -13,7 +14,7 @@ export const Route = createFileRoute("/events")({
       { name: "description", content: "Upcoming events, industry forums and stakeholder gatherings hosted by Dynamic Renaissance." },
       { property: "og:title", content: "Events — Dynamic Renaissance" },
     ],
-    links: [{ rel: "canonical", href: "/events" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/events") }],
   }),
 });
 

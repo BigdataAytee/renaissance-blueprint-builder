@@ -4,18 +4,19 @@ import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import type { Project } from "@/lib/cms/types";
+import { leafOnlyCanonical, leafOnlyOgUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/projects")({
   component: Projects,
-  head: () => ({
+  head: (ctx) => ({
     meta: [
       { title: "Projects — Dynamic Renaissance" },
       { name: "description", content: "A portfolio of landmark projects delivered across infrastructure, energy, agriculture, logistics and hospitality." },
       { property: "og:title", content: "Projects — Dynamic Renaissance" },
       { property: "og:description", content: "Explore selected projects delivered by Dynamic Renaissance." },
-      { property: "og:url", content: "/projects" },
+      ...leafOnlyOgUrl(ctx, "/projects"),
     ],
-    links: [{ rel: "canonical", href: "/projects" }],
+    links: leafOnlyCanonical(ctx, "/projects"),
   }),
 });
 

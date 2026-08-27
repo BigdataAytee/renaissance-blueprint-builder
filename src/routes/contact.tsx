@@ -6,6 +6,7 @@ import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Honeypot } from "@/components/site/Honeypot";
+import { absoluteUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/contact")({
   component: Contact,
@@ -13,9 +14,9 @@ export const Route = createFileRoute("/contact")({
     meta: [
       { title: "Contact — Dynamic Renaissance" },
       { name: "description", content: "Get in touch with our team for consultations, partnerships and general enquiries." },
-      { property: "og:url", content: "/contact" },
+      { property: "og:url", content: absoluteUrl("/contact") },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/contact") }],
   }),
 });
 

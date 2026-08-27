@@ -1,2 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /auth
+
+Sitemap: https://renaissance-blueprint-builder.lovable.app/sitemap.xml

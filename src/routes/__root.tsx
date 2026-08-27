@@ -10,6 +10,8 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import { Toaster } from "@/components/ui/sonner";
+import { company } from "@/lib/site-data";
+import { SITE_URL, absoluteUrl } from "@/lib/site-config";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -89,8 +91,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Dynamic Renaissance Biz Ents. Ltd. — Building Today. Transforming Tomorrow." },
       { name: "twitter:description", content: "A diversified enterprise group delivering integrated solutions across infrastructure, oil & gas, agriculture, logistics, manufacturing and commercial services." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/b66f72ec-0ac7-4b05-b81a-df045c3762d7" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/b66f72ec-0ac7-4b05-b81a-df045c3762d7" },
+      { property: "og:url", content: absoluteUrl("/") },
+      { property: "og:image", content: absoluteUrl("/og-image.jpg") },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { name: "twitter:image", content: absoluteUrl("/og-image.jpg") },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -105,11 +110,44 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+// Organization structured data, so search engines can attach the company's real
+// contact details to the brand rather than guessing them from page copy.
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: company.name,
+  alternateName: company.short,
+  description: company.description,
+  url: SITE_URL,
+  logo: absoluteUrl("/og-image.jpg"),
+  email: company.email,
+  telephone: company.phone,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "30 Sasere Ajibade off Saidku Street",
+    addressLocality: "Ilasamaja, Mushin",
+    addressRegion: "Lagos",
+    addressCountry: "NG",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    telephone: company.phone,
+    email: company.email,
+    areaServed: "NG",
+    availableLanguage: "English",
+  },
+};
+
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
       </head>
       <body>
         {children}

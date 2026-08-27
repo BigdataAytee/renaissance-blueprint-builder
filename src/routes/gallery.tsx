@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import type { GalleryImage } from "@/lib/cms/types";
+import { absoluteUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/gallery")({
   component: Gallery,
@@ -12,7 +13,7 @@ export const Route = createFileRoute("/gallery")({
       { name: "description", content: "A visual look at our projects, teams and operations across sectors." },
       { property: "og:title", content: "Gallery — Dynamic Renaissance" },
     ],
-    links: [{ rel: "canonical", href: "/gallery" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/gallery") }],
   }),
 });
 

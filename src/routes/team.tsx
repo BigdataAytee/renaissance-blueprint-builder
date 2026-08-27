@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Layout, PageHero, CTA } from "@/components/site/Layout";
 import type { TeamMember } from "@/lib/cms/types";
+import { absoluteUrl } from "@/lib/site-config";
 
 export const Route = createFileRoute("/team")({
   component: Team,
@@ -12,7 +13,7 @@ export const Route = createFileRoute("/team")({
       { name: "description", content: "Meet the leadership and people behind Dynamic Renaissance." },
       { property: "og:title", content: "Team — Dynamic Renaissance" },
     ],
-    links: [{ rel: "canonical", href: "/team" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/team") }],
   }),
 });
 
