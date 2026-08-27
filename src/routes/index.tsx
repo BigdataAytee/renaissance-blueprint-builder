@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Layout, CTA } from "@/components/site/Layout";
 import { Counter } from "@/components/site/Counter";
 import {
-  company, stats, businesses,
+  company, stats, businesses, clientsAndCertifications,
   heroImg,
 } from "@/lib/site-data";
 import { absoluteUrl } from "@/lib/site-config";
@@ -222,6 +222,28 @@ function Home() {
         </div>
       </section>
 
+
+      {/* TRUST STRIP — remove this section and clientsAndCertifications to drop it. */}
+      {clientsAndCertifications.length > 0 && (
+        <section className="border-y border-border bg-background py-12">
+          <div className="container-wide">
+            <div className="text-center text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              Trusted by partners and certified for excellence
+            </div>
+            <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
+              {clientsAndCertifications.map((entry) => (
+                <li key={entry.name} className="text-sm font-semibold text-muted-foreground/70 transition-colors hover:text-foreground">
+                  {entry.logo ? (
+                    <img src={entry.logo} alt={entry.name} loading="lazy" width={140} height={40} className="h-10 w-auto opacity-60 transition-opacity hover:opacity-100" />
+                  ) : (
+                    entry.name
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       <CTA />
     </Layout>

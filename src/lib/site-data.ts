@@ -147,6 +147,20 @@ export const businesses = [
 
 
 
+/**
+ * Placeholder trust strip for the homepage. Drop a logo file into
+ * public/partner-logos/ and set `logo` to its path to show an image instead of
+ * the name. Emptying this array removes the section from the homepage.
+ */
+export const clientsAndCertifications: { name: string; logo?: string }[] = [
+  { name: "ISO 9001 Quality Management" },
+  { name: "ISO 45001 Occupational Health & Safety" },
+  { name: "DPR / NUPRC Registered" },
+  { name: "COREN Certified Engineering" },
+  { name: "Lagos Chamber of Commerce" },
+  { name: "Nigerian Content Development Board" },
+];
+
 export const whyChoose = [
   { icon: Users, title: "Professional Team", body: "Multidisciplinary experts with deep sector knowledge." },
   { icon: Sparkles, title: "Integrated Solutions", body: "One partner across the entire value chain." },
