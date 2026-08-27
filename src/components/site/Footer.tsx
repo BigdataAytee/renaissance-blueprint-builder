@@ -4,17 +4,32 @@ import { company, businesses } from "@/lib/site-data";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { Honeypot } from "@/components/site/Honeypot";
 
 
 export function Footer() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubscribe = async (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!email) return;
+    if (!email || loading) return;
+
+    // Honeypot: humans never see this field, so a filled one means a bot.
+    if (String(new FormData(e.currentTarget).get("website") || "").trim()) {
+      setEmail("");
+      toast.success("Subscribed! Thanks for joining our newsletter.");
+      return;
+    }
+
+    const address = email.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(address)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+
     setLoading(true);
-    const { error } = await supabase.from("newsletter_subscribers").insert({ email });
+    const { error } = await supabase.from("newsletter_subscribers").insert({ email: address });
     setLoading(false);
     if (error) {
       if (error.code === "23505") {
@@ -82,10 +97,13 @@ export function Footer() {
               <li className="flex gap-2.5 items-center"><Phone className="size-3.5 shrink-0 text-gold" />{company.phone}</li>
               <li className="flex gap-2.5 items-center"><Mail className="size-3.5 shrink-0 text-gold" />{company.email}</li>
             </ul>
-            <form className="mt-5" onSubmit={handleSubscribe}>
-              <label className="text-[10px] uppercase tracking-[0.14em] text-white/50">Newsletter</label>
+            <form className="relative mt-5" onSubmit={handleSubscribe}>
+              <Honeypot />
+              <label htmlFor="newsletter-email" className="text-[10px] uppercase tracking-[0.14em] text-white/50">Newsletter</label>
               <div className="mt-1.5 flex">
                 <input
+                  id="newsletter-email"
+                  name="email"
                   type="email"
                   required
                   placeholder="Your email"
