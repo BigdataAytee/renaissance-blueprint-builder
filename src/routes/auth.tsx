@@ -21,12 +21,22 @@ function AuthPage() {
   const router = useRouter();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   // Once an administrator exists, public sign-up closes and this is a sign-in
-  // page only. Assume it is closed until proven otherwise.
-  const { data: hasAdmin = true } = useQuery({
+  // page only.
+  //
+  // adminExists() deliberately fails open — it reports "no admin yet" when the
+  // check itself cannot run — so that a missing service-role key can never lock
+  // the owner out of creating the first account. This has to agree with it:
+  // sign-up is hidden only when we positively know an admin exists. Treating an
+  // unanswered check as "closed" would undo exactly the protection the server
+  // side was written to provide.
+  const { data: adminPresent, isPending: checkingForAdmin } = useQuery({
     queryKey: ["admin-exists"],
     queryFn: () => adminExists(),
     staleTime: 5 * 60 * 1000,
   });
+  const knownToHaveAdmin = adminPresent === true;
+  // Stay quiet while the answer is still in flight, so the link does not flash.
+  const signUpAvailable = !checkingForAdmin && !knownToHaveAdmin;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -38,15 +48,17 @@ function AuthPage() {
   }, [navigate]);
 
   useEffect(() => {
-    if (hasAdmin) setMode("signin");
-  }, [hasAdmin]);
+    if (knownToHaveAdmin) setMode("signin");
+  }, [knownToHaveAdmin]);
 
   const handle = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
       if (mode === "signup") {
-        if (hasAdmin) throw new Error("Sign-up is closed. Ask an administrator for an invite.");
+        if (knownToHaveAdmin) {
+          throw new Error("Sign-up is closed. Ask an administrator for an invite.");
+        }
         const { error } = await supabase.auth.signUp({
           email,
           password,
@@ -71,21 +83,29 @@ function AuthPage() {
   return (
     <Layout>
       <div className="min-h-[70vh] grid place-items-center py-24">
-        <form onSubmit={handle} className="w-full max-w-md p-8 rounded-lg border border-border bg-background shadow-sm space-y-5">
+        <form
+          onSubmit={handle}
+          className="w-full max-w-md p-8 rounded-lg border border-border bg-background shadow-sm space-y-5"
+        >
           <div>
             <div className="eyebrow">Admin</div>
             <h1 className="mt-2 text-2xl font-extrabold">
               {mode === "signin" ? "Sign in to the dashboard" : "Create the first admin account"}
             </h1>
             <p className="mt-1 text-sm text-muted-foreground">
-              {mode === "signup" ? "The first account created becomes the site administrator." : "Only authorised administrators can access the CMS."}
+              {mode === "signup"
+                ? "The first account created becomes the site administrator."
+                : "Only authorised administrators can access the CMS."}
             </p>
           </div>
 
           <label className="block">
             <span className="text-sm font-medium">Email</span>
             <input
-              type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
               autoComplete="email"
             />
@@ -93,7 +113,11 @@ function AuthPage() {
           <label className="block">
             <span className="text-sm font-medium">Password</span>
             <input
-              type="password" required minLength={6} value={password} onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              required
+              minLength={6}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
               autoComplete={mode === "signin" ? "current-password" : "new-password"}
             />
@@ -103,7 +127,7 @@ function AuthPage() {
             {loading ? "Please wait..." : mode === "signin" ? "Sign in" : "Create account"}
           </button>
 
-          {!hasAdmin && (
+          {signUpAvailable && (
             <div className="text-center text-sm text-muted-foreground">
               {mode === "signin" ? (
                 <button type="button" onClick={() => setMode("signup")} className="underline">
