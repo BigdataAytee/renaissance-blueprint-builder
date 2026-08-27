@@ -8,9 +8,15 @@ export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
       { title: "Terms of Use — Dynamic Renaissance" },
-      { name: "description", content: "The terms that govern your use of the Dynamic Renaissance website." },
+      {
+        name: "description",
+        content: "The terms that govern your use of the Dynamic Renaissance website.",
+      },
       { property: "og:title", content: "Terms of Use — Dynamic Renaissance" },
-      { property: "og:description", content: "Terms governing use of this website and anything you submit through it." },
+      {
+        property: "og:description",
+        content: "Terms governing use of this website and anything you submit through it.",
+      },
       { property: "og:url", content: absoluteUrl("/terms") },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/terms") }],

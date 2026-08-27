@@ -56,9 +56,7 @@ for await (const rel of walk(ASSETS)) {
     withoutEnlargement: true,
   });
 
-  await pipeline
-    .webp(isLogo ? { quality: 90, alphaQuality: 100 } : { quality: 80 })
-    .toFile(out);
+  await pipeline.webp(isLogo ? { quality: 90, alphaQuality: 100 } : { quality: 80 }).toFile(out);
 
   after += (await fs.stat(out)).size;
   await fs.rm(src);

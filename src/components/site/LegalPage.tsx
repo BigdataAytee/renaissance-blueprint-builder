@@ -27,7 +27,9 @@ export function LegalPage({
               <div key={section.heading}>
                 <h2 className="text-2xl font-extrabold">{section.heading}</h2>
                 {section.body.map((paragraph) => (
-                  <p key={paragraph} className="mt-4 text-muted-foreground leading-relaxed">{paragraph}</p>
+                  <p key={paragraph} className="mt-4 text-muted-foreground leading-relaxed">
+                    {paragraph}
+                  </p>
                 ))}
                 {section.bullets && (
                   <ul className="mt-4 space-y-2">
@@ -45,10 +47,21 @@ export function LegalPage({
               <h2 className="text-2xl font-extrabold">Contact us</h2>
               <p className="mt-4 text-muted-foreground leading-relaxed">
                 Questions about this page, or a request about your information? Write to{" "}
-                <a href={`mailto:${company.email}`} className="text-primary hover:underline">{company.email}</a>{" "}
-                or call <a href={`tel:${company.phone.replace(/\s+/g, "")}`} className="text-primary hover:underline">{company.phone}</a>.
+                <a href={`mailto:${company.email}`} className="text-primary hover:underline">
+                  {company.email}
+                </a>{" "}
+                or call{" "}
+                <a
+                  href={`tel:${company.phone.replace(/\s+/g, "")}`}
+                  className="text-primary hover:underline"
+                >
+                  {company.phone}
+                </a>
+                .
               </p>
-              <p className="mt-2 text-sm text-muted-foreground">{company.name} — {company.address}</p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {company.name} — {company.address}
+              </p>
             </div>
           </div>
         </div>

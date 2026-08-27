@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { Honeypot } from "@/components/site/Honeypot";
 import { toast } from "sonner";
@@ -19,9 +25,18 @@ const labelCls = "text-xs font-bold uppercase tracking-wider text-muted-foregrou
 
 /** Turns "Senior QS Engineer" into "senior-qs-engineer" for the storage path. */
 const slugify = (value: string) =>
-  value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "application";
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "") || "application";
 
-export function ApplyDialog({ vacancyId, vacancyTitle }: { vacancyId: string; vacancyTitle: string }) {
+export function ApplyDialog({
+  vacancyId,
+  vacancyTitle,
+}: {
+  vacancyId: string;
+  vacancyTitle: string;
+}) {
   const [open, setOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -91,7 +106,9 @@ export function ApplyDialog({ vacancyId, vacancyTitle }: { vacancyId: string; va
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <button type="button" className="btn-green shrink-0">Apply</button>
+        <button type="button" className="btn-green shrink-0">
+          Apply
+        </button>
       </DialogTrigger>
       <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
         <DialogHeader>
@@ -100,25 +117,40 @@ export function ApplyDialog({ vacancyId, vacancyTitle }: { vacancyId: string; va
         <form onSubmit={handleSubmit} className="relative space-y-5">
           <Honeypot name="website" />
           <div>
-            <label htmlFor="apply-name" className={labelCls}>Full name *</label>
+            <label htmlFor="apply-name" className={labelCls}>
+              Full name *
+            </label>
             <input id="apply-name" name="name" type="text" required className={fieldCls} />
           </div>
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="apply-email" className={labelCls}>Email *</label>
+              <label htmlFor="apply-email" className={labelCls}>
+                Email *
+              </label>
               <input id="apply-email" name="email" type="email" required className={fieldCls} />
             </div>
             <div>
-              <label htmlFor="apply-phone" className={labelCls}>Phone</label>
+              <label htmlFor="apply-phone" className={labelCls}>
+                Phone
+              </label>
               <input id="apply-phone" name="phone" type="tel" className={fieldCls} />
             </div>
           </div>
           <div>
-            <label htmlFor="apply-cover-note" className={labelCls}>Cover note</label>
-            <textarea id="apply-cover-note" name="cover_note" rows={4} className={`${fieldCls} min-h-[110px] resize-none`} />
+            <label htmlFor="apply-cover-note" className={labelCls}>
+              Cover note
+            </label>
+            <textarea
+              id="apply-cover-note"
+              name="cover_note"
+              rows={4}
+              className={`${fieldCls} min-h-[110px] resize-none`}
+            />
           </div>
           <div>
-            <label htmlFor="apply-cv" className={labelCls}>CV (PDF or Word, max 5 MB)</label>
+            <label htmlFor="apply-cv" className={labelCls}>
+              CV (PDF or Word, max 5 MB)
+            </label>
             <input
               id="apply-cv"
               name="cv"
@@ -127,7 +159,11 @@ export function ApplyDialog({ vacancyId, vacancyTitle }: { vacancyId: string; va
               className={`${fieldCls} file:mr-3 file:rounded-md file:border-0 file:bg-primary file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-primary-foreground`}
             />
           </div>
-          <button type="submit" disabled={submitting} className="btn-green w-full justify-center disabled:opacity-60">
+          <button
+            type="submit"
+            disabled={submitting}
+            className="btn-green w-full justify-center disabled:opacity-60"
+          >
             {submitting ? <Loader2 className="size-4 animate-spin" /> : null}
             {submitting ? "Sending" : "Send application"}
           </button>

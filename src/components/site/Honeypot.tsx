@@ -7,7 +7,14 @@ export function Honeypot({ name = "website" }: { name?: string }) {
   return (
     <div aria-hidden="true" className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden">
       <label htmlFor={`hp-${name}`}>Leave this field empty</label>
-      <input id={`hp-${name}`} name={name} type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
+      <input
+        id={`hp-${name}`}
+        name={name}
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        defaultValue=""
+      />
     </div>
   );
 }

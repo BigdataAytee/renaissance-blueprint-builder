@@ -13,7 +13,8 @@ function Page() {
     queryKey: ["job_applications"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("job_applications" as never).select("*")
+        .from("job_applications" as never)
+        .select("*")
         .order("created_at", { ascending: false });
       if (error) throw error;
       return (data ?? []) as JobApplication[];
@@ -71,7 +72,9 @@ function Page() {
                       <tr key={a.id} className="border-t border-border align-top">
                         <td className="p-3 font-medium">{a.name}</td>
                         <td className="p-3">
-                          <a href={`mailto:${a.email}`} className="hover:text-primary">{a.email}</a>
+                          <a href={`mailto:${a.email}`} className="hover:text-primary">
+                            {a.email}
+                          </a>
                           {a.phone && <div className="text-muted-foreground">{a.phone}</div>}
                         </td>
                         <td className="p-3 max-w-md whitespace-pre-wrap text-muted-foreground">
@@ -81,7 +84,11 @@ function Page() {
                           {new Date(a.created_at).toLocaleDateString()}
                         </td>
                         <td className="p-3">
-                          {a.cv_path ? <CvDownloadButton path={a.cv_path} /> : <span className="text-muted-foreground">—</span>}
+                          {a.cv_path ? (
+                            <CvDownloadButton path={a.cv_path} />
+                          ) : (
+                            <span className="text-muted-foreground">—</span>
+                          )}
                         </td>
                       </tr>
                     ))}
@@ -111,7 +118,10 @@ function CvDownloadButton({ path }: { path: string }) {
   };
 
   return (
-    <button onClick={download} className="inline-flex items-center gap-1.5 text-primary hover:underline">
+    <button
+      onClick={download}
+      className="inline-flex items-center gap-1.5 text-primary hover:underline"
+    >
       <Download className="size-4" /> Download
     </button>
   );

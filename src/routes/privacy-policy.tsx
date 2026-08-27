@@ -8,9 +8,16 @@ export const Route = createFileRoute("/privacy-policy")({
   head: () => ({
     meta: [
       { title: "Privacy Policy — Dynamic Renaissance" },
-      { name: "description", content: "How Dynamic Renaissance collects, uses, stores and protects the personal information you share through this website." },
+      {
+        name: "description",
+        content:
+          "How Dynamic Renaissance collects, uses, stores and protects the personal information you share through this website.",
+      },
       { property: "og:title", content: "Privacy Policy — Dynamic Renaissance" },
-      { property: "og:description", content: "How we handle enquiries, newsletter subscriptions and job applications." },
+      {
+        property: "og:description",
+        content: "How we handle enquiries, newsletter subscriptions and job applications.",
+      },
       { property: "og:url", content: absoluteUrl("/privacy-policy") },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/privacy-policy") }],
