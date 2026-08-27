@@ -34,6 +34,18 @@ function contentTypeFor(file: File): string | null {
   return TYPE_BY_EXTENSION[extensionOf(file.name)] ?? null;
 }
 
+/**
+ * The bucket's upload rate limit is enforced by its INSERT policy, so hitting it
+ * comes back as a raw row-level-security violation. Applicants should not be
+ * shown that, and it is not their file that is wrong.
+ */
+function uploadErrorMessage(message: string | undefined): string {
+  if (message && /row-level security|violates .*policy/i.test(message)) {
+    return "We are receiving a lot of applications right now. Please try again in a few minutes.";
+  }
+  return message || "Could not upload your CV. Please try again.";
+}
+
 /** crypto.randomUUID is unavailable outside secure contexts (plain-http hosts). */
 const randomId = () =>
   globalThis.crypto?.randomUUID?.() ??
@@ -102,7 +114,7 @@ export function ApplyDialog({
           .from("applications")
           .upload(cvPath, file, { contentType: contentTypeFor(file) ?? undefined, upsert: false });
         if (uploadError) {
-          toast.error(uploadError.message || "Could not upload your CV. Please try again.");
+          toast.error(uploadErrorMessage(uploadError.message));
           return;
         }
       }
