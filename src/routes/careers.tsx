@@ -6,6 +6,9 @@ import { supabase } from "@/integrations/supabase/client";
 import type { Vacancy } from "@/lib/cms/types";
 import { absoluteUrl } from "@/lib/site-config";
 import { ApplyDialog } from "@/components/site/ApplyDialog";
+import { LoadError } from "@/components/site/LoadError";
+import { Skeleton } from "@/components/ui/skeleton";
+import { errorMessage } from "@/lib/cms/error-message";
 
 export const Route = createFileRoute("/careers")({
   component: Careers,
@@ -23,7 +26,13 @@ export const Route = createFileRoute("/careers")({
 const fallbackVacancies: Vacancy[] = [];
 
 function Careers() {
-  const { data: vacancies = fallbackVacancies } = useQuery({
+  const {
+    data: vacancies = fallbackVacancies,
+    isPending,
+    isError,
+    error,
+    refetch,
+  } = useQuery({
     queryKey: ["vacancies", "public"],
     queryFn: async () => {
       const { data, error } = await supabase.from("vacancies" as never).select("*").eq("is_published", true).order("sort_order", { ascending: true });
@@ -60,7 +69,24 @@ function Careers() {
             <h2 className="mt-4 text-4xl font-extrabold">Open roles across the group.</h2>
           </div>
           <div className="mt-10 divide-y divide-border rounded-lg border border-border bg-background">
-            {vacancies.length === 0 ? (
+            {isPending ? (
+              <div className="p-6 space-y-4" aria-busy="true" aria-label="Loading open roles">
+                {[0, 1, 2].map((i) => (
+                  <div key={i} className="space-y-2">
+                    <Skeleton className="h-5 w-1/3" />
+                    <Skeleton className="h-4 w-1/4" />
+                  </div>
+                ))}
+              </div>
+            ) : isError ? (
+              // Distinct from the empty state below: a failed query must not be
+              // reported as "no open roles".
+              <LoadError
+                what="the open roles"
+                detail={errorMessage(error, "The vacancies could not be read.")}
+                onRetry={() => void refetch()}
+              />
+            ) : vacancies.length === 0 ? (
               <div className="p-8 text-center text-muted-foreground">No open roles right now. Please check back soon.</div>
             ) : vacancies.map((v) => (
               <div key={v.id} className="p-6 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
